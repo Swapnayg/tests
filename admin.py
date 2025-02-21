@@ -36,6 +36,7 @@ from import_export.admin import ExportActionMixin, ImportExportActionModelAdmin,
 
 
 configuration = sib_api_v3_sdk.Configuration()
+configuration.api_key['api-key'] = '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'
 api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
 
 class UserAdmin(BaseUserAdmin):
