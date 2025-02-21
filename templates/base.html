@@ -1,0 +1,1158 @@
+{% load static %}
+{% block content %}
+<html lang="en_GB" dir="ltr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" type="image/png">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" type="image/png">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" sizes="20x20" type="image/png">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> 
+<link rel="preconnect" href="https://fonts.gstatic.com"> <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/select2.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/owl.theme.green.css' %}">
+ <link rel="stylesheet" href="{% static 'assets/frontend/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/fontawesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/flaticon.css' %}">
+ <link rel="stylesheet" href="{% static 'assets/frontend/css/style.css' %}"> 
+<link rel="stylesheet" href="{% static 'assets/frontend/css/responsive.css' %}"> 
+ <link rel="stylesheet" href="{% static 'assets/frontend/css/custom-style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/dynamic-style.css' %}"> 
+<link rel="stylesheet" href="{% static 'assets/frontend/css/jquery.ihavecookies.css' %}"> 
+<link rel="stylesheet" href="{% static 'assets/frontend/css/toastr.css' %}"> 
+<script  href="{% static 'assets/common/js/jquery-migrate-3.3.2.min.js' %}"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link type="text/css" href="{% static 'assets/frontend/datatable/jquery.dataTables.min.css' %} " rel="stylesheet">
+<link type="text/css" href="{% static 'assets/frontend/datatable/buttons.dataTables.min.css' %} " rel="stylesheet">
+<link rel='stylesheet' href='https://cdn.datatables.net/responsive/1.0.4/css/dataTables.responsive.css'>
+<style>
+:root {
+    --main-color-one: #8d006b;
+    --main-color-two: #e424b7;
+    --secondary-color: #e9c962;
+    --heading-color: #8d006b;
+    --paragraph-color: #5f5f5f;
+    --heading-font: "Poppins",sans-serif;
+    --body-font:"Open Sans",sans-serif;
+
+}
+#logdetails .row{
+text-align: center;
+}
+#logdetails .row:last-child{
+    margin-bottom: 3%;
+}
+#logdetails p
+{
+    width: 100%;
+}
+#ResetrModal img{
+    width: 50%;
+    margin: auto;
+}
+#ResetrModal form .row{
+    text-align: center;
+}
+.userlbl
+{
+    font-weight: 600 !important;
+}
+.userlbl span
+{
+    font-weight: 500;
+}
+
+.resetlbl{
+    margin-top: 3%;
+}
+#ResetrModal form .row label{
+    width: 100%;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+}
+.modal
+{
+    top:80px;
+}
+#logdetails h4,#access-login h4,#access-forgot h4,#access-Register h4
+{
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    font-size: 25px;
+}
+#loginbck i{
+    font-size: 22px;
+    position: absolute;
+    top: 15px;
+}
+#access-login h4,#access-forgot h4,#access-Register h4
+{
+    text-align: center;
+    width: 100%;
+}
+#logdetails .row img{
+    float: right;
+}
+
+.service_mega_menu
+{
+    overflow: auto !important;
+    height: 400px !important;
+}
+.modal-header
+{
+    padding: 0px;
+    border-bottom: none;
+}
+.modal-header .close
+{
+    background: #e5c765;
+    border-radius: 42px;
+    height: 15px;
+    width: 15px;
+    color: black;
+    top: 5px;
+    position: relative;
+    right: 6px;
+    opacity: 1;
+    line-height: 0px;
+    cursor: pointer !important;
+}
+.modal-backdrop{
+    display: none;
+}
+.modal-header .close span{
+    margin-left: -6px;
+    cursor: pointer !important;
+}
+.service_mega_menu::-webkit-scrollbar-thumb {
+  background-color: gainsboro;
+  border: 4px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;  
+}
+
+.search-result input{
+    height: 50px;
+}
+#alert-msg,#ealert-msg,#lalert-msg,#lealert-msg,#fealert-msg
+    {
+    color: #8d006b !important;
+    font-size: 12px;
+    }
+.service_mega_menu::-webkit-scrollbar {
+  width: 16px;
+}
+#access-login .terms1,#access-forgot .terms1,#access-Register .terms1
+{
+    border-top: 1px solid #dddddd;
+    font-size: 13px;
+    padding-top: 1%;
+    text-align: center;
+}
+.profile
+{
+    border: none !important;
+    text-align: right !important;
+    width: 100% !important;
+    display: flow-root !important;
+}
+#access-login form ,#access-forgot form,#access-Register form{
+    width: 60%;
+    margin: auto;
+    margin-top: 3%;
+}
+#ResetrModal form
+{
+    width: 70%;
+    background: #fbfbfb;
+    border: 1px solid #e3e3e3;
+    margin: auto;
+    margin-top: 3%;
+}
+#ResetrModal form input{
+    width: 80%;
+    margin: auto;
+    background: white;
+    border: 1px solid #dee2e6!important;
+}
+#ResetrModal form button
+{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 4%;
+}
+.goog-te-menu-frame
+{
+    background-color:none;
+    width:126px;
+    height:35px;
+    box-shadow:none;
+    left:87%;
+}
+#ResetrModal form .btn-wrapper{
+    width: 100%;
+    text-align: center;
+}
+#ResetrModal .modal-title
+{
+    padding: 2%;
+}
+#ResetrModal .modal-title a
+{
+    font-size: 16px;
+    text-decoration: underline;
+    color: #8d006b;
+}
+#access-login .terms1 a,#access-forgot .terms1 a,#access-Register .terms1 a
+{
+    text-decoration: underline;
+}
+#footer1 h5{
+    color: #f3e721;
+}
+.butons
+{
+    width: 80%;
+    margin: auto;
+    border: 1px solid;
+    border: 1px solid #d6dae0;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 #ececf4;
+    margin-top: 2%;
+}
+.butons button{
+    width: 30%;
+    margin: auto;
+    height: 55px;
+    border: none;
+    background: no-repeat;
+}
+#facebook-login-button{
+    width: 55% !important;
+}
+.butons a{
+    width: 50%;
+    display: block;
+    margin: auto;
+    height: 55px;
+    border: none;
+    background: no-repeat;
+    padding-top: 2%;
+    color: black;
+}
+.booked-widget
+{
+    width: 40%;
+}
+.link-reviews h6
+{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
+.terms
+{
+    width: 80%;
+    margin: auto;
+}
+.restlbl
+{
+    color: green;
+    text-align: center;
+}
+#google-login-button span.text
+{
+    padding-left: 2% !important;
+}
+#facebook-login-button span.text
+{
+    padding-left: 6% !important;
+}
+.visibility
+{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+#facebook-login-button span.icon img
+{
+    margin-left: 15%;
+    position: absolute;
+}
+#email-login-button{
+    cursor: pointer;
+}
+#email-login-button span.text
+{
+    margin-left: -2%  !important;
+    color: black;
+}
+.terms p{
+    margin-top: 5% !important;
+    padding-top: 2% !important;
+    border-top: 1px solid;
+    margin-bottom: 2% !important;
+    font-size: 12px;
+    text-align: left;
+}
+.terms p a{
+text-decoration: underline;
+}
+.goog-te-banner-frame {display:none;}
+ #goog-gt-tt {display:none!important;visibility:hidden!important;}
+
+#google_translate_element {
+    position: absolute;
+    top: -26px;
+}
+.goog-te-gadget {
+  font-family: Roboto, 'Open Sans', sans-serif!important;
+  text-transform: uppercase;
+}
+
+.goog-te-gadget-simple  {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 4px!important;
+  font-size: 1rem!important;
+  line-height:2rem!important;
+  display: inline-block;
+  cursor: pointer;
+  zoom: 1;
+}
+.goog-te-menu2 {
+  max-width: 100%;
+  width: 100%;
+  height: auto !important;
+  font-size: 12px;
+}
+.goog-te-menu-value {
+  color: white !important;
+  font-weight: 700;
+  font-size: 12px;
+}
+.goog-te-menu-value:before {
+    font-family: 'Material Icons';
+    content: "";
+    margin-right: 16px;
+    font-size: 2rem;
+    vertical-align: -10px;
+    width:32px!important; 
+}
+.goog-te-menu-value span:nth-child(5) {
+  display:none;
+}
+.goog-te-menu-value span:nth-child(3) {
+  border:none!important;
+  font-family: 'Material Icons';
+}
+  .goog-te-menu-value span:nth-child(3):after {
+    font-family: 'Material Icons';
+    content: "\E5C5";
+    font-size: 1.0rem;
+    vertical-align: -5px; 
+}
+.goog-te-gadget-simple .goog-te-menu-value span
+{
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+}
+.goog-te-gadget-icon {
+    background-image: url(https://placehold.it/32)!important;
+    background-position: 0px 0px;
+    height: 32px!important;
+    width: 32px!important;
+    margin-right: 8px!important;
+    display: none;
+}
+
+
+.goog-te-banner-frame.skiptranslate {display: none!important;} 
+@media( max-width : 260px ) {
+    #languages_selector 
+    {
+        left: -100%;
+    }
+    #google_translate_element
+    {
+        top: 1% !important;
+    }
+}
+@media( max-width : 585px ) {
+    #languages_selector 
+    {
+        left: -60%;
+    }
+    #google_translate_element
+    {
+        top: 1% !important;
+    }
+}
+
+</style>            
+<meta name="og:title" content="SkillY - Multiple Services">
+<meta name="og:description" content="SkillY - Multiple Services">
+<meta name="og:site_name" content="SkillY">
+<meta name="og:url" content="/">
+<meta name="description" content="SkillY - Multiple Services">
+<meta name="tags" content="SkillY - Multiple Services">
+
+</head>
+
+<body>
+    <script> 
+    var array = [];
+        $( document ).ready(function() {
+            $('#google_translate_element').bind('DOMNodeInserted', function(event) {
+      $('.goog-te-menu-value span:first').html('Language');
+      $('.goog-te-menu-frame.skiptranslate').load(function(){
+        setTimeout(function(){
+          $('.goog-te-menu-frame.skiptranslate').contents().find('.goog-te-menu2-item-selected .text').html('Language');    
+        }, 100);
+      });
+    });
+            $('#google_translate_element').on("click", function () {
+            $("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
+        .css({
+            'color': '#544F4B',
+            'font-family': 'Roboto',
+            'width':'100%'
+        });
+    $("iframe").contents().find('.goog-te-menu2-item-selected').css ('display', 'none');
+    $("iframe").contents().find('.goog-te-menu2').css ('padding', '0px');
+    $("iframe").contents().find('.goog-te-menu2-item div').css('padding', '12px 10px');
+    $("iframe").contents().find('.goog-te-menu2-item div').css('background-color', '#141938');
+    $("iframe").contents().find('.goog-te-menu2-item div span.text').css('color', '#e9c962');
+    $("iframe").contents().find('.goog-te-menu2-item').css('width', '100%');
+    $("iframe").contents().find('td').css('width', '100%');
+    $("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
+        $(this).css('opacity', '0.8');
+        $(this).css('background-color', '#8d006b').find('span.text').css('color', 'white');
+    }, function () {
+        $(this).css('opacity', '1');
+        $(this).css('background-color', '#141938').find('span.text').css('color', '#e9c962');
+    });
+    $("iframe").contents().find('.goog-te-menu2').css('border', 'none');
+    $(".goog-te-menu-frame").css('background-color', 'none');
+    $(".goog-te-menu-frame").css('width', '126px');
+    $(".goog-te-menu-frame").css('height', '35px');
+    $(".goog-te-menu-frame").css('box-shadow', 'none');
+});
+            $('#servicelists li a').each(function(i, li) {            
+                array.push({id: $(li).attr('href'),text: $(li).text()});
+            });
+            $(".booknow_btnmain").click(function(e){
+                var url = $(location).attr('href');
+                parts = url.split("/");
+                pagename = parts[parts.length - 1];
+                loginstatus = $(".loginstatus").val();
+                if(loginstatus.trim() =='Login')
+                {
+                    $("#loginModal").find(".tab-pane").removeClass('active');
+                    $("#logdetails").addClass('active');
+                    $("#loginModal").modal('show');
+                }
+                else{
+                    window.location="/service/"+pagename+"/book-online/job-details";
+                }
+            });
+            $(".booknow_btn").click(function(e){
+                loginstatus = $(".loginstatus").val();
+                if(loginstatus.trim() =='Login')
+                {
+                    $("#loginModal").find(".tab-pane").removeClass('active');
+                    $("#logdetails").addClass('active');
+                    $("#loginModal").modal('show');
+                }
+                else{
+                    page_name = e.target.getAttribute("data-label");
+                    window.location="/service/"+page_name+"/book-online/job-details";
+                }
+            });
+            $.fn.select2.defaults = $.extend($.fn.select2.defaults, {
+                    allowClear: true, // Adds X image to clear select
+                    closeOnSelect: true, // Only applies to multiple selects. Closes the select upon selection.
+                    placeholder: 'Start typing to find a service...',
+                    minimumResultsForSearch: 15 // Removes search when there are 15 or fewer option
+                });
+                var configParamsObj = {
+                    data: array,
+                    placeholder: 'Start typing to find a service...', 
+                    minimumResultsForSearch: 3 
+                };
+                
+                $("#autosearch").select2(configParamsObj);
+                $("#autosearch").change(function () {
+                    window.open("http://127.0.0.1:8000"+this.value, "_blank");
+                    
+                });
+                $("#booknowtag").click(function() {
+                var url = $(location).attr('href');
+                parts = url.split("/");
+                pagename = parts[parts.length - 1];
+                loginstatus = $(".loginstatus").val();
+                if(loginstatus.trim() =='Login')
+                {
+                    $("#loginModal").find(".tab-pane").removeClass('active');
+                    $("#logdetails").addClass('active');
+                    $("#loginModal").modal('show');
+                }
+                else{
+                    $("#booknowautosearch").select2(configParamsObj);
+                    $("#BookingModal").modal('show');
+                }
+                });
+                $('#booknow_btn').click(function(e) { 
+                    bookingvaule = $('#booknowautosearch').val();  
+                    $("#BookingModal").modal('hide');
+                    window.open("http://127.0.0.1:8000"+bookingvaule+"/book-online/job-details", "_blank");         
+                });
+                $('#LoginEmail').on("change", function(e){
+                uemail = $("#LoginEmail").val();
+                $.ajax({
+                type:"GET",
+                url: "/chk_email/",
+                data: {'uEmail': uemail},
+                success: function( data ) 
+                {      
+                    if(data == "Exits")
+                    {
+                        $("#lealert-msg").hide();
+                        $("#lealert-msg").text("valid");
+                    }
+                    else{
+                        $("#lealert-msg").show();
+                        $("#lealert-msg").text("Email is not valid");
+                    }
+                }
+            });
+            });            
+            $('#fuseremail').on("change", function(e){
+                uemail = $("#fuseremail").val();
+                if(validateEmail(uemail)) {
+                    $.ajax({
+                    type:"GET",
+                    url: "/chk_email/",
+                    data: {'uEmail': uemail},
+                    success: function( data ) 
+                    {      
+                        if(data == "Exits")
+                        {
+                            $("#fealert-msg").hide();
+                            $("#fealert-msg").text("valid");
+                        }
+                        else{
+                            $("#fealert-msg").show();
+                            $("#fealert-msg").text("Email is not valid");
+                        }
+                    }
+                });
+            }
+        else{
+                $("#fealert-msg").show();
+                $("#fealert-msg").text("Email is not valid");
+            }
+            }); 
+            $('#createemail').on("change", function(e){
+                uemail = $("#createemail").val();
+                if(validateEmail(uemail)) {
+                    $("#ealert-msg").hide();
+                    $("#ealert-msg").text("valid");
+                    $.ajax({
+                        type:"GET",
+                        url: "/chk_email/",
+                        data: {'uEmail': uemail},
+                        success: function( data ) 
+                        {      
+                            if(data == "Exits")
+                            {
+                                $("#ealert-msg").show();
+                                $("#ealert-msg").text("This email is already exits");
+                            }
+                            else{
+                                $("#ealert-msg").hide();
+                                $("#ealert-msg").text("valid");
+                            }
+                        }
+                    });
+                }
+                else{
+                    $("#ealert-msg").show();
+                    $("#ealert-msg").text("Please enter a valid email address.");
+                }
+            });
+            $("#languages_selector").click(function(e){
+                $('#languagelist').addClass('visibility');
+            });
+            $("#languages_selector").hover(function(){
+                $('#languagelist').addClass('visibility');
+            },function(){
+                $('#languagelist').removeClass('visibility');
+            });
+            $("#login_selector").click(function(e){
+                $('#profilelist').addClass('visibility');
+            });
+            $("#login_selector").hover(function(){
+                $('#profilelist').addClass('visibility');
+            },function(){
+                $('#profilelist').removeClass('visibility');
+            });
+            
+            $('#create_form_order_page').submit(function(e) {
+                e.preventDefault();
+                var ufirstName = $("#createFirstName").val();
+                var ulastName = $("#creaetLastName").val();
+                var uEmail = $("#createemail").val();
+                var uPassword = $("#createpassword").val();
+                vemailtxt = $("#ealert-msg").text();
+                if(vemailtxt == "valid")
+                {
+                    $("#ealert-msg").hide();
+                    vpasstxt = $("#alert-msg").text();
+                    if(vpasstxt == "valid")
+                    {
+                        $("#alert-msg").hide();
+                        $.ajax({
+                            type:"POST",
+                            url: "/post_register/",
+                            data: {'uFName': ufirstName,'uLName': ulastName,'uEmail': uEmail,'uPassword': uPassword},
+                            success: function( data ) 
+                            {    
+                                $('#create_form_order_page')[0].reset();  
+                                $("#loginModal").find(".tab-pane").removeClass('active');
+                                $('#login_form_order_page')[0].reset();
+                                $(".alert-msg").hide();
+                                $("#access-login").addClass('active');
+                            }
+                        });
+                    }
+                    else{
+                        $("#alert-msg").show();
+                        $("#alert-msg").text("Please enter a valid password.");
+                    }
+                }
+                else{
+                    $("#ealert-msg").show();
+                    $("#ealert-msg").text("Please enter a valid email address.");
+                }
+            });
+            $('#login_form_order_page').submit(function(e) {
+                e.preventDefault();
+                var uEmail = $("#LoginEmail").val();
+                var uPassword = $("#LoginPassword").val();
+                vemailtxt = $("#lealert-msg").text();
+                if(vemailtxt == "valid")
+                {
+                    $("#lealert-msg").hide();
+                    vpasstxt = $("#lalert-msg").text();
+                    if(vpasstxt == "valid")
+                    {
+                        $("#lalert-msg").hide();
+                        $.ajax({
+                            type:"POST",
+                            url: "/post_login/",
+                            data: {'uEmail': uEmail.trim(),'uPassword': uPassword.trim()},
+                            success: function( data ) 
+                            {   
+                                if(data=="success")  
+                                {
+                                    $("#lalert-msg").hide();
+                                    $('#login_form_order_page')[0].reset();
+                                    $("#loginModal").modal('hide');
+                                    location.reload();
+                                }
+                                else{
+                                    $("#lalert-msg").show();
+                                    $("#lalert-msg").text("Email and Password MissMatch.");
+                                }
+                            }
+                        });
+                    }
+                    else{
+                        $("#lalert-msg").show();
+                        $("#lalert-msg").text("Please enter a valid password.");
+                    }
+                }
+                else{
+                    $("#lealert-msg").show();
+                    $("#lealert-msg").text("Please enter a valid email address.");
+                }
+            });
+            $('#forgot_form_order_page').submit(function(e) {
+                e.preventDefault();
+                var vemailtxt = $("#fealert-msg").text();
+                var uEmail = $("#fuseremail").val();
+                if(vemailtxt == "valid")
+                {
+                    $("#falert-msg").hide();
+                    $.ajax({
+                            type:"POST",
+                            url: "/post_forgot/",
+                            data: {'uEmail': uEmail.trim()},
+                            success: function( data ) 
+                            {   
+                                if(data=="success")  
+                                {
+                                    $('#forgot_form_order_page')[0].reset();
+                                    $("#lalert-msg").hide();
+                                    $(".restlbl").show();
+                                }
+                            }
+                        });
+                }
+                else{
+                    $("#falert-msg").show();
+                    $("#falert-msg").text("Please enter a valid password.");
+                    }
+            });
+
+            $("#spanclose").click(function() {
+                $("#loginModal").modal('hide');
+            });
+            $("#forgot_password").click(function() {
+                $("#loginModal").find(".tab-pane").removeClass('active');
+                $("#fealert-msg").hide();
+                $(".restlbl").hide();
+                $('#forgot_form_order_page')[0].reset();
+                $(".alert-msg").hide();
+                $("#access-forgot").addClass('active');
+            });
+            $("#create_account").click(function() {
+                $("#loginModal").find(".tab-pane").removeClass('active');
+                $("#alert-msg").hide();
+                $("#ealert-msg").hide();
+                $('#create_form_order_page')[0].reset();
+                $(".alert-msg").hide();
+                $("#access-Register").addClass('active');
+            });
+            $("#forgotbck").click(function() {
+                $("#loginModal").find(".tab-pane").removeClass('active');
+                $("#lalert-msg").hide();
+                $("#lealert-msg").hide();
+                $('#login_form_order_page')[0].reset();
+                $(".alert-msg").hide();
+                $("#access-login").addClass('active');
+            });
+        });
+        function registerBack()
+        {
+            $("#loginModal").find(".tab-pane").removeClass('active');
+            $("#logdetails").addClass('active');
+        }
+        function loginback()
+        {
+            $("#loginModal").find(".tab-pane").removeClass('active');
+            $("#logdetails").addClass('active');
+        }
+        function calllog()
+        {    
+            $("#loginModal").find(".tab-pane").removeClass('active');
+            $("#logdetails").addClass('active');
+            $("#loginModal").modal('show');
+        }
+        function emailclick(ev)
+        {
+            $("#loginModal").find(".tab-pane").removeClass('active');
+            $("#lalert-msg").hide();
+            $("#lealert-msg").hide();
+            $(".alert-msg").hide();
+            $('#login_form_order_page')[0].reset();
+            $("#access-login").addClass('active');
+        }
+        function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+function PasswordChange(passid,errid)
+{
+    pswrd = $("#"+passid).val();
+    pswlength = pswrd.length;
+    if(pswlength <8)
+    {
+        $("#"+errid).show();
+        $("#"+errid).text("Password Should be Minimum 8 Characters");
+    }
+    else{
+        if (pswrd.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)) 
+        {
+            $("#"+errid).hide();
+            $("#"+errid).text("valid");
+        } 
+        else {
+         $("#"+errid).show();
+         $("#"+errid).text("Must contain one uppercase, one special character and one number");
+        }
+    }
+}
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+<!-- preloader area start -->
+    <div class="preloader" id="preloader" style="display: none;">
+    <div class="preloader-inner">
+        <div class="blobs">
+            <div class="blob-center"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+        </div>
+    </div>
+</div>
+    <!-- preloader area end --><div class="header-style-01">
+ <!--topbar-area -->
+
+ 
+    <div class="topbar-area">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="topbar-inner">
+                <div class="col-lg-9 left-contnet">
+                    <ul class="info-items">                                                                       <li><i class="far fa-clock"></i> Mon - Fri: 08.00am - 10.00 pm</li>                                                                                           </ul>
+                </div>
+                <div class="col-lg-3 right-contnet">
+                    <ul class="info-items">
+                        {% if request.session.userName %}
+                        <input type="hidden" class="loginstatus" value="{{ request.session.userName }}">
+                        <div class="language_dropdown" id="login_selector">
+                            <div class="selected-language profile"> {{ request.session.userName }} <input type="hidden" class="userprofileemail" value="{{ request.session.userEmail }}"><i class="fas fa-caret-down"></i></div>
+                            <ul class="" id="profilelist">
+                                <li><a  href="/profile">My Profile</a></li>
+                                <li><a href="/mybookings">My Bookings</a></li>
+                                <li><a  href="/locations">My Addresses</a></li>
+                                <li><a  href="/logout">LogOut</a></li>
+                            </ul>
+                        </div>
+                        {% elif user.username %}
+                        <input type="hidden" class="loginstatus" value="{{ user.username }}">
+                        <div class="language_dropdown" id="login_selector">
+                            <div class="selected-language profile"> {{ user.username }} <input type="hidden" class="userprofileemail" value="{{ user.email }}"> <i class="fas fa-caret-down"></i></div>
+                            <ul class="" id="profilelist">
+                                <li><a  href="/profile">My Profile</a></li>
+                                <li><a href="/mybookings">My Bookings</a></li>
+                                <li><a  href="/locations">My Addresses</a></li>
+                                <li><a  href="/logoutsocial">LogOut</a></li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <input type="hidden" class="loginstatus" value="Login">
+                        <li><a onclick="calllog()">Login </a></li>
+                        {% endif %}
+                        <div class="language_dropdown" id="languages_selector">
+                            <div id="google_translate_element"></div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>         <!--infobar-area -->
+    <div class="info-bar">
+<div class="info-bar-bottom style-01">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="info-bar-inner">
+                    <div class="left-content-area">
+                        <div class="social-link">
+                            <ul>
+                                                                        <li><a href="https://twitter.com/xgenious1" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                                                        <li><a href="https://www.linkedin.com/company/30951721" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                                                        <li><a href="https://www.facebook.com/xgenious/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                                                        <li><a href="https://www.youtube.com/channel/UCmYjh4uaAu4jWqHOGbzuQJg" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                                                </ul>
+                        </div>
+                    </div>
+                    <div class="right-content-area">
+                        <div class="info-bottom-right">
+                            <ul class="info-items-02">
+                                <li> 
+                                    <h4 class="title">SCHEDULE YOUR APPOINTMENT TODAY</h4>
+                                    <a href="tel:000111555"> <span class="number">1-800-123-4567</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>          <!--navbar-area -->
+    <nav class="navbar navbar-area navbar-expand-lg has-topbar nav-style-02">
+<div class="container nav-container">
+    <div class="responsive-mobile-menu">
+        <div class="logo-wrapper">
+            <a href="/" class="logo">
+                <img src="http://127.0.0.1:8000/static/assets/uploads/media-uploader/site-logo1618651031.png" alt="site_logo">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bizcoxx_main_menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
+        <ul class="navbar-nav">
+                 <li id="hopepagelist">
+<a href="{% url 'index' %}">Home</a>
+</li>
+<li>
+<a href="{% url 'about' %}">About Us</a>
+</li>
+<li class=" menu-item-has-mega-menu" id="servicelists">
+    <a>Service</a>
+    <div class="xg_mega_menu_wrapper service_mega_menu">
+       <div class="xg-mega-menu-container">
+        <div class="row">
+            {% for s in services %} 
+            <div class="col-lg-3 col-md-6">
+                <div class="xg-mega-menu-single-column-wrap">
+                   <h4 class="mega-menu-title">{{s.name}}</h4>
+                   {% if s.service_set %}
+                   <ul>
+                    {% for subsub_cat in s.service_set.all %}
+                        {% if subsub_cat.isActive %}
+                            <li><a href="/service/{{subsub_cat.page}}">{{ subsub_cat.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                   {% endif %}
+                </div>
+             </div>
+            {% endfor %}
+        </div>
+       </div>
+    </div>
+ </li>
+
+<li>
+<a href="{% url 'contact' %}">Contact Us</a>
+</li>
+
+        </ul>
+    </div>
+    <div class="nav-right-content">
+        <!-- <div class="icon-part nav-style-01">
+            <ul>
+                <li class="cart"><a href="https://xgenious.com/laravel/SkillY/products-cart"><i class="flaticon-shopping-cart-2"></i> <span class="pcount">0</span></a></li>
+            </ul>
+        </div> -->
+                        <div class="btn-wrapper">
+                                    <a id="booknowtag" class="request-btn">Book Now<i class="fas fa-long-arrow-alt-right"></i></a>
+            </div>
+                </div>
+    
+</div>
+</nav>    </div>
+
+
+{% block contentarea%}
+{% endblock %}
+<div class="modal" id="loginModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose" data-dismiss="modal">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="logdetails">
+                    <div class="row">
+                        <h4 class="title">Welcome back. Please sign in</h4>
+                        <p class="click-takes">Sign in to access your bookings and quote</p>
+                    </div>
+                    <div class="row butons">
+                        <a  id="google-login-button" href="{% url 'social:begin' 'google-oauth2' %}"><span ><span class="row"><span class="col-3 p-0 pr-2 icon"><img src="{% static 'assets/images/ggicon.png' %}" width="25px"></span><span class="col-9 p-0 text">Continue with Google</span></span></span></a>
+                    </div>
+                    <div class="row butons">
+                        <a  id="facebook-login-button"  href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><span ><span class="row"><span class="col-3 p-0 pr-2 icon"><img src="{% static 'assets/images/fbicon.png' %}" width="25px"></span><span class="col-9 p-0 text">Continue with Facebook</span></span></span></a>
+                    </div>
+                    <div class="row butons">
+                        <a  id="email-login-button"  onclick="emailclick(this);"><span ><span class="row"><span class="col-3 p-0 pr-2 icon"><img src="{% static 'assets/images/emailicon.png' %}" width="25px"></span><span class="col-9 p-0 text">Continue with Email</span></span></span></a>
+                    </div>
+                    <div class="row terms">
+                        <p>By logging in to your account, you agree to our  <a href="{% url 'terms' %}" target="blank">Terms and conditions</a> and <a href="{% url 'privacy' %}" target="blank">Privacy policy</a></p>
+                    </div>
+                </div>
+            
+                <div class="tab-pane" id="access-login">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a id="loginbck" onclick="loginback();" > <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                <h4 class="title">Log in with email</h4>   
+                            </div>                      
+                        </div>
+                        <div class="row">
+                            <form id="login_form_order_page" class="contact-page-form style-01">
+                                {% csrf_token %}  
+                                <div class="error-wrap"></div>
+                        <div class="form-group">
+                            <input type="email" name="LoginEmail" id="LoginEmail" class="form-control" placeholder="User Email" required>
+                            <label id="lealert-msg" class="alert-msg text-center">Email is not valid.</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="LoginPassword" id="LoginPassword" class="form-control" placeholder="Password" required onchange="PasswordChange(this.id,'lalert-msg')">
+                            <label id="lalert-msg" class="alert-msg text-center"></label>
+                        </div>
+                       
+                        <div class="form-group btn-wrapper">
+                            <button type="submit" class="boxed-btn btn-block" id="login_btn">Login</button>
+                        </div>
+                        <div class="row mb-4 rmber-area">
+                            <div class="col-6">
+                                <a class="d-block" id="create_account">Create New account?</a>
+                                <a id="forgot_password">Forgot Password?</a>
+                            </div>
+                        </div>                                           
+                            </form> 
+                        </div>
+                        <div class="row">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 terms1">
+                            <p>By logging in to your account, you agree to our  <a href="{% url 'terms' %}" target="blank">Terms and conditions</a> and <a href="{% url 'privacy' %}" target="blank">Privacy policy</a></p>
+                        </div>
+                    </div>   
+                </div> 
+                <div class="tab-pane" id="access-forgot">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="title">Forget Password ?</h4>    
+                            </div>                      
+                        </div>
+                        <div class="row">
+                            <form id="forgot_form_order_page" class="contact-page-form style-01">
+                                {% csrf_token %}  
+                                <div class="form-group">
+                                    <input type="email" name="fuseremail" id="fuseremail" class="form-control" placeholder="User Email" required>
+                                    <label id="fealert-msg" class="alert-msg text-center">Email is not valid.</label>
+                                </div>
+                                <div class="form-group">
+                                 <p>When you click the button below, we'll send an email to the provided email address with instructions for choosing a new password.</p>
+                                </div>
+                                <div class="form-group btn-wrapper">
+                                    <button type="submit" id="forgot_btn" class="boxed-btn btn-saas btn-block">Send Reset Mail</button>
+                                </div>  
+                                <div class="form-group">
+                                    <p class="restlbl"> We have sent you an email with link please check. Please do check spam folder also. </p>
+                                   </div>    
+                                <div class="row mb-4 rmber-area">
+                                    <div class="col-6">
+                                        <a class="d-block" id="forgotbck">Back to login</a>
+                                    </div>
+                                </div>                  
+                            </form> 
+                        </div>
+                        <div class="row">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 terms1">
+                            <p>By logging in to your account, you agree to our  <a href="{% url 'terms' %}" target="blank">Terms and conditions</a> and <a href="{% url 'privacy' %}" target="blank">Privacy policy</a></p>
+                        </div>
+                        </div>
+                </div> 
+                <div class="tab-pane" id="access-Register">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a id="loginbck" onclick="registerBack();" > <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                <h4 class="title">Create an account using email</h4>   
+                            </div>                      
+                        </div>
+                        <div class="row">
+                            <form id="create_form_order_page" class="contact-page-form style-01">
+                                {% csrf_token %}  
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" name="createFirstName" id="createFirstName" class="form-control" placeholder="First Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" name="creaetLastName" id="creaetLastName" class="form-control" placeholder="Last Name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="error-wrap"></div>
+                        <div class="form-group">
+                            <input type="email" name="createemail" id="createemail" class="form-control" placeholder="User Email" required>
+                            <label id="ealert-msg" class="alert-msg text-center">This email is already in use.</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="createpassword" id="createpassword" class="form-control" placeholder="Password" required onchange="PasswordChange(this.id,'alert-msg')">
+                            <label id="alert-msg" class="alert-msg text-center"></label>
+                        </div>
+                       
+                        <div class="form-group btn-wrapper">
+                            <button type="submit" class="boxed-btn btn-block" id="register_btn">Register</button>
+                        </div>                                           
+                            </form> 
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 terms1">
+                            <p>By Registering to skilly, you agree to our  <a href="{% url 'terms' %}" target="blank">Terms and conditions</a> and <a href="{% url 'privacy' %}" target="blank">Privacy policy</a></p>
+                        </div>
+                        </div>
+                    </div>   
+            </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal" id="BookingModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><a data-dismiss="modal">Welcome</a></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <img src="http://127.0.0.1:8000/static/assets/uploads/media-uploader/site-logo1618651031.png" alt="site_logo">         
+            </div>
+            <div class="row">
+                <label class="resetlbl">Choose Your Service</label>
+            </div>
+            <div class="row">                 
+            <div class="form-group" id="formgroupbook">
+               <select id="booknowautosearch" required class="form-control clear-focus input-placeholder rounded-0 d-flex">
+			   <option></option>   
+			   </select>
+            </div>
+        </div>
+            <div class="form-group btn-wrapper">
+                <button type="button" class="boxed-btn btn-block" id="booknow_btn">Book Now</button>
+            </div>                                         
+                
+            </div>
+        </div>
+      </div>
+  </div>
+{% endblock %}

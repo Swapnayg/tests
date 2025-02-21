@@ -1,0 +1,252 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - Profile</title>
+<!--header-slider-area -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+
+<style>
+    #phoneform label,#phoneform .iti
+    {
+        width: 100%;
+    }
+    #ealert-msg
+    {
+        font-weight: 700;
+    }
+    .update_message
+    {
+        color: green;
+    }
+    .container {
+        max-width: 1200px;
+    }
+    .table
+    {
+        border: 1px solid #dddddd;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .table thead th,.table tbody td
+    {
+        border: 1px solid #dddddd;
+        width: 20% !important;
+    }
+    .table tbody td a{
+        color: #e424b7 !important;
+    } 
+    .btn-primary {
+    width: 160px;
+    background-color: #e424b7;
+    padding: 8px 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 13px;
+}
+.form-control:disabled, .form-control[readonly]
+{
+    background-color: #f6fafd;
+}
+#createAddress,#viewAddress
+{
+    opacity: 1;
+    overflow: hidden;
+    top: 0px;
+}
+.modal-title
+{
+    padding: 10px;
+}
+select.form-control
+{
+    height: 42px !important;
+    border-radius: 0.25rem;
+}
+.choicelist
+{
+    height: 55px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    position: inherit !important;
+}
+.choicelist ul
+{
+    position: relative;
+    overflow: auto;
+}
+body.modal-open {
+    overflow: hidden;
+}
+.choicelist ul li input {
+position: fixed;
+opacity: 0;
+cursor: pointer;
+}
+.choicelist ul
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+.choicelist ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 3px;
+}
+button:hover,button:focus{
+    outline: none !important;
+    border: none;
+}
+.containerchoice {
+          display: block;
+          position: relative;
+          padding: 0.9rem 0.75rem;
+          cursor: pointer;
+          font-size: 16px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        border: 1px solid #e424b7;
+        border-radius: 50rem;
+        font-size: 1.8rem;
+        min-width: 72px;
+        text-align: center;
+        height: 50px;
+        line-height: 20px;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 15px;
+        }
+ 
+.choicelist ul li input:checked + .containerchoice
+{
+    background-color: #e424b7;
+    color: #fff;
+}
+#tbl_payments tbody td:first-child,#tbl_payments thead th:first-child { 
+    text-align: left ;
+}; 
+ 
+#address_delform
+{
+    width: 80%;
+    margin: auto;
+}
+</style>
+<script> 
+    $(document).ready(function () {
+        $.ajax({
+            type:"GET",
+            url: "/get_payments/",
+            data: {'username':$(".userprofileemail").val().trim()},
+            success: function( data ) 
+            {  
+                data1 = JSON.parse(data);
+                $("#tbl_payments tbody").empty();
+                $.each(data1, function (key, value) {
+                    $("#tbl_payments tbody").append("<tr><td class='upper' style='word-wrap: break-word'>" + data1[key].u_tran_id+ "</td><td class='upper'>" + data1[key].u_order_id+ "</td><td class='cpital'>" + data1[key].u_amount + "</td><td class='cpital'>" + data1[key].u_currency+ "</td><td>" + data1[key].u_status+ "</td><td>" + data1[key].u_created+ "</td></tr>");
+                });
+                $('#tbl_payments').DataTable({
+                  dom: 'Bfrtip',
+                  rowReorder: {
+                      selector: 'td:nth-child(2)'
+                  },
+                  responsive: true,
+                  language: {
+                     oPaginate: {
+                     sNext: '<i class="fa fa-forward"></i>',
+                     sPrevious: '<i class="fa fa-backward"></i>'
+                  }
+                  },
+                  "bDestroy": true,
+               });
+            }
+        });
+    });
+</script>
+<div class="breadcrumb-area" style="background-image: url('static/assets/uploads/services/breadcrumb1619334343.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner">
+                    <p>    My Payments
+</p>
+                    <h2 class="page-title">    My Payments
+</h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home </a></li>
+                    <li><a href="{% url 'mypayments' %}">Payments</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="login-page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="user-dashboard-wrapper">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="mobile_nav">
+                            <i class="fas fa-cogs"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/profile">Profile</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mybookings">My Bookings</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/locations">My Locations</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mypayments">Payment History</a>
+                        </li>                 
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel">
+                            <div class="message-show margin-top-10">
+                                                                                                    </div>
+                                <div class="dashboard-form-wrapper">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h2 class="title">My Payments</h2>
+                                        </div>
+                                    </div>
+    <table class="table table-custom ng-scope ng-table" id='tbl_payments'>
+        <thead class="ng-scope">
+         <tr>
+          <th class="header ">Transaction-Id</th>
+          <th class="header ">Order-Id</th>
+          <th class="header ">Amount</th>
+          <th class="header ">Currency</th>
+          <th class="header ">Status</th>
+          <th class="header ">Transaction Date</th>
+         </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+{% include  'footer.html' %}
+
+{% endblock %}

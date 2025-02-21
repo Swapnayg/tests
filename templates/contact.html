@@ -1,0 +1,219 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - Contact us</title>
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/intlTelInput.min.css' %}">
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
+<script>
+     $(document).ready(function () {
+        var input = document.querySelector("#phone");
+    intlTelInput(input, {
+      initialCountry: "auto",
+      autoPlaceholder: true,
+      geoIpLookup: function (success, failure) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "us";
+          success(countryCode);
+        });
+      },
+    });
+    $('#contact_us_form').submit(function(e) {
+        e.preventDefault();
+        var uf_name = $("#f_name").val();
+        var ul_name = $("#l_name").val();
+        var uemail =  $("#email").val();
+        var uphone = $("#phone").val();
+        var udialcode =  $(".iti__selected-flag").attr("title");
+        var code = udialcode.split(":");
+        var umessage =  $("#message").val();
+        var CountryName = code[0].split("(")
+        $.ajax({
+            type:"POST",
+            url: "/post_contact/",
+            data: {'uf_name': uf_name,"ul_name": ul_name,"uemail": uemail,'uphone': uphone,"udialcode": code[1].trim().toString(),"ucountry":CountryName[0].trim().toString(),"umessage": umessage},
+            success: function( data ) 
+            {   
+                if(data == "Success")
+                {
+                    $('#contact_us_form').trigger("reset");
+                    $("#Thankyoumodel").modal('show');
+                }
+            }
+        });
+    });
+     });
+</script>
+<style>
+
+    #phone
+    {
+        padding-left: 10%;
+    }
+    .iti--allow-dropdown
+    {
+        width: 100%;
+    }
+    .lblthkyou
+    {
+        color: green;
+        width: 100%;
+        padding: 2%;
+        text-align: center;
+        font-size: 20px;
+    }
+    .modal-header
+    {
+        padding: 2%;
+        text-align: center;
+        width: 100%;
+    }
+    .modal-title
+    {
+        width: 100%;
+        font-size: 35px;
+        font-weight: 700;
+    }
+    .modal-header .close
+    {
+        background: none;
+    }
+    #thankyou
+    {
+        width: 100%;
+    }
+    #thankyou .row
+    {
+        text-align: center;
+    width: 100%;
+    padding: 0% !important;
+    margin: 0% !important;
+    }
+
+    .modal-backdrop
+    {
+        display: none;
+    }
+</style>
+<!--header-slider-area -->
+<div class="breadcrumb-area" style="background-image: url(static/assets/uploads/services/breadcrumb1619334343.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner">
+                    <p>   CONTACT US
+</p>
+                    <h2 class="page-title">    Contact Us
+</h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home </a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact-inner-area padding-bottom-120 padding-top-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="content-area">
+                    <div class="section-title padding-bottom-25">
+                        <h4 class="title">We offer 24/7 emergency service to all of our customers </h4>
+                    </div>
+                    <div class="single-contact-item">
+                        <div class="icon">
+                            <i class="flaticon-phone"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Phone</span>
+                            <p class="details">
+                                                                                +458 123 657
+<br>
+                                                                                +415 103 557<br>
+                                                                    </p>
+                        </div>
+                    </div>
+                    <div class="single-contact-item">
+                        <div class="icon">
+                            <i class="flaticon-mail-2"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Mail US</span>
+                            <p class="details">
+                                                                                contact@xgenious.com
+<br>
+                                                                                info@shawon.xgenious.com<br>
+                                                                    </p>
+                        </div>
+                    </div>
+                    <div class="single-contact-item">
+                        <div class="icon">
+                            <i class="flaticon-pin"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Address
+                        </span>
+                        <p class="details">
+                                                                        475/W 13th Street, Cooper New York, 
+<br>
+                                                                        United States<br>
+                                                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="contact-form style-01">
+                    <form  class="contact-page-form style-01" id="contact_us_form">
+                        <input type="hidden" name="captcha_token" id="gcaptcha_token">
+                        <input type="hidden" name="_token" value="kIRIOpY3ljXsHiaVkWKo1IuuROltp1dhu2qQeu6w">                                <div class="error-message margin-bottom-20"> </div>
+                             <div class="form-group"> <input type="text" id="f_name" name="f_name" class="form-control" placeholder="First Name" required="required"></div> <div class="form-group"> <input type="text" id="l_name" name="l_name" class="form-control" placeholder="Last Name" required="required"></div> <div class="form-group"> <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="required"></div> <div class="form-group"> <input type="number" id="phone" name="phone" class="form-control" required></div> <div class="form-group textarea"><textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Your Message" required="required"></textarea></div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="boxed-btn btn-block" id="contact_us_submit_btn">Submit Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="map-area">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="contact_map">
+                    <div class="elementor-custom-embed"><iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Uae,%20dubai,deira%20muteena%20,lulu%20building%201102.+(Skilly%20-%20Multiple%20Services)&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near" aria-label="Uae, dubai,deira muteena ,lulu building 1102."></iframe></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="Thankyoumodel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><a data-dismiss="modal">Thank You</a></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="thankyou" class="contact-page-form style-01">
+                    <div class="row">
+                        <label class="lblthkyou">Thank you we have received your Message Our team will contact you as soon as possible.</label>                      
+                    </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{% include  'footer.html' %}
+{% endblock %}

@@ -1,0 +1,951 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - Multiple Services</title>
+<!--header-slider-area -->
+<style>
+    #header-tabcontents .tab-content>.active
+    {
+        display: contents;
+    }
+    .section-service  .justify-content-center
+    {
+        width: 100%;
+        margin-left: 2%;
+    }
+</style>
+<script>
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+    $(document).ready(function () {
+        $("#rlogin_account").click(function() {
+                $("#loginModal").find(".tab-pane").removeClass('active');
+                $('#login_form_order_page')[0].reset();
+                $(".alert-msg").hide();
+                $("#access-login").addClass('active');
+                $("#loginModal").modal('show');
+            });
+        $("#ffealert-msg").hide();
+        $('#ffemail').on("change", function(e){
+                uemail = $("#ffemail").val();
+                if(validateEmail(uemail)) {
+                    $("#ffealert-msg").hide();
+                    $("#ffealert-msg").text("valid");
+                    $.ajax({
+                        type:"GET",
+                        url: "/chk_email/",
+                        data: {'uEmail': uemail},
+                        success: function( data ) 
+                        {      
+                            if(data == "Exits")
+                            {
+                                $("#ffealert-msg").show();
+                                $("#ffealert-msg").text("This email is already exits");
+                            }
+                            else{
+                                $("#ffealert-msg").hide();
+                                $("#ffealert-msg").text("valid");
+                            }
+                        }
+                    });
+                }
+                else{
+                    $("#ffealert-msg").show();
+                    $("#ffealert-msg").text("Veuillez entrer un email valide");
+                }
+            });
+            $('#front_form').submit(function(e) {
+                e.preventDefault();
+                var ufirstName = $("#fFirstName").val();
+                var ulastName = '';
+                var uEmail = $("#ffemail").val();
+                var uPassword = $("#ffpassword").val();
+                vemailtxt = $("#ffealert-msg").text();
+                if(vemailtxt == "valid")
+                {
+                    $("#ffealert-msg").hide();
+                    vpasstxt = $("#ffalert-msg").text();
+                    if(vpasstxt == "valid")
+                    {
+                        $("#ffalert-msg").hide();
+                        $.ajax({
+                            type:"POST",
+                            url: "/post_register/",
+                            data: {'uFName': ufirstName,'uLName': ulastName,'uEmail': uEmail,'uPassword': uPassword},
+                            success: function( data ) 
+                            {    
+                                $('#front_form')[0].reset();  
+                                $(".alert-msg").hide();
+                                $('#login_form_order_page')[0].reset();
+                                $("#loginModal").find(".tab-pane").removeClass('active');
+                                $("#access-login").addClass('active');
+                                $("#loginModal").modal('show');
+                            }
+                        });
+                    }
+                    else{
+                        $("#ffalert-msg").show();
+                        $("#ffalert-msg").text("Please enter a valid password.");
+                    }
+                }
+                else{
+                    $("#ffealert-msg").show();
+                    $("#ffealert-msg").text("Please enter a valid email address.");
+                }
+            });
+        var url = $(location).attr('href');
+        parts = url.split("/"),
+        uuid= parts[parts.length-1];
+        uid= parts[parts.length-2];
+        pageId = parts[parts.length-3];
+        if(pageId=="reset")
+        {
+            $.ajax({
+                type:"GET",
+                url: "/get_email/",
+                data: {'uid': uid,'uuid':uuid},
+                success: function( data ) 
+                {    
+                    $(".useremaillbl").text(data);
+                    $("#utoken").val(uuid);
+                    $("#ResetrModal").modal('show');
+                }
+            });
+        }
+        else{
+            $("#ResetrModal").modal('hide');
+        }
+        $('#reset_form_order_page').submit(function(e) {
+                e.preventDefault();
+                var upassword = $("#password").val();
+                var urepassword = $("#re-password").val();
+                var uuid =  $("#utoken").val();
+                if(upassword.length != 0 && urepassword.length!=0)
+                {
+                    $("#ppalert-msg").hide();
+                    if(upassword.trim() == urepassword.trim())
+                    {
+                        $("#ppalert-msg").hide();
+                        var email = $(".useremaillbl").text();
+                        $.ajax({
+                        type:"POST",
+                        url: "/post_preset/",
+                        data: {'upassword': upassword,"uemail": email,"uuid": uuid},
+                        success: function( data ) 
+                        {      
+                            if(data == "Success")
+                            {
+                                $('#reset_form_order_page').trigger("reset");
+                                $("#ResetrModal").modal('hide');
+                                window.location="{% url 'index' %}";
+                            }
+                        }
+                    });
+                    }
+                    else{
+                        $("#ppalert-msg").show();
+                        $("#ppalert-msg").text("Password don't match.");
+                    }
+                }
+                else{
+                    $("#ppalert-msg").show();
+                    $("#ppalert-msg").text("All fields are requierd.");
+                }
+            });
+        $('.owl-carousel').owlCarousel({
+
+            items: 4,
+            loop: true,
+            margin: 15,
+            nav: false,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            // stagePadding: 100,
+            autoplayHoverPause: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 40) {
+                $('#Scroll-btn').fadeIn();
+            } else {
+                $('#Scroll-btn').fadeOut();
+            }
+        });
+
+        $('#Scroll-btn').click(function () {
+            $('html , body ').animate({ scrollTop: 0 }, 100);
+        });
+    });
+</script>
+<style>
+    #rlogin_account
+    {
+        color: white;
+    }
+    #palert-msg,#ppalert-msg
+    {
+    color: #8d006b !important;
+    font-size: 12px;
+    text-align: left!important;
+    width: 100%;
+    margin-left: 11%;
+    }
+    #ffalert-msg,#ffealert-msg
+    {
+        color: white !important;
+        font-size: 12px;
+        text-align: left!important;
+        width: 100%;  
+    }
+    .modal-backdrop
+    {
+display: none;
+    }
+</style>
+<div class="header-slider-one">          
+   <div class="header-area header-bg" style="background-image: url('static/assets/uploads/media-uploader/grid-bg-041618830464.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-inner">
+                        <!-- header inner -->
+                        <span class="subtitle">Book or get free quotes for over 25 home services from trusted companies in Dubai</span>
+                        <h5 class="title">Sit back , we'll take it from here</h5>
+                        <div class="col-lg-12 header-bottom">
+                            <div class="col-lg-3 input-group-prepend"><button id="cities-search-header" class="btn btn-light dropdown-toggle px-md-4 border" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mr-2 text-capitalize">Dubai</span></button><div class="dropdown-menu"><a class="dropdown-item" href="javascript:void(0)">Dubai</a><a class="dropdown-item" href="javascript:void(0)">Abu Dhabi</a><a class="dropdown-item" href="javascript:void(0)">Sharjah</a><a class="dropdown-item" href="javascript:void(0)">Doha</a><a class="dropdown-item" href="javascript:void(0)">Jeddah</a><a class="dropdown-item" href="javascript:void(0)">Riyadh</a><a class="dropdown-item" href="javascript:void(0)">Kuwait</a><a class="dropdown-item" href="javascript:void(0)">Bahrain</a><a class="dropdown-item" href="javascript:void(0)">Dammam</a><a class="dropdown-item" href="javascript:void(0)">Muscat</a></div></div><div class="col-lg-9 dropdown flex-fill search-result">
+                                <select id="autosearch" class="form-control clear-focus input-placeholder rounded-0 d-flex">
+                                    <option></option>   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //.header inner -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--keyfeature-area -->
+<div class="header-bottom-area bg-blue-03 bg-image padding-bottom-80" style="background-image: url('static/assets/uploads/media-uploader/011618747632.png');">
+<div class="container">
+    <div class="header-bottom-wrapper m-top bg-white" id="header-tabcontents">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content-wrapper">
+                    <div class="left-content bg-blue">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link  active  service-item-list show" id="residential-service-tab" data-toggle="tab" href="#residential-service" role="tab" aria-controls="residential-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-sink"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Home</h4>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="commercial-service-tab" data-toggle="tab" href="#commercial-service" role="tab" aria-controls="commercial-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-cleaning"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Cleaning</h4>
+                                    </div>
+                                </a>
+                            </li>
+                                                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="vehicle-service-tab" data-toggle="tab" href="#vehicle-service" role="tab" aria-controls="vehicle-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-technician"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Handyman</h4>
+                                    </div>
+                                </a>
+                            </li>
+                                                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="institutional-service-tab" data-toggle="tab" href="#institutional-service" role="tab" aria-controls="institutional-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-wash-1"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">AC Services</h4>
+                                    </div>
+                                </a>
+                            </li>
+                                                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="others-service-tab" data-toggle="tab" href="#others-service" role="tab" aria-controls="others-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-water-tap-1"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Plumbing </h4>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="others-service-tab" data-toggle="tab" href="#vihicle-service" role="tab" aria-controls="others-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-car"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Vehical Service </h4>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  service-item-list show" id="others-service-tab" data-toggle="tab" href="#maid-service" role="tab" aria-controls="others-service" aria-selected="true">
+                                    <div class="service-icon style-01">
+                                        <i class="flaticon-maid"></i>
+                                    </div>
+                                    <div class="service-title">
+                                        <h4 class="title">Maids And Nannies Services </h4>
+                                    </div>
+                                </a>
+                            </li>
+                                                        </ul>
+                    </div>
+                    <div class="right-content">
+                        <div class="tab-content" id="myTabContent">
+                                                            <div class="tab-pane fade  active show " id="residential-service" role="tabpanel" aria-labelledby="residential-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Residential Services</span>
+                                            <h3 class="title">We provide best residential service</h3>
+                                            <p> We all lead busy lives in Dubai, and finding time to keep our homes tidy can be quite stressful. That is why we have partnered with the top home cleaning companies in Dubai, who are ready to serve you 7 days a week. </p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Home Movers
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Tile Fixer
+</li> 
+                                                    </div>      
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Room Painting</li> 
+                                                    </div>
+                                                                                                        </div>
+                                            </ul>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                                                            <div class="tab-pane fade " id="commercial-service" role="tabpanel" aria-labelledby="commercial-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Cleaning Service</span>
+                                            <h3 class="title">We provide best cleaning service</h3>
+                                            <p>We're known for one thing everywhere we go: excellent customer experiences. With our industry leading guarantees and our unwavering.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-10">
+                                                        <li><i class="fas fa-check"></i> Building Cleaning
+</li> 
+                                                    </div>
+                                                                                                        </div>
+                                                  <div class="row">
+                                                    <div class="col-md-12">
+                                                        <li><i class="fas fa-check"></i> Swimming Pool Cleaning
+</li> 
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                                                            <div class="tab-pane fade " id="vehicle-service" role="tabpanel" aria-labelledby="vehicle-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Handyman Service</span>
+                                            <h3 class="title">We provide best handyman service</h3>
+                                            <p>In addition to freeing up your time for the more important things in life.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Plumbing
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Electrician
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Carpenter
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Wallpaper Installation
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Curtain and Blinds
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Furniture Assembling</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> False Wall</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Painter</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Media Installation</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> CCTV Installation</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i>Projector Installation</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> TV Installation</li> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Birds Net</li> 
+                                                    </div>
+                                                                                                        </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                                                            <div class="tab-pane fade " id="institutional-service" role="tabpanel" aria-labelledby="institutional-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">AC Services</span>
+                                            <h3 class="title">We provide best AC service</h3>
+                                            <p>Finding a dependable AC service in the city can be challenging, specially, during the oppressively hot summer months.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> AC Cleaning
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> AC Installation
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> AC Maintenance
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> AC Repair
+</li> 
+                                                    </div>
+                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <li><i class="fas fa-check"></i> AC Thermostat Installation
+    </li> 
+                                                        </div>
+                                                    </div>
+                                                                                         
+                                                                                                       
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                                                            <div class="tab-pane fade " id="others-service" role="tabpanel" aria-labelledby="others-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Plumbing Service</span>
+                                            <h3 class="title">We provide best plumbing service</h3>
+                                            <p>A well-functioning household is essential for effectiveness in life. Kitchens and bathrooms are an essential fragment of a house.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Pipe Fixing
+</li> 
+                                                    </div>
+                                                                                                          
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Blockage Opening
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Tank Proofing
+</li> 
+                                                    </div>
+                                                                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <li><i class="fas fa-check"></i> Washing Machine Installation
+    </li> 
+                                                        </div>
+                                                    </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="vihicle-service" role="tabpanel" aria-labelledby="vihicle-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Vehicle Service</span>
+                                            <h3 class="title">We provide best vehicle service</h3>
+                                            <p> We own the complete experience right from procurement of spare parts to quality control at our more than 30+ partner car service centres.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-12">
+                                                        <li><i class="fas fa-check"></i> Car Parts
+</li> 
+                                                    </div> </div>
+                                                    <div class="row">                                                 
+                                                                                                            <div class="col-md-12">
+                                                        <li><i class="fas fa-check"></i> Car Modification
+</li> 
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="maid-service" role="tabpanel" aria-labelledby="maid-service-tab">
+                                <div class="description-tab-content">
+                                    <div class="text-content-tab">
+                                        <div class="section-title">
+                                            <span class="subtitle">Maid Service</span>
+                                            <h3 class="title">We provide best maid service</h3>
+                                            <p>Maid services may be different from what is generally thought to be the historically prevalent services performed by a maid.</p> 
+                                        </div>
+                                        <div class="content">
+                                            <ul>
+                                                <div class="row">
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> House Cleaning
+</li> 
+                                                    </div>
+                                                                                                          
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Ironing
+</li> 
+                                                    </div>
+                                                                                                            <div class="col-md-6">
+                                                        <li><i class="fas fa-check"></i> Laundry Service
+</li> 
+                                                    </div>
+                                                                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <li><i class="fas fa-check"></i> Babysitters and Nannies
+    </li> 
+                                                        </div>
+                                                    </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="serivce-bg" style="background-image: url('static/assets/uploads/media-uploader/011618730370.png');"></div>
+                                </div>
+                            </div>
+                            
+                                                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<section class="why-choose-use-area padding-top-50 padding-bottom-20">
+    <div class="container">
+        {% for s in services %} 
+        <div class="row section-service">
+            <div class="section-title">
+                <h3 class="title">{{s.name}}</h3>
+            </div>
+            {% if s.service_set %}
+            {% if s.service_set.all|length > 3 %}
+            
+            <div class="row justify-content-center">
+                <div class="owl-carousel owl-theme">
+                    {% for subsub_cat in s.service_set.all %}
+                    {% if subsub_cat.isActive %}
+                    <div class="item img-fluid ">
+                        <a href="/service/{{subsub_cat.page}}"><img class="" src="media/{{subsub_cat.image}}" alt=""></a>
+                        <div class="item-text">
+                            <h4>{{ subsub_cat.name }}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="row justify-content-center">
+                <div class="owl-carousel owl-theme">
+                    {% for subsub_cat in s.service_set.all %}
+                    {% if subsub_cat.isActive %}
+                    <div class="item img-fluid ">
+                        <a href="/service/{{subsub_cat.page}}"><img class="" src="media/{{subsub_cat.image}}" alt=""></a>
+                        <div class="item-text">
+                            <h4>{{ subsub_cat.name }}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for subsub_cat in s.service_set.all %}
+                    {% if subsub_cat.isActive %}
+                    <div class="item img-fluid ">
+                        <a href="/service/{{subsub_cat.page}}"><img class="" src="media/{{subsub_cat.image}}" alt=""></a>
+                        <div class="item-text">
+                            <h4>{{ subsub_cat.name }}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!--why-choose-us-area -->
+<section class="why-choose-use-area padding-top-50 padding-bottom-90">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-7 col-sm-12 col-12">
+            <div class="section-title desktop-center margin-bottom-55">
+                <div class="icon">
+                    <span class="line-one"></span>
+                    <span class="line-two"></span>
+                    <i class="flaticon-paint-brush"></i>
+                    <span class="line-three"></span>
+                    <span class="line-four"></span>
+                </div>
+                <h2 class="title">Why choose us?</h2>
+                <p>We are the largest home services marketplace in the Middle East. Thousands of people trust us with their homes every month.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="choose-single-item margin-bottom-30 bg-image ">
+                <div class="icon bg-image" style="background-image: url('static/assets/frontend/important/choose/01.png');">
+                    <i class="flaticon-online-service"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title"><a href="{% url 'services' %}">Tell us what you need</a></h4>
+                    <p>Let us know what service you are looking for. We offer more than 25 different home services, and we are here to help!</p>
+                </div>
+            </div>
+        </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="choose-single-item margin-bottom-30 bg-image  active ">
+                <div class="icon bg-image" style="background-image: url('static/assets/frontend/important/choose/01.png');">
+                    <i class="flaticon-right"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title"><a href="{% url 'services' %}">We will find the right professional</a></h4>
+                    <p>Book your service directly with us online, or request quotes from our service partners. All our partners are licensed, vetted and reviewed by our users.</p>
+                </div>
+            </div>
+        </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="choose-single-item margin-bottom-30 bg-image ">
+                <div class="icon bg-image" style="background-image: url('static/assets/frontend/important/choose/01.png');">
+                    <i class="flaticon-admin"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title"><a href="{% url 'services' %}">Sit back and relax</a></h4>
+                    <p>Let our professionals do the work while you focus on doing what you love. Our contact center is open 7 days a week to help you along the way.</p>
+                </div>
+            </div>
+        </div>
+                 
+                </div>
+</div>
+</section><!--full-width-service-area -->
+<div class="counterup-area padding-top-180 padding-bottom-10">     <div class="container">
+    <div class="counterup-wrapper m-top bg-liteblue ">
+        <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-counterup-01 ">
+                        <div class="icon">
+                            <i class="flaticon-handwash"></i>
+                        </div>
+                        <div class="content">
+                            <div class="count-wrap"><span class="count-num">20</span>k+</div>
+                            <h4 class="title">Worldwide Clients</h4>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-counterup-01 ">
+                        <div class="icon">
+                            <i class="flaticon-wipe"></i>
+                        </div>
+                        <div class="content">
+                            <div class="count-wrap"><span class="count-num">7,079</span>+</div>
+                            <h4 class="title">Store Clients Products</h4>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-counterup-01 ">
+                        <div class="icon">
+                            <i class="flaticon-dust-pan-1"></i>
+                        </div>
+                        <div class="content">
+                            <div class="count-wrap"><span class="count-num">1043</span>+</div>
+                            <h4 class="title">Total Km Reach So Far</h4>
+                        </div>
+                    </div>
+                </div>
+                        </div>
+    </div>
+</div>
+</div><!--testimonial-area -->
+<section class="testimonial-area bg-image padding-top-110">
+<div class="container">
+    <div class="row justify-content-center padding-bottom-45">
+        <div class="col-lg-8">
+            <div class="section-title desktop-center">
+                <div class="icon">
+                    <span class="line-one"></span>
+                    <span class="line-two"></span>
+                    <i class="flaticon-paint-brush"></i>
+                    <span class="line-three"></span>
+                    <span class="line-four"></span>
+                </div>
+                <h2 class="title">What Clients Say</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="testimonial-carousel-area">
+                <div class="testimonial-carousel">
+                    <div class="owl-item" style="width: 540px; margin-right: 30px;"><div class="single-testimonial-item">
+                        <div class="thumb bg-image" style="background-image: url('static/assets/uploads/media-uploader/testimonial-021618929870.jpg');"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <i class="flaticon-quote-left"></i>
+                            </div>
+                            <p class="description">1 I found myself working in a true partnership that results in an incredible experience, and a product that is the best services.</p>
+                            <div class="author-details">
+                                <div class="author-meta">
+                                    <div class="ratings">
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                </div>
+                                    <h4 class="title"> - James Curtiss 
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+                    <div class="owl-item" style="width: 540px; margin-right: 30px;"><div class="single-testimonial-item">
+                        <div class="thumb bg-image" style="background-image: url('static/assets/uploads/media-uploader/testimonial-031618930158.jpg');"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <i class="flaticon-quote-left"></i>
+                            </div>
+                            <p class="description">2. I found myself working in a true partnership that results in an incredible experience, and a product that is the best services.</p>
+                            <div class="author-details">
+                                <div class="author-meta">
+                                    <div class="ratings">
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                </div>
+                                    <h4 class="title"> - Steven Perkins 
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+                    <div class="owl-item" style="width: 540px; margin-right: 30px;"><div class="single-testimonial-item">
+                        <div class="thumb bg-image" style="background-image: url('static/assets/uploads/media-uploader/testimonial-011618929870.jpg');"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <i class="flaticon-quote-left"></i>
+                            </div>
+                            <p class="description">3. I found myself working in a true partnership that results in an incredible experience, and a product that is the best services.</p>
+                            <div class="author-details">
+                                <div class="author-meta">
+                                    <div class="ratings">
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                </div>
+                                    <h4 class="title"> - Donald Moreau 
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="google-reviews padding-top-50 padding-bottom-45">
+    <div class="container">
+        <div class="row" id="google-revies-id">
+            <div class="col-md-3  pb-5 pb-md-0 border">
+                <div class="google-revies-pic justify-content-center p-3 text-align-center ">
+                    <img class="img-fluid" src="{% static 'assets/frontend/images/google-reviews-img.png' %}" alt="">
+                </div>
+            </div>
+            <div class=" col-md-6 pb-2 pb-md-0 border">
+                <div class="reveiews p-3 justify-content-center text-align-center">
+                    <h6>What do customers say about Skilly Services?</h6>
+                    <p>Skilly Services has been rated 4.4 out of 5 based on 1628 reviews as of October 2021.</p>
+                </div>
+            </div>
+            <div class="col-md-3 border">
+                <div class="link-reviews p-2 justify-content-center text-align-center">
+                    <a href="{% url 'about' %}">
+                        <h6>Read Customer Reviews <span><i class="fa fa-arrow-right"></i></span></h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section><!--quote-area -->
+<div class="contact-area bg-image padding-top-40 padding-bottom-120" style="background-image: url('static/assets/uploads/media-uploader/testimonial-bg1618991543.png');">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="contact-img bg-image">
+                <img src="{% static 'assets/uploads/media-uploader/011618994172.png' %}" alt="">
+            </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+            <div class="request-page-form-wrap">
+                <div class="section-title bg-image" style="background-image: url('static/assets/uploads/media-uploader/021618991591.png');">
+                    <h4 class="title">Register</h4>                  
+                </div>
+                <form class="request-page-form " enctype="multipart/form-data" id="front_form">
+                    {% csrf_token %}  
+                    <div class="form-group"> 
+                    <input type="text" name="fFirstName" id="fFirstName" class="form-control" placeholder="First Name" required>
+                    </div> 
+                    <div class="form-group textarea">
+                     <input type="email" name="ffemail" id="ffemail" class="form-control" placeholder="Email" required>
+                     <label id="ffealert-msg" class="ffealert-msg text-center">This email is already in use.</label>
+                    </div>
+                    <div class="form-group textarea">
+                     <input type="password" name="ffpassword" id="ffpassword" class="form-control" placeholder="Password" required onchange="PasswordChange(this.id,'ffalert-msg')">
+                      <label id="ffalert-msg" class="ffalert-msg text-center"></label>
+                    </div>
+                    <div class="form-group">
+                    <input type="submit" id="front_submit_btn" value="Register Now" class="submit-btn">
+                    </div>
+                    <div class="row mb-4 rmber-area">
+                        <div class="col-10">
+                            <a class="d-block" id="rlogin_account">Login Now</a>
+                        </div>
+                    </div> 
+                  </form> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal" id="ResetrModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><a data-dismiss="modal">welcome</a></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <img src="http://127.0.0.1:8000/static/assets/uploads/media-uploader/site-logo1618651031.png" alt="site_logo">         
+            </div>
+            <div class="row">
+                <form id="reset_form_order_page" class="contact-page-form style-01">
+                    {% csrf_token %}  
+                    <div class="error-wrap"></div>
+                    <div class="row">
+                        <label class="resetlbl">Reset your password</label>
+                    </div>
+                    <div class="row">
+                        <label class="userlbl">USER ID: <span class="useremaillbl">infoswap90@gmail.com</span> </label>
+                        <input type="hidden" id="utoken" name="utoken" value="">
+                    </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="New Password" required onchange="PasswordChange(this.id,'palert-msg')">
+                <label id="palert-msg" class="alert-msg text-center"></label>
+            </div>
+            <div class="form-group">
+                <input type="password" name="re-password" id="re-password" class="form-control" placeholder="Confirm Password" required>
+                <label id="ppalert-msg" class="alert-msg text-center"></label>
+            </div>
+           
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="reset_btn">Reset Password</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% include  'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,117 @@
+
+{% load static %}
+{% block content %}
+<title>SkillY - Sucess Page</title>
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" type="image/png">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" sizes="20x20" type="image/png">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/custom-style.css' %}">
+<style type="text/css">
+
+    body
+    {
+        background:#f2f2f2;
+    }
+
+    .payment
+	{
+		border:1px solid #f2f2f2;
+		height:280px;
+        border-radius:20px;
+        background:#fff;
+	}
+   .payment_header
+   {
+	   background:#e424b7;
+	   padding:20px;
+       border-radius:20px 20px 0px 0px;
+	   
+   }
+   
+   .check
+   {
+	   margin:0px auto;
+	   width:50px;
+	   height:50px;
+	   border-radius:100%;
+	   background:#fff;
+	   text-align:center;
+   }
+   
+   .check i
+   {
+	   vertical-align:middle;
+	   line-height:50px;
+	   font-size:30px;
+   }
+
+    .content 
+    {
+        text-align:center;
+    }
+
+    .content  h1
+    {
+        font-size:25px;
+        padding-top:25px;
+    }
+    .content p
+    {
+        padding: 5%;
+    }
+    .content a
+    {
+        width:200px;
+        height:35px;
+        color:#fff;
+        border-radius:30px;
+        padding:5px 10px;
+        background:#e424b7;
+        transition:all ease-in-out 0.3s;
+    }
+
+    .content a:hover
+    {
+        text-decoration:none;
+        background:#000;
+    }
+
+</style>
+<div class="topbar-area">
+<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="topbar-inner">
+                        <div class="col-lg-3 left-contnet">
+                            <a href="/" class="logo">
+                                <img src="http://127.0.0.1:8000/static/assets/uploads/media-uploader/site-white-logo1618651031.png" alt="site_logo" href="/" width="100%">
+                            </a>                                                                                                                                            
+                        </div>
+                        <div class="col-lg-9 right-contnet">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="row">
+       <div class="col-md-6 mx-auto mt-5">
+          <div class="payment">
+             <div class="payment_header">
+                <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+             </div>
+             <div class="content">
+                <h1>Payment Success !</h1>
+                <p>Payment for your service have been Sucessfully received please go back to the booking page and complete your order. </p>
+             </div>
+             
+          </div>
+       </div>
+    </div>
+ </div>
+ {% endblock %}

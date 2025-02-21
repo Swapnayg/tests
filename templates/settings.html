@@ -1,0 +1,3198 @@
+
+{% load static %}
+{% block content %}
+<html lang="en_GB" dir="ltr"><head>
+<meta charset="UTF-8">
+<title>SkillY - {{page}} - Settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" type="image/png">
+<!-- load fonts dynamically -->
+<link rel="preconnect" href="https://fonts.gstatic.com"> <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- favicon -->
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" type="image/png">
+<link rel="icon" href="{% static 'assets/images/icon.png' %}" sizes="20x20" type="image/png">
+<!-- animate -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/animate.css' %}">
+<!-- bootstrap -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/bootstrap.min.css' %}">
+<!-- magnific popup -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/magnific-popup.css' %}">
+<!-- owl carousel -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/owl.theme.green.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/owl.carousel.min.css' %}">
+<!-- fontawesome -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/font-awesome.min.css' %}">
+<!-- fontawesome support -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/fontawesome.min.css' %}">
+<!-- flaticon -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/flaticon.css' %}">
+<link rel="stylesheet" href="{% static 'assets/backend/css/flaticon.css' %}">
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/style.css' %}">
+<!-- responsive Stylesheet -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/responsive.css' %}">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/custom-style.css' %}">
+<!-- Dynamic CSS -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/dynamic-style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/jquery.ihavecookies.css' %}">
+<!-- Toaster CSS -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/toastr.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/filter_multi_select.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/filter_multi_select.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/chosen.css' %}">
+<body>
+    <style>
+        .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#ModelDelSection
+{
+    height: 250px;
+}
+textarea{
+    max-height: 160px;
+    resize: none;
+    width: 100%;
+    border: none;
+    background-color: #edf1f9;
+    padding: 22px 30px 22px 20px;
+    border-radius: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 5px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #e424b7;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #e424b7;
+}
+.modal-content
+{
+    width: 900px;
+    left: -17%;
+    margin: auto;
+}
+input:checked + .slider:before {
+    left: 10px;
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+        .language_dropdown .selected-language
+        {
+            border: none !important;
+        }
+        #sectionArea .section-title .title
+        {       
+            font-size: 25px !important;
+            font-weight: 600 !important;
+        }
+        .nav-link
+        {
+            background: #8d006b;
+            color: white !important;
+            margin-bottom: 4%;
+            line-height: 25px;
+            height: auto;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        #choicepopup,#ranchoiceMultiple
+        {
+            float: right;
+            height: 15px;
+            width: 15px;
+        }
+        .alert-msg
+        {
+            color: #8d006b;
+        }
+        .nav-link h5{
+            color: white !important;
+        }
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link, .nav-pills .nav-link.active h5, .nav-pills .show>.nav-link h5
+        {
+            color: white !important;
+            background-color: #e424b7;
+            height: auto;
+        }
+        .contact-page-form .form-group .form-control
+        {
+            background: #f9f2f2;
+        }
+        ::placeholder { 
+            color: #5f5f5fc5 !important;
+            opacity: 1; 
+        }
+        .modal-body
+        {
+            overflow: auto;
+            height: 450px;
+        }
+        .tab-pane::-webkit-scrollbar,.modal-body::-webkit-scrollbar ,textarea::-webkit-scrollbar{
+            width: 10px;
+        }
+        .tab-pane::-webkit-scrollbar-track,.modal-body::-webkit-scrollbar-track,textarea::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .tab-pane::-webkit-scrollbar-thumb,.modal-body::-webkit-scrollbar-thumb,textarea::-webkit-scrollbar-thumb{
+            background: #e9c962;
+        }
+        .tab-pane::-webkit-scrollbar-thumb:hover,.modal-body::-webkit-scrollbar-thumb:hover,textarea::-webkit-scrollbar-thumb:hover {
+            background: #e9c962; 
+        }
+        #add_service_form .form-group,#add_choice_offer_form .form-group,#add_choice_form .form-group,#add_localAddr_form .form-group,#add_interAddr_form .form-group,#add_serviceList_form .form-group,#add_ran_choice_form .form-group,#add_hourrate_form .form-group
+        {
+            width: 100%;
+        }
+        #add_service_form input,#add_choice_offer_form input,#add_choice_form input,#add_serviceList_form input,#add_ran_choice_form input,#hour_list input{
+            height: 35px;
+            margin: 5px;
+            border: 1px solid #8e8585;
+            border-radius: 5px;
+            padding: 2%;
+        }
+        #add_choice_form select{
+            border: 1px solid #a89e9e;
+            border-radius: 5px;
+            color: black;
+        }
+        #add_hourrate_form select{
+            border: 1px solid #a89e9e;
+            border-radius: 5px;
+            color: #8e8585;
+            width: 60%;
+        }
+        #add_localAddr_form input,#add_interAddr_form input
+        {
+            height: 35px;
+            margin: 5px;
+            border: 1px solid #8e8585;
+            border-radius: 5px;
+            padding: 2%; 
+            width: 100%; 
+        }
+        
+        #add_choice_offer_form input
+        {
+            width: 100%;
+        }
+        .tab-pane
+        {
+            background: white;
+            padding: 2%;
+            height: 500px;
+            scroll-behavior: auto;
+            overflow: auto;
+        }
+        .nav-pills
+        {
+            font-size: 16px;
+        }
+        #service_list span,#hour_list span,#choice_offer_list span,#choice_list span,#local_addr_list span,#intern_addr_list span,#rchoice_list span{
+            color: #e424b7;
+            float: right;
+            padding-top: 20%;
+        }
+        .descrip
+        {
+            width: 100%;
+            padding-top: 3%;
+        }
+        .descrip h5
+        {
+            width: 75%;
+            float: left;
+            font-size: 18px;
+        }
+        .spanright
+        {
+            float: right;
+            padding-right: 3%;
+        }
+        #rchoice_list input
+        {
+            width: 100%;
+        }
+        .descrip span
+        {
+            font-size: 14px;
+            color: #e9c962;
+            float: right;
+            margin-right: 2px;
+            padding-top: 2%;
+        }
+        #servicesModel
+        {
+            height: 300px;
+        }
+        .chosen-container-multi .chosen-choices li.search-field input[type="text"]
+        {
+            width: 100% !important;
+        }
+        .chosen-container-multi .chosen-choices li.search-choice
+        {
+            height: 35px;
+            margin: 8px;
+            padding: 1%;
+            line-height: 21px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .chosen-container-multi .chosen-choices li.search-choice .search-choice-close
+        {
+            right: -10px;
+        }
+        .aboutAddlist
+        {
+            float: right !important;
+            color: #8d006b !important;
+            text-decoration: underline !important;
+            margin-bottom: 3% !important;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        #sectionArea
+        {
+            background: #e6e6e6;
+            padding: 2%;
+        }
+        .nesttabscontent
+        {
+            padding: 2%;
+        }
+        #addelesec
+        {
+            float: right;
+            text-align: right;
+        }
+        #selectelem
+        {
+            width: 100%;
+            height: 35px;
+            border-radius: 5px;
+            padding: 2%;            
+            font-size: 18px;
+        }
+        #addelesec h5{
+            line-height: 40px;
+        }
+        .submit-btn
+        {
+            background-color: #e424b7;
+    width: 50%;
+    padding: 14px 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 13px;
+    margin-top: 30px;
+    float: right;
+}
+        .submit-btn:hover,.nav-link:hover{
+            background-color: #e9c962;
+            color: black;
+        }
+        .close:focus,.close:hover
+        {
+            outline: none;
+        }
+.nav
+{
+    width: 100%;
+}
+.section-title
+{
+    width: 100%;
+}
+.section-title div:first-child{
+    width: 70%;
+    float: left;
+}
+.fullwidth
+{
+    width: 100%;
+    font-size: 18px;
+}
+.offerservlist
+{
+    padding:2%;
+}
+.addtext
+{
+    width: 100%;
+    font-size: 12px;
+}
+.section-title div:nth-child(2){
+    width: 25%;
+    float: right;
+    text-align: right;
+    padding-top: 4%;
+}
+.section-title div:nth-child(2) span{
+    font-size: 20px;
+}
+select {
+
+/* styling */
+background-color: white;
+border: thin solid #8d006b;
+border-radius: 4px;
+display: inline-block;
+font: inherit;
+line-height: 1.5em;
+padding: 0.5em 3.5em 0.5em 1em;
+
+/* reset */
+
+margin: 0;      
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
+.about_lists
+{
+    margin-top: 11% !important;
+}
+.abt_div ol,.addon_div  ol
+{
+    margin-top: 2% !important;
+    padding-left: 6%;
+}
+.about_lists li,.abt_div li,.choice_diff_lists li,.addon_div  li{
+    list-style: circle;
+    text-transform: capitalize;
+    width: 100%;
+    text-align: left;
+    float: left;
+    font-family: var(--body-font);
+    font-size: 14px;
+}
+.about_lists li::before,.abt_div li::before,.choice_diff_lists li::before,.addon_div li::before{
+    counter-increment:none;
+    content: none;
+}
+.about_lists li p,.choice_diff_lists li p{
+    width: 75%;
+    float: left;
+    text-align: justify;
+}
+.filter-multi-select .dropdown-item .custom-control-label::after
+{
+    background: white;
+    border: 1px solid #8d006b;
+}
+.filter-multi-select > .viewbar > .selected-items > .item
+{
+    background: #e424b7;
+}
+.filter-multi-select .dropdown-item .custom-checkbox:checked ~ .custom-control-label::after
+{
+    background: #e424b7;
+    border: 1px solid #8d006b; 
+}
+.ui-state-default, .ui-widget-content .ui-state-default
+{
+    border: none !important;
+    background: none;
+    font-weight: normal;
+    color: #454545;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    width: 50%;
+    margin: auto;
+    height: 40px;
+    width: 40px;
+}
+.ui-state-default:hover, .ui-widget-content .ui-state-default:hover
+{
+    border: 1px solid #e424b7 !important;
+    background: #e424b7e0!important;
+    color: #e9c962!important;
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+    font-weight: 700;
+}
+.ui-state-highlight-alt
+{
+    border: none !important;
+    background: none!important;
+    color: #454545!important;
+}
+.ui-state-active,.ui-state-highlight
+{
+    border: 1px solid #e424b7 !important;
+    background: #e424b7e0!important;
+    color: #e9c962!important;
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+    font-weight: 700;
+}
+
+.ui-datepicker th
+{
+    padding: 0.9em 0.3em;
+    color:  #e424b7;
+}
+.ui-widget-header
+{
+    border-top: 1px solid #e424b7 !important;
+    background: none;
+    border: none;
+    top: -4px;
+}
+ .ui-widget-header .ui-state-disabled
+{
+    display: none;
+}
+.ui-datepicker .ui-datepicker-title
+{
+    color: #5f5f5f;
+}
+.ui-datepicker
+{
+    width: 50%;
+}
+.about_lists li .aspanlist
+{
+width: 25%;
+float: right;
+}
+#ChoiceDiffeList
+{
+    padding-top: 2%;
+}
+.about_lists li .aspanlist span,.choice_diff_lists li .aspanlist span
+{
+    color: #e424b7;
+    margin-right: 7%;
+    float: right;
+}
+
+select.minimal {
+    background-image: linear-gradient(45deg, transparent 50%, #e424b7 50%), linear-gradient(135deg, #e424b7 50%, transparent 50%), linear-gradient(to right, #e424b7, #e424b7);
+    background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+  background-image:
+    linear-gradient(45deg, #e424b7 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, #e424b7 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: #e424b7;
+  outline: 0;
+}
+
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+.servlist
+{
+    padding: 2%;
+}
+.servlist label{
+    width: 100%;
+}
+.containerchk {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 35px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.divClose
+{
+    position: absolute;
+    top: 0;
+    right: 4px;
+    height: 15px;
+    width: 15px;
+    background-color: #e424b7;
+    border-radius: 10px;
+    padding: 2%;
+    line-height: 0px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding-right: 3%;
+    cursor: pointer;
+}
+.multichoicediv,.multirandiv,.multihourdiv
+{
+    position: relative;
+    padding-top: 5%;
+}
+#randchoice_inv_Name,#choice_inv_Name
+{
+    border: none !important;
+}
+.containerchk input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 3px solid #e424b7;
+  border-width: 3px;
+  border-radius: 5px;
+}
+.containerchk:hover input ~ .checkmark {
+  background-color: white;
+}
+
+  .containerchk input:checked ~  .checkmark {
+  background-color: #e424b7;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+ .containerchk input:checked ~ .checkmark:after {
+  display: block;
+}
+#servicelist
+{
+    width: 100%;
+}
+
+.containerchk .checkmark:after {
+    left: 6px;
+    top: 1px;
+    width: 8px;
+    height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.containerrad {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 35px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 50%;
+}
+
+ .containerrad input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.choice_div .containerrad .checkmark
+{
+    border-radius: 50%;
+}
+ .offer_div .checkmark {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color:white;
+  border-radius: 50%;
+}
+
+.containerrad:hover input ~ .checkmark {
+  background-color: white;
+}
+
+ .containerrad input:checked ~  .checkmark {
+  background-color: white;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.containerrad input:checked ~  .checkmark:after {
+  display: block;
+}
+ .containerrad .checkmark:after {
+    top: 1px;
+    left: 1px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #e424b7;
+}
+.modal form
+{
+margin: auto;
+width: 80%;
+}
+.modal-title
+{
+    padding-left: 8%;
+}
+.hiddenspan {display: none;}
+.spanoffer
+{
+    background: rgba(242, 95, 44, 0.2);
+    color: #F25F2C;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 0.2rem;
+    float: right;
+}
+.containerchoice {
+  display: block;
+  position: relative;
+  padding: 0.9rem 0.75rem;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #e424b7;
+  border-radius: 50rem;
+  font-size: 14px;
+  min-width: 72px;
+  text-align: center;
+  height: 50px;
+  line-height: 20px;
+}
+.choicelist ul li input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.choicelist ul
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+.choicelist ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 3px;
+}
+.choicelist ul li input:checked + .containerchoice
+{
+    background-color: #e424b7;
+    color: #fff;
+}
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: #e424b7;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+.input-calender {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  margin-bottom: 0px !important;
+}
+    </style>
+<div class="topbar-area">
+    <div class="container">
+        <div class="row">
+            <input type="hidden" id="service_name" name="service_name" value="">
+            <div class="col-lg-12">
+                <div class="topbar-inner">
+                    <div class="left-contnet">
+                        <ul class="info-items">
+                            <li><i class="far fa-clock"></i> Mon - Fri: 08.00am - 10.00 pm</li>                                                                                                                                               </ul>
+                    </div>
+                    <div class="right-contnet">
+                        <ul class="info-items">
+                            {% if request.session.userName %}
+                            <div class="language_dropdown" id="languages_selector">
+                                <div class="selected-language profile"> {{ request.session.userName }} <i class="fas fa-caret-down"></i></div>
+                            </div>
+                            {% elif user.username %}
+                            <div class="language_dropdown" id="languages_selector">
+                                <div class="selected-language profile"> {{ user.username }}</div>
+                            </div>
+                            {% else %}
+                            <li><a onclick="calllog()">Login </a></li> 
+                            {% endif %}
+                            <div class="language_dropdown" id="languages_selector">
+                                <div class="selected-language">English (UK) <i class="fas fa-caret-down"></i></div>
+                                <ul>
+                                <li data-value="en_GB">English (UK)</li>
+                                <li data-value="ar">Arabic</li>
+                                </ul>
+                                </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>   
+<section class="service-area padding-top-50 padding-bottom-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+            <div class="section-title">
+                <h3 class="title">Invoice Settings for <br> {{page}}:</h3>
+            </div>
+        </div>
+        <div class="col-5" id="addelesec">
+            <div class="col-5" style="float: left;">
+                <h5 class="title">Add Element:</h3>
+            </div>
+            <div class="col-7" style="float: left;">
+                <select id="selectelem" class="minimal" onchange="selectonchnage(this);">
+                    <option selected>Select</option>
+                    <option>About</option>
+                    <option>Description</option>
+                    <option>Add On-Service</option>
+                    <option>Choice with offers</option>
+                    <option>Choice with rates</option>
+                    <option>Per Hour rate</option>
+                    <option>Simple Choice</option>
+                    <option>Local Address</option>
+                    <option>Internation Address</option>
+                    <option>Apartment Units</option>
+                    <option>Services</option>
+                    <option>Image</option>
+                </select>
+            </div>              
+        </div>
+        </div>
+        <div class="row" id="sectionArea">
+            <div class="col-3">
+                <input type="hidden" id="servName" name="servName" value="{{page}}">
+                <div class="section-title">
+                    <div><h3 class="title">Sections:</h3></div>
+                    <div> <span id="tabAdd" onclick="tabAddOnclick();"><i class="fas fa-plus-circle"></i></span></div>
+                </div>
+              <div class="nav flex-column nav-pills" id="v-default-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="tab1" data-toggle="pill" href="#ptab1" role="tab" aria-controls="ptab1" aria-selected="false"><div class="descrip"><h5 class="mb-1">{{page}} </h5><span id="del_tab1" onclick="tabDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_tab1" onclick="tabEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></a>
+              </div>
+            </div>
+            <div class="col-9 nesttabscontent">
+              <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane active" id="ptab1" role="tabpanel" aria-labelledby="ptab1">
+                    <form id="defualt_form" class="contact-page-form style-01">
+                        {% csrf_token %}  
+                        <div class="form-group">
+                            <input type="hidden" class="secId" value="">
+                            <h6>Base price</h6>
+                            <input type="number" name="b_price" id="b_price" class="form-control" placeholder="Base Price" required>
+                        </div> 
+                        <div class="form-group invoice_price_sec">
+                            <h6 style="width: 90%; float: left;">Want to show Pricing in invoice?</h6>
+                            <label class="switch">
+                                <input type="checkbox" class="invo_chk" checked>
+                                <span class="slider round"></span>
+                              </label>
+                        </div> 
+                        <div class="form-group Addsections"> 
+                            <div class="choice_div secdivs">
+                            </div> 
+                            <div class="ranchoice_div secdivs">
+
+                            </div>  
+                            <div class="hourly_div secdivs">
+
+                            </div> 
+                        </div>                             
+                    </form> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-9">
+               
+            </div>
+            <div class="col-3" style="padding:0%">
+                <div class="form-group">
+                    <input type="submit" id="front_submit_btn" value="Save" class="submit-btn">
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+</section>
+<div class="modal" id="ModelSection" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create New Section</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="section_form" class="contact-page-form style-01">
+                    {% csrf_token %} 
+                    <div class="form-group">
+                        <label> Label for your Section</label>
+                        <textarea type="text" name="s_question" id="s_question" class="form-control" placeholder="Are you moving within the Locally (Section A) or internationally (Section B) ?" required></textarea>
+                    </div> 
+            <div class="form-group">
+                <input type="hidden" id="s_type" name="s_type" value="">
+                <input type="hidden" id="s_id" name="s_id" value="">
+                <input type="text" name="s_name" id="s_name" class="form-control" placeholder="Section Name" required>
+                <label id="salert-msg" class="alert-msg text-center"></label>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="sec_sub">Add Section</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="AboutModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">About Service</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="about_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <label class="abtlbl">Service Description </label>
+                <textarea type="text" name="a_desc" id="a_desc" class="form-control" placeholder="Describe your Service" required></textarea>
+            </div>
+            <div class="form-group">
+                <a onclick="addaboutlist();" class="aboutAddlist" style="float:right;">Add Points</a>
+            </div>
+            <div class="form-group" id="Ablist_Sec">
+                <ol class="about_lists">
+                </ol>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="abt_sec">Add About</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  
+  <div class="modal" id="DescriptModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Description</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="description_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <label class="abtlbl">Add Question</label>
+                <input type="hidden" id="des_id" name="des_id" value="">
+                <input type="hidden" id="des_type" name="des_type" value="">
+                <textarea type="text" name="des_ques" id="des_ques" class="form-control" placeholder="Do you have any special instructions?" required></textarea>
+            </div>
+            <div class="form-group">
+                <label class="abtlbl">Describe your answer as an placeholder.</label>
+                <textarea type="text" name="des_place" id="des_place" class="form-control" placeholder="Example: You will need to bring a gate pass. I will not be home and leaving the key under the mat, etc" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="desrequired" name="desrequired">
+                <label for="desrequired"> Required</label>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="desc_addlist">Add Description Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="AddonserviceModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Additional Service</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_service_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <input type="hidden" id="des_id" name="des_id" value="">
+                <input type="hidden" id="des_type" name="des_type" value="">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addservicelist();" class="aboutAddlist" style="float:right;">Add Service</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="service_list">
+                        <div class="col-6">
+                        <input type="text" class="serv_input" placeholder="Service Name">
+                        </div>
+                        <div class="col-6">
+                            <input type="number" class="serv_price" placeholder="Service Price">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a onclick="addDifferencelist();" class="aboutAddlist" style="float:right;">Add Difference Points</a>
+                </div>
+                <div class="form-group" id="ChoiceDiffeList">
+                    <ol class="choice_diff_lists">
+                    </ol>
+                </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="addon_addlist">Add Additional Service Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="choiceofferModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Choice with Offers</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_choice_offer_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+                    <div class="form-group">
+                        <label class="abtlbl">Add Question</label>
+                        <textarea type="text" name="offr_ques" id="offr_ques" class="form-control" placeholder="How often do you need cleaning?" required></textarea>
+                    </div>
+            <div class="form-group">
+                <input type="hidden" id="choiceo_id" name="choiceo_id" value="">
+                <input type="hidden" id="choiceo_type" name="choiceo_type" value="">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addchoiceofferlist();" class="aboutAddlist" style="float:right;">Add Choice Offer</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="choice_offer_list">
+               
+                </div>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="choiceoffer_addlist">Add Choice Offers Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="choiceratesModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Choice with rates</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_choice_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+                    <div class="form-group">
+                        <label class="abtlbl">Add Question</label>
+                        <textarea type="text" name="choice_ques" id="choice_ques" class="form-control" placeholder="What is the size of your home?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl">Description</label>
+                        <textarea type="text" name="choice_subtext" id="choice_subtext" class="form-control" placeholder="What is the size of your home?" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl">Name For Invoice</label>
+                        <input type="text" name="choice_inv_Name" id="choice_inv_Name" class="form-control" placeholder="Furnished" required>
+                        <span class="abtlbl" style="color: green;font-size:13px;">This name should be same for all the sections.</span>
+                    </div> 
+                    <div class="form-group">
+                        <label class="abtlbl">Select Choice Type</label>
+                        <select name="choicetype" id="choicetype" required style="float: right;">
+                            <option value="">Select</option>
+                            <option value="radio">Radio Choice</option>
+                            <option value="flat">Flat Button</option>
+                          </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl">Select How you want calculation with the Base price</label>
+                        <select name="calbaseprice" id="calbaseprice" required style="float: right;">
+                            <option value="">Select</option>
+                            <option value="multiply">Multiplication</option>
+                            <option value="add">Addition</option>
+                            <option value="custom">Custom Rate</option>
+                          </select>
+                    </div>
+                    <div class="form-group" id="mimValDiv" style="margin-bottom: 4%;">
+                        <label class="abtlbl">Minimum Quantity according to base Price:</label></br>
+                        <input type="text" id="choiceminqtyText" name="choiceminqtyText" style="float: right;" placeholder="4 Hours for 299 Price">
+                        <span style="font-size: 12px;color: green;">Note: This will be your first choice from the choice list. You can add other choices based on hourly rate or the quantity rate. </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl" for="choicepopup">Want to show the Detailed Popup?</label>
+                        <input type="checkbox" name="choicepopup" id="choicepopup" onchange="popupclick(this);">
+                    </div>
+                    <div class="form-group" id="poptxtdiv" style="margin-bottom: 4%;display: none;">
+                        <label class="abtlbl">Popup Text</label>
+                        <select name="choicepopText" id="choicepopText" style="float: right;">
+                            <option value="Hour">Hour</option>
+                            <option value="Quantity">Quantity</option>
+                          </select>
+                    </div>
+            <div class="form-group">
+                <input type="hidden" id="choice_id" name="choiceo_id" value="">
+                <input type="hidden" id="choice_type" name="choiceo_type" value="">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addchoicelist();" class="aboutAddlist" style="float:right;">Add Choice</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="choice_list">
+                    <div class="row" id="choice1"><div class="col-6"><input type="text" required class="serv_input" placeholder="Choice Name"></div><div class="col-4"><input type="number" required class="serv_price" placeholder="Choice Price"></div><div class="col-2"><span id="del_choice1" onclick="choiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>
+                </div>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="choice_addlist">Add Choice Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="randomchoiceModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Random Choice</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_ran_choice_form" class="contact-page-form style-01">
+                    {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="abtlbl">Name For Invoice</label>
+                        <input type="text" name="randchoice_inv_Name" id="randchoice_inv_Name" class="form-control" placeholder="Furnished" required>
+                        <span class="abtlbl" style="color: green;font-size:13px;">This name should be same for all the sections.</span>
+                    </div> 
+                    <div class="form-group">
+                        <label class="abtlbl">Add Question</label>
+                        <textarea type="text" name="randchoice_ques" id="randchoice_ques" class="form-control" placeholder="Is your home furnished?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl" for="ranchoiceMultiple">Want to have multiple Selections?</label>
+                        <input type="checkbox" name="ranchoiceMultiple" id="ranchoiceMultiple" ">
+                    </div>
+            <div class="form-group">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addranchoicelist();" class="aboutAddlist" style="float:right;">Add Choice</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="rchoice_list">
+                  
+                </div>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="choice_addlist">Add Choice Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="localAddressModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Local Address</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_localAddr_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <input type="hidden" id="local_id" name="local_id" value="">
+                <input type="hidden" id="local_type" name="local_type" value="">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addlocalAddress();" class="aboutAddlist" style="float:right;">Add Point</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="local_addr_list">
+                    
+                </div>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="local_addlist">Add Local Address Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal" id="HourlRateModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Hour Rate</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_hourrate_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <input type="hidden" id="hour_id" name="local_id" value="">
+                <input type="hidden" id="hour_type" name="local_type" value="">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="abtlbl">Name For Invoice</label>
+                        <input type="text" name="hour_inv_Name" id="hour_inv_Name" class="form-control" placeholder="Furnished" required>
+                        <span class="abtlbl" style="color: green;font-size: 13px;">This name should be same for all the sections.</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl">Add Question</label>
+                        <textarea type="text" name="hour_ques" id="hour_ques" class="form-control" placeholder="What is the size of your home?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="abtlbl">Description</label>
+                        <textarea type="text" name="hour_subtext" id="hour_subtext" class="form-control" placeholder="What is the size of your home?" ></textarea>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="abtlbl">Hour Rate</label>
+                        <input type="text" name="hour_rate" id="hour_rate" class="form-control" placeholder="10 per hour" required>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="abtlbl">Select Mapping Choice Division</label>
+                        <select name="hourselectMapping" id="hourselectMapping" style="float: right;">
+                          </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" id="choice_id" name="choiceo_id" value="">
+                        <input type="hidden" id="choice_type" name="choiceo_type" value="">
+                        <div class="row">
+                        <div class="form-group">
+                            <a onclick="addhourlist();" class="aboutAddlist" style="float:right;">Add Choice</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" id="hour_list">
+                            <div class="row" id="hourchoice1"><div class="col-6"><input type="text" required class="hour_input" placeholder="Choice Name"></div><div class="col-4"><input type="number" required class="hour_price" placeholder="Choice Price"></div><div class="col-2"><span id="del_hourchoice1" onclick="hourchoiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="hour_Rate_add">Add Hour Rate Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="internAddressModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add International Address</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_interAddr_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <input type="hidden" id="intern_id" name="intern_id" value="">
+                <input type="hidden" id="intern_type" name="intern_type" value="">
+                <div class="row">
+                <div class="form-group">
+                    <a onclick="addinternAddress();" class="aboutAddlist" style="float:right;">Add Point</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group" id="intern_addr_list">
+                    
+                </div>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="internal_addlist">Add International Address Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal" id="servicesModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Services</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="add_serviceList_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <input type="hidden" id="service_id" name="service_id" value="">
+                <input type="hidden" id="service_type" name="service_type" value="">
+                <div class="row">
+                    <label style="width: 100%;text-align: center;">Service Services Now</label>
+                    <select id="servicelist"  name="servicelist" data-placeholder="Choose an service..." multiple class="chosen-select"  >
+                    </select>
+            </div>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="service_addlist">Add Services Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="DateModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Date</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="date_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <label class="abtlbl">Add Question</label>
+                <input type="hidden" id="date_id" name="date_id" value="">
+                <input type="hidden" id="date_type" name="date_type" value="">
+                <textarea type="text" name="date_ques" id="date_ques" class="form-control" placeholder="When do you need to move?" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="daterequired" name="daterequired">
+                <label for="daterequired"> Required</label>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="date_addlist">Add Date Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal" id="ListModel" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add About Includes</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="aboutlist_form" class="contact-page-form style-01">
+                    {% csrf_token %}  
+            <div class="form-group">
+                <label class="abtlbl">Add About Includes </label>
+                <input type="hidden" id="al_id" name="al_id" value="">
+                <input type="hidden" id="mod_name" name="mod_name" value="">
+                <input type="hidden" id="al_type" name="al_type" value="">
+                <textarea type="text" name="a_list" id="a_list" class="form-control" placeholder="Describe your point" required></textarea>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="abt_addlist">Add List Now</button>
+            </div>                                         
+                </form> 
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="modal" id="ModelDelSection" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="deletetitle">Delete Section</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="section_delform" class="contact-page-form style-01">
+                <div class="form-group">
+                    <input type="hidden" id="s_did" name="s_did" value="">
+                    <input type="hidden" id="s_dtype" name="s_dtype" value="">
+                    <span>Are you sure you want to Delete this <span id="delitem"></span>?</span> 
+                </div>
+                <div class="form-group btn-wrapper" style="padding-top: 2%;">
+                    <button type="submit" class="boxed-btn btn-block" id="sec_del">Delete Section</button>
+                </div>
+            </form>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!-- bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<!-- <script src="{% static 'assets/frontend/js/settings/jquery-3.2.1.slim.min.js' %}"></script> -->
+<script src="{% static 'assets/frontend/js/settings/popper.min.js' %}"></script>
+<script src="{% static 'assets/frontend/js/settings/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/frontend/js/filter-multi-select-bundle.min.js' %}"></script>
+<script src="{% static 'assets/frontend/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'assets/frontend/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'assets/frontend/js/chosen.jquery.min.js' %}"></script>
+
+<!-- main js -->
+<script src="{% static 'assets/frontend/js/main.js' %}"></script>
+<script>
+    var multservices;
+    var setDate = 0;
+    var ranChoiceCount = 1;
+     $(document).ready(function () {
+        var sName = $("#servName").val();
+        if(sName.length !=0){
+        $.ajax({
+                type:"GET",
+                url: "/get_servsection/",
+                data: {'serviceName': sName.trim()},
+                success: function( data ) 
+                {   
+                    data1 = JSON.parse(data);
+                    if(data1.length >1)
+                    {
+                        $("#v-default-tab").empty();
+                        $("#v-pills-tabContent").empty();
+                        var num_tabs = 1;
+                        sName = $("#service_name").val();
+                        $.each(data1, function (key, value) {
+                            $("#s_question").val(value['fields'].sec_label); 
+                            $("#v-default-tab").append('<a class="nav-link" id="tab'+num_tabs+'" data-toggle="pill" href="#ptab'+num_tabs+'" role="tab" aria-controls="ptab'+num_tabs+'" aria-selected="false"><div class="descrip"><h5 class="mb-1">'+sName+'</h5><span id="del_tab'+num_tabs+'" onclick="tabDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_tab'+num_tabs+'" onclick="tabEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></a>');
+                            $("#v-pills-tabContent").append('<div class="tab-pane" id="ptab'+num_tabs+'" role="tabpanel" aria-labelledby="ptab'+num_tabs+'"><form id="form'+num_tabs+'" class="contact-page-form style-01">{% csrf_token %}<div class="form-group"><input type="hidden" class="secId" value=""><h6>Base price</h6><input type="number" name="b_price" id="b_price" class="form-control" placeholder="Base Price" required></div> <div class="form-group invoice_price_sec"><h6 style="width: 90%; float: left;">Want to show Pricing in invoice?</h6><label class="switch"><input type="checkbox" class="invo_chk" checked><span class="slider round"></span></label></div> </form><div class="form-group Addsections"><div class="choice_div secdivs"></div><div class="ranchoice_div secdivs"></div><div class="hourly_div secdivs"></div></div></div>');
+                            $('#ptab'+num_tabs).find("#b_price").val(value['fields'].base_price);
+                            $('#tab'+num_tabs +' h5').text(value['fields'].name);
+                            $("#v-pills-tabContent .tab-pane").removeClass('active');
+                            $('#ptab'+num_tabs).addClass('active');
+                            $('#ptab'+num_tabs).find(".secId").val(value['pk']);
+                            $("#v-default-tab a").removeClass('active');
+                            $('#tab'+num_tabs).addClass('active');
+                            paneltab= 'ptab'+num_tabs;
+                            section_invoice = value['fields'].invoice_price;
+                            if(section_invoice == true)
+                            {
+                                $('#ptab'+num_tabs).find(".invo_chk").prop('checked', true);
+                            }
+                            else{
+                                $('#ptab'+num_tabs).find(".invo_chk").prop('checked', true);
+                            }
+                            var divs = value['fields'].sec_divs.trim().split(',');
+                            $(divs).each(function(i,val){
+                                if(val.trim().length != 0)
+                                {
+                                    if(val.trim()=="image_div")
+                                    {
+                                        bindImageServ(paneltab); 
+                                    }
+                                    else if(val.trim()=="date_div")
+                                    {
+                                        bindDateServ(paneltab);
+                                    }
+                                    else if(val.trim()=="service_div")
+                                    {
+                                        bindAdvanceServ(paneltab);
+                                    }
+                                    else if(val.trim()=="apartment_div")
+                                    {
+                                        bindAppartServ(paneltab); 
+                                    }
+                                    else if(val.trim()=="internaddr_div")
+                                    {
+                                        bindInterAddr(paneltab);
+                                    }
+                                    else if(val.trim()=="localaddr_div")
+                                    {
+                                        bindLocalAddr(paneltab);
+                                    }
+                                    else if(val.trim()=="hourly_div")
+                                    {
+                                        bindHourlyRateOn(paneltab);
+                                    }
+                                    else if(val.trim()=="ranchoice_div")
+                                    {
+                                        bindRandomChoiceOn(paneltab);
+                                    }
+                                    else if(val.trim()=="choice_div")
+                                    {
+                                        bindChoiceOn(paneltab);
+                                    }
+                                    else if(val.trim()=="offer_div")
+                                    {
+                                        bindOffer(paneltab);
+                                    }
+                                    else if(val.trim()=="addon_div")
+                                    {
+                                        bindAddOn(paneltab);
+                                    }
+                                    else if(val.trim()=="desc_div")
+                                    {
+                                        bindDescription(paneltab);
+                                    }
+                                    else if(val.trim()=="abt_div")
+                                    {
+                                        bindAbout(paneltab);
+                                    }
+                                }
+                            });
+                            num_tabs = parseInt(num_tabs) +1;
+                        });
+                    }
+                    else if(data1.length == 1){
+                        $("#v-default-tab").empty();
+                        $("#v-pills-tabContent").empty();
+                        $("#v-pills-tabContent").append('<div class="tab-pane active" id="ptab1" role="tabpanel" aria-labelledby="ptab1"><form id="defualt_form" class="contact-page-form style-01">{% csrf_token %}  <div class="form-group"><input type="hidden" class="secId" value=""><h6>Base price</h6><input type="number" name="b_price" id="b_price" class="form-control" placeholder="Base Price" required></div> <div class="form-group invoice_price_sec"><h6 style="width: 90%; float: left;">Want to show Pricing in invoice?</h6><label class="switch"><input type="checkbox" class="invo_chk" checked><span class="slider round"></span></label></div><div class="form-group Addsections"><div class="choice_div secdivs"></div><div class="ranchoice_div secdivs"></div><div class="hourly_div secdivs"></div></div></form></div>');
+                        $("#v-pills-tabContent .tab-pane").removeClass('active');
+                        $('#ptab1').addClass('active');
+                        $("#v-default-tab").append('<a class="nav-link active" id="tab1" data-toggle="pill" href="#ptab1" role="tab" aria-controls="ptab1" aria-selected="false"><div class="descrip"><h5 class="mb-1">{{page}} </h5><span id="del_tab1" onclick="tabDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_tab1" onclick="tabEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></a>');
+                        $.each(data1, function (key, value) {
+                            $("#s_question").val(value['fields'].sec_label); 
+                            $(".secId").val(value['pk']);
+                            $("#b_price").val(value['fields'].base_price);
+                            section_invoice = value['fields'].invoice_price;
+                            if(section_invoice == true)
+                            {
+                                $(".invo_chk").prop('checked', true);
+                            }
+                            else{
+                                $(".invo_chk").prop('checked', false);
+                            }
+                            $("#tab1 h5").text(value['fields'].name);
+                            var divs = value['fields'].sec_divs.trim().split(',');
+                            $(divs).each(function(i,val){
+                                if(val.trim().length != 0)
+                                {
+                                    if(val.trim()=="image_div")
+                                    {
+                                        bindImageServ("ptab1"); 
+                                    }
+                                    else if(val.trim()=="date_div")
+                                    {
+                                        bindDateServ("ptab1");
+                                    }
+                                    else if(val.trim()=="service_div")
+                                    {
+                                        bindAdvanceServ("ptab1");
+                                    }
+                                    else if(val.trim()=="apartment_div")
+                                    {
+                                        bindAppartServ("ptab1"); 
+                                    }
+                                    else if(val.trim()=="internaddr_div")
+                                    {
+                                        bindInterAddr("ptab1");
+                                    }
+                                    else if(val.trim()=="localaddr_div")
+                                    {
+                                        bindLocalAddr("ptab1");
+                                    }
+                                    else if(val.trim()=="hourly_div")
+                                    {
+                                        bindHourlyRateOn("ptab1");
+                                    }
+                                    else if(val.trim()=="ranchoice_div")
+                                    {
+                                        bindRandomChoiceOn("ptab1");
+                                    }
+                                    else if(val.trim()=="choice_div")
+                                    {
+                                        bindChoiceOn("ptab1");
+                                    }
+                                    else if(val.trim()=="offer_div")
+                                    {
+                                        bindOffer("ptab1");
+                                    }
+                                    else if(val.trim()=="addon_div")
+                                    {
+                                        bindAddOn("ptab1");
+                                    }
+                                    else if(val.trim()=="desc_div")
+                                    {
+                                        bindDescription("ptab1");
+                                    }
+                                    else if(val.trim()=="abt_div")
+                                    {
+                                        bindAbout("ptab1");
+                                    }
+                                }
+                            });
+                        });
+                    }
+                    else if(data1.length == 0){
+                    }
+                }
+            });
+        }
+         $("#front_submit_btn").click(function(e){
+            var num_tabs = $("#v-default-tab a").length;
+            tabidList = [];
+            formvalid = '';
+            $("#v-default-tab a").each(function(index){
+                tabid = $(this).attr('href');
+                $("#v-default-tab a").removeClass('active');
+                $(this).addClass('active');
+                b_price = $("#v-pills-tabContent").find(tabid).find("#b_price").val();
+                if(b_price.length!=0)
+                {
+                    tabidList.push({'tabid':tabid,'secName':$(this).text(),'bprice':b_price});
+                    formvalid = true;
+                    return true;  
+                }
+                else{
+                    alert("please enter base price for The "+$(this).text().trim()+" Section");
+                    formvalid = false;
+                    return false;  
+                }
+            });
+            if(formvalid == true)
+            {
+                formstatus = FormSubmitfunction(tabidList);
+                if(formstatus=='sucess')
+                {
+                    alert("Details Updated Sucessfully");
+                }
+            }
+         });
+         $("#section_form").submit(function(e)
+         {
+             e.preventDefault();
+             type = $("#s_type").val();
+             sname = $("#s_name").val();
+             s_id = $("#s_id").val();
+             var txt = $("#v-default-tab a h5").filter(function() {
+                 return $(this).text().trim() === sname.trim();
+                 });
+            if(txt.length == 0)
+            {
+                $("#salert-msg").hide();
+                if(type=="Add")
+                {
+                    var num_tabs = $("#v-default-tab a").length + 1;
+                    sName = $("#service_name").val();
+                    $("#v-default-tab").append('<a class="nav-link" id="tab'+num_tabs+'" data-toggle="pill" href="#ptab'+num_tabs+'" role="tab" aria-controls="ptab'+num_tabs+'" aria-selected="false"><div class="descrip"><h5 class="mb-1">'+sname+'</h5><span id="del_tab'+num_tabs+'" onclick="tabDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_tab'+num_tabs+'" onclick="tabEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></a>');
+                    $("#v-pills-tabContent").append('<div class="tab-pane" id="ptab'+num_tabs+'" role="tabpanel" aria-labelledby="ptab'+num_tabs+'"><form id="form'+num_tabs+'" class="contact-page-form style-01">{% csrf_token %}<div class="form-group"><label>Base price</label><input type="number" name="b_price" id="b_price" class="form-control" placeholder="Base Price" required></div>  <div class="form-group invoice_price_sec"><h6 style="width: 90%; float: left;">Want to show Pricing in invoice?</h6><label class="switch"><input type="checkbox" class="invo_chk" checked><span class="slider round"></span></label></div> </form><div class="form-group Addsections"><div class="choice_div secdivs"></div><div class="ranchoice_div secdivs"></div><div class="hourly_div secdivs"></div> </div></div>');
+                    $("#ModelSection").modal('hide');
+                    $("#v-default-tab a").removeClass('active');
+                    $("#v-pills-tabContent .tab-pane").removeClass('active');
+                    $("#v-default-tab a:first-child").addClass('active');
+                    $("#v-pills-tabContent .tab-pane:first-child").addClass('active');
+                }
+                else if(type=="Edit")
+                {
+                    $("#"+s_id).find('h5').text(sname);
+                    $("#ModelSection").modal('hide');
+                }
+            }
+            else{
+                $("#salert-msg").text('This section already exits.');
+                $("#salert-msg").show();
+            }
+         });
+         $("#section_delform").submit(function(e)
+         {
+            e.preventDefault();
+            deltype = $("#s_dtype").val();
+            s_id = $("#s_did").val();
+            if(deltype == "Section")
+            {
+                $("#v-default-tab").find('#'+s_id).remove();
+                $("#v-pills-tabContent").find('#p'+s_id).remove();
+                $("#ModelDelSection").modal('hide');
+            }
+            else if(deltype == "Point")
+            {
+                $(".about_lists").find("."+id).remove();
+                $("#ModelDelSection").modal('hide');
+            }
+         });
+         $("#aboutlist_form").submit(function(e)
+         {
+            subtext = $("#al_type").val();
+            pointtxt = $("#a_list").val();
+            type = $("#mod_name").val();
+            e.preventDefault();
+            if(type == "About")
+            {
+            if(subtext.trim()=="Add")
+            { 
+            var num_list = $(".about_lists li").length + 1;
+            $(".about_lists").append('<li class="li_a'+num_list+'"><p id="li_a'+num_list+'" >'+pointtxt+'</p><div class="aspanlist"><span id="del_a'+num_list+'" onclick="aboutDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_a'+num_list+'" onclick="aboutEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></li>');
+            $("#ListModel").modal('hide');
+            }
+            else if(subtext.trim()=="Edit")
+            { 
+                var id = $("#al_id").val();
+                $(".about_lists li").find("#"+id).text(pointtxt);
+                $("#ListModel").modal('hide');
+            }
+            }
+            else if (type == "AddOn")
+            {
+                if(subtext.trim()=="Add")
+                { 
+                var num_list = $(".choice_diff_lists li").length + 1;
+                $(".choice_diff_lists").append('<li class="li_add'+num_list+'"><p id="li_add'+num_list+'" >'+pointtxt+'</p><div class="aspanlist"><span id="del_add'+num_list+'" onclick="addonDelOnclick(this.id);"><i class="fas fa-trash"></i></span><span id="edit_add'+num_list+'" onclick="addonEditOnclick(this.id);"><i class="fas fa-edit"></i></span></div></li>');
+                $("#ListModel").modal('hide');
+                }
+                else if(subtext.trim()=="Edit")
+                { 
+                    var id = $("#al_id").val();
+                    $(".choice_diff_lists li").find("#"+id).text(pointtxt);
+                    $("#ListModel").modal('hide');
+                }   
+            }
+         });
+         $("#about_form").submit(function(e)
+         {
+             e.preventDefault();
+             desc= $("#a_desc").val();
+             ullist = ' <ol>'
+             var listItems = $("#Ablist_Sec li p");
+             if(listItems.length >0)
+             {
+             listItems.each(function(idx, li) {
+                ullist +='<li>'+$(li).text()+'</li>';
+            });
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $("#"+ref_this).find(".abt_div").remove();
+            ullist +=' </ol>'
+             $("#"+ref_this).find(".Addsections").append('<div class="abt_div secdivs"><div class="form-group"><h6>About our {{page}} service</h6><label>'+desc+' </label> </div>     <div class="form-group"><h6>About Includes</h6>'+ullist+'</div></div>');
+             $('#about_form')[0].reset();  
+            $("#AboutModel").modal('hide');
+            $("#Ablist_Sec li").remove();
+            $("#selectelem").val('Select');
+             }
+             else{
+                 alert("Please add atleast one point.");
+             }
+         });
+         $("#description_form").submit(function(e)
+         {
+            e.preventDefault();
+            desc= $("#des_ques").val();
+            desc_place= $("#des_place").val();
+            required = ''
+            if ($("#desrequired").is(":checked")) {
+                required = 'required';
+            }
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $("#"+ref_this).find(".desc_div").remove();
+             $("#"+ref_this).find(".Addsections").append(' <div class="desc_div secdivs"><div class="form-group"><h6>'+desc+'</h6></div> <div class="form-group"><textarea rows="5" '+required+' placeholder="'+desc_place+'"></textarea></div></div>');
+             $('#description_form')[0].reset();  
+            $("#DescriptModel").modal('hide');
+            $("#selectelem").val('Select');
+         });
+         $("#add_service_form").submit(function(e)
+         {
+            e.preventDefault();
+            checkboxs = '';
+            var inputItems = $("#service_list .row");
+            if(inputItems.length >0)
+             {
+                var differncePoints = $(".choice_diff_lists li");
+                if(differncePoints.length >0)
+                {
+                
+                inputItems.each(function(idx, li) {
+                    servName = $(li).find(".serv_input").val();
+                    servPrice= $(li).find(".serv_price").val();
+                    checkboxs +='<label class="containerchk">'+servName+'<input type="checkbox" name="adonservice[]" value="'+servPrice+'"><span class="checkmark"></span></label>';
+                });
+                var ullist = '';
+                var listItems = $(".choice_diff_lists li p");
+                if(listItems.length >0)
+                {
+                ullist = ' <ol>'
+                listItems.each(function(idx, li) {
+                    ullist +='<li>'+$(li).text()+'</li>';
+                });
+                ullist +=' </ol>'
+                }
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                $("#"+ref_this).find(".addon_div").remove();
+                 $("#"+ref_this).find(".Addsections").append('<div class="addon_div secdivs" ><div class="form-group"> <label class="fullwidth">Do you need any of the additional services?</label><span class="addtext">Additional charges apply</span></div> <div class="form-group servlist">'+checkboxs+'</div><div class="form-group"><h6>Differences Includes</h6>'+ullist+'</div></div>  ');
+                $('#add_service_form')[0].reset(); 
+                $('#service_list').empty();
+                $("#AddonserviceModel").modal('hide');
+                $("#selectelem").val('Select');
+            }
+            else{
+                alert("Please add atleast one Difference Point.");  
+                }
+             }
+             else{
+                alert("Please add atleast one service.");  
+             }
+            });
+            $("#add_choice_offer_form").submit(function(e)
+            {
+                e.preventDefault();
+                radiboxs = '';
+                var inputItems = $("#choice_offer_list .row");
+                var ques = $("#offr_ques").val();
+                if(inputItems.length >0)
+                {
+                        inputItems.each(function(idx, li) {
+                        offName = $(li).find(".offer_input").val();
+                        offPerce= $(li).find(".offer_percentage").val();
+                        if(offPerce == 0)
+                        {
+                        radiboxs +='<label class="containerrad">'+offName+'<input type="radio"><span class="checkmark"></span><span class="spanoffer hiddenspan" > 0 %</span></label>';
+                        }
+                        else{
+                            radiboxs +='<label class="containerrad">'+offName+'<input type="radio"><span class="checkmark"></span><span class="spanoffer"> '+offPerce.trim()+' %</span></label>';   
+                        }
+                    });
+                    var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                    $("#"+ref_this).find(".offer_div").remove();
+                    $("#"+ref_this).find(".Addsections").append('<div class="offer_div secdivs"><div class="form-group"> <label class="fullwidth">'+ques+'</label></div><div class="form-group offerservlist">'+radiboxs+'</div></div>');
+                    $('#add_choice_offer_form')[0].reset(); 
+                    $('#choice_offer_list').empty();
+                    $("#choiceofferModel").modal('hide');
+                    $("#selectelem").val('Select');
+                }
+                else{
+                    alert("Please add atleast one offer."); 
+                }
+            });
+            $("#add_choice_form").submit(function(e)
+            {
+                e.preventDefault();
+                var c_ques = $("#choice_ques").val();
+                var c_subtext = $("#choice_subtext").val();
+                var c_inName = $("#choice_inv_Name").val();
+                var minQty = $("#choiceminqtyText").val();
+                var basepriceModeVal = $("#calbaseprice").val();
+                var basepriceModeText =  $("#calbaseprice option:selected").text();
+                var choicetypeval = $("#choicetype").val();
+                var choicetypeText =  $("#choicetype option:selected").text();
+                var popuptxt = $("#choicepopText").val();
+                var popreq = '';
+                if ($("#choicepopup").is(":checked")) {
+                    popreq = 'Yes';
+                }
+                else{
+                    popreq = 'No';
+                }
+                
+                var inputItems = $("#choice_list .row");
+                if(inputItems.length >0)
+                {
+                    choicelist = '';
+                    if(choicetypeval.trim() == 'radio' && basepriceModeVal.trim() == 'custom')
+                    {
+                        inputItems.each(function(idx, li) {
+                        servName = $(li).find(".choice_input").val();
+                        servPrice= $(li).find(".choice_price").val();
+                        choicelist +='<label class="containerrad">'+servName+'<input type="radio" value = "'+servPrice+'"><span class="checkmark"></span></label>';
+                        });
+                    }
+                    else{
+                        choicelist = '<ul>';
+                        inputItems.each(function(idx, li) {
+                        servName = $(li).find(".choice_input").val();
+                        servPrice= $(li).find(".choice_price").val();
+                        choicelist +='<li><label><input type="radio" value="'+servPrice+'"><span  class="containerchoice">'+servName+'</span></label></li>';
+                        });
+                        choicelist +='</ul>'
+                    }
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                choicelength = $("#"+ref_this).find(".Addsections .choice_div").find('.multichoicediv').length;
+                var count = '';
+                if(choicelength !=0)
+                {
+                    choicedivs = $("#"+ref_this).find(".Addsections .choice_div").find('.multichoicediv:last');
+                    choicedivsid = choicedivs.attr('id').toString().trim();
+                    count =  parseInt(choicedivsid.replace(/[^0-9.]/g, "")) +1;
+                }
+                else{
+                    count = 1;
+                }
+                 $("#"+ref_this).find(".Addsections .choice_div").append('<div class="multichoicediv" id="'+ref_this+'_choice_div'+count+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"><span>Choice Invoice Name</span> <span class="spanright spanchoiceiName">'+c_inName+'</span> </div><div class="form-group"><span>Choice Base Price Mode</span> <span class="spanright spanchoiceiBasepriceTxt">'+basepriceModeText+'</span> <input type="hidden" class="spanchoiceiBasepriceVal" value="'+basepriceModeVal+'"></div><div class="form-group"><span>Choice Display Type</span> <span class="spanright spanchoiceiDisplayTxt">'+choicetypeText+'</span> <input type="hidden" class="spanchoiceiDisplayVal" value="'+choicetypeval+'"></div><div class="form-group"> <label class="fullwidth">'+c_ques+'</label><span class="addtext">'+c_subtext+'</span></div><div class="form-group choicelist"><div class="form-group"><span>Minimum Price Quantity</span> <span class="spanright spanminPriceQty">'+minQty+'</span></div><div class="form-group"><span>Popup Required</span> <span class="spanright popuprequired">'+popreq+'</span></div> <div class="form-group"><span>'+popuptxt+'</span> <span class="spanright popuptxt">Hour</span></div><div class="form-group choicelist">'+choicelist+'</div></div>');
+                 $('#add_choice_form')[0].reset(); 
+                 $('#choice_list').empty();
+                 $("#choiceratesModel").modal('hide');
+                 $("#selectelem").val('Select');
+             }
+             else{
+                alert("Please add atleast one choice.");  
+             }
+            });
+            $("#add_hourrate_form").submit(function(e)
+            {
+                e.preventDefault();
+                var hour_rate =0;
+                var hour_iName = $("#hour_inv_Name").val();
+                var hour_ques = $("#hour_ques").val();
+                var hour_Description = $("#hour_subtext").val();
+                choicelist = '<ul>';
+                var inputItems = $("#hour_list .row");
+                if(inputItems.length >0)
+                {
+                        inputItems.each(function(idx, li) {
+                        servName = $(li).find(".hour_input").val();
+                        servPrice= $(li).find(".hour_price").val();
+                        choicelist +='<li><label><input type="radio" value="'+servPrice+'"><span  class="containerchoice">'+servName+'</span></label></li>';
+                });
+                choicelist +='</ul>'
+                var choice_name = $("#hourselectMapping option:selected").text();
+                var choice_val = $("#hourselectMapping").val();
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                var ranlength = $("#"+ref_this).find(".Addsections .hourly_div").find('.multihourdiv').length;
+                var count = '';
+                if(ranlength!= 0){
+                    randivs = $("#"+ref_this).find(".Addsections .hourly_div").find('.multihourdiv:last');
+                    randivsid = randivs.attr('id').toString().trim();
+                    count =  parseInt(randivsid.replace(/[^0-9.]/g, "")) +1;
+                }
+                else{
+                    count = 1;
+                }
+                $("#"+ref_this).find(".Addsections .hourly_div").append('<div class="multihourdiv" id="'+ref_this+'_hour_div'+count+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"> <label class="fullwidth">'+hour_ques+'</label><span class="addtext">'+hour_Description+'</span></div><div class="form-group"><span>Hourly Invoice Name</span> <span class="spanright spanhouriName">'+hour_iName+'</span></div><div class="form-group" style="display:none;"><span>Hourly Rate</span> <span class="spanright spanhourrate">'+hour_rate+'</span></div><div class="form-group"><span>Selected List</span> <span class="spanright spanHourChoiceTxt">'+choice_name+'</span><input type="hidden" class="seldival" value="'+choice_val+'"></div><div class="form-group choicelist">'+choicelist+'</div></div>');
+                $('#add_hourrate_form')[0].reset(); 
+                $('#hourselectMapping').empty();
+                $("#HourlRateModel").modal('hide');
+                $("#selectelem").val('Select');
+                }
+                else{
+                    alert("Please add atleast one choice."); 
+                }
+            });
+            $("#add_ran_choice_form").submit(function(e)
+            {
+            e.preventDefault();
+            var c_ques = $("#randchoice_ques").val();
+            var c_invoName = $("#randchoice_inv_Name").val();
+            var c_multiple = '';
+            if ($("#ranchoiceMultiple").is(":checked")) {
+                c_multiple = 'Yes';
+            }
+            else{
+                c_multiple = 'No';
+            }
+            choicelist = '<ul>';
+            var inputItems = $("#rchoice_list .row");
+            if(inputItems.length >0)
+             {
+                inputItems.each(function(idx, li) {
+                    servName = $(li).find(".rchoice_name").val();
+                    choicelist +='<li><label><input type="radio" value="'+servName+'"><span  class="containerchoice">'+servName+'</span></label></li>';
+                });
+                choicelist +='</ul>'
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                var ranlength = $("#"+ref_this).find(".Addsections .ranchoice_div").find('.multirandiv').length;
+                var count = '';
+                if(ranlength!= 0){
+                    randivs = $("#"+ref_this).find(".Addsections .ranchoice_div").find('.multirandiv:last');
+                    randivsid = randivs.attr('id').toString().trim();
+                    count =  parseInt(randivsid.replace(/[^0-9.]/g, "")) +1;
+                }
+                else{
+                    count = 1;
+                }
+                $("#"+ref_this).find(".Addsections .ranchoice_div").append('<div class="multirandiv" id="'+ref_this+'_ran_div'+count+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"> <label class="fullwidth">'+c_ques+'</label><span class="addtext">'+c_invoName+'</span></div><div class="form-group"><span>Multiple Selection</span> <span class="spanright spanMultiple">'+c_multiple+'</span></div><div class="form-group choicelist">'+choicelist+'</div></div>');
+                $('#add_ran_choice_form')[0].reset(); 
+                $('#rchoice_list').empty();
+                $("#randomchoiceModel").modal('hide');
+                $("#selectelem").val('Select');
+             }
+             else{
+                alert("Please add atleast one choice.");  
+             }
+            });
+            $("#add_localAddr_form").submit(function(e)
+            {
+            e.preventDefault();
+            addrelist = '';
+            var inputItems = $("#local_addr_list .row");
+            if(inputItems.length >0)
+             {
+                inputItems.each(function(idx, li) {
+                    addrquesName = $(li).find(".localaddr_input").val();
+                    addrelist +='<div class="form-group"> <label class="fullwidth">'+addrquesName+'</label></div>';
+                });
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                $("#"+ref_this).find(".localaddr_div").remove();
+                 $("#"+ref_this).find(".Addsections").append('<div class="localaddr_div secdivs">'+addrelist+'</div>');
+                $('#add_localAddr_form')[0].reset(); 
+                $('#local_addr_list').empty();
+                $("#localAddressModel").modal('hide');
+                $("#selectelem").val('Select');
+             }
+             else{
+                alert("Please add atleast one Address point.");  
+             }
+            });
+            $("#add_interAddr_form").submit(function(e)
+            {
+            e.preventDefault();
+            addrelist = '';
+            var inputItems = $("#intern_addr_list .row");
+            if(inputItems.length >0)
+             {
+                inputItems.each(function(idx, li) {
+                    addrquesName = $(li).find(".internaddr_input").val();
+                    addrelist +='<div class="form-group"> <label class="fullwidth">'+addrquesName+'</label></div>';
+                });
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                $("#"+ref_this).find(".internaddr_div").remove();
+                 $("#"+ref_this).find(".Addsections").append('<div class="internaddr_div secdivs">'+addrelist+'</div>');
+                $('#add_interAddr_form')[0].reset(); 
+                $('#intern_addr_list').empty();
+                $("#internAddressModel").modal('hide');
+                $("#selectelem").val('Select');
+             }
+             else{
+                alert("Please add atleast one Address point.");  
+             }
+            });
+            $("#add_serviceList_form").submit(function(e)
+            {
+                e.preventDefault();
+                optionList = $("#servicelist").chosen().val();
+                optionText = [];
+                $("#servicelist option:selected").each(function (v) {
+                    optionText.push($(this).text());
+                });
+                servicelist = '';
+                $(optionList).each(function(index,val){
+                    servicelist +='<label class="containerchk">'+optionText[index]+'<input type="checkbox" name="services[]" value="'+optionList[index]+'"><span class="checkmark"></span></label>';
+                });
+                var ref_this = $("#v-pills-tabContent div.active").attr('id');
+                $("#"+ref_this).find(".service_div").remove();
+                 $("#"+ref_this).find(".Addsections").append(' <div class="service_div secdivs"><div class="form-group"> <label class="fullwidth">Do you need any of these services?</label></div><div class="form-group servchoicelist">'+servicelist+'</div></div>');
+                $('#add_serviceList_form')[0].reset(); 
+                $('#servicelist').empty();
+                $("#servicesModel").modal('hide');
+                $("#selectelem").val('Select');
+            });
+            $("#date_form").submit(function(e)
+            {
+            e.preventDefault();
+            desc= $("#date_ques").val();
+            required = ''
+            if ($("#daterequired").is(":checked")) {
+                required = 'required';
+            }
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $("#"+ref_this).find(".date_div").remove();
+             $("#"+ref_this).find(".Addsections").append(' <div class="date_div secdivs"><div class="form-group"><h6>'+desc+'</h6></div> <div class="form-group"> <div class="input-container"> <input class="input-calender form-control" type="text" '+required+' ><i class="fas fa-calendar-alt icon"></i></div></div></div>');
+             $('#date_form')[0].reset();  
+            $("#DateModel").modal('hide');
+            $("#selectelem").val('Select');
+            $(".input-calender").datepicker({
+                'minDate':mdate(),
+                beforeShow: function (dateText, inst) {
+                    setTimeout(function() {
+                        if(setDate == 1){
+                        highlight = $('.ui-datepicker-today').find('a.ui-state-highlight');
+                        highlight.removeClass('ui-state-highlight');
+                        }}, 100);
+                        },
+                onSelect: function (dateText, inst) {
+                    setTimeout(function() {
+                        highlight = $('.ui-datepicker-today').find('a.ui-state-highlight');
+                        highlight.removeClass('ui-state-highlight');
+                        setDate = 1;
+                        }, 100);
+                        }     
+                    });
+            });
+     });
+    function tabAddOnclick()
+    {
+        $("#s_type").val('Add');
+        $("#ModelSection .modal-title").text('Create New Section');
+        $("#sec_sub").text('Add Section');
+        $("#s_name").val('');
+        $("#ModelSection").modal('show');
+        $("#salert-msg").hide();
+    }
+    function addservicelist()
+    {
+        var num_ser = $("#service_list .row").length + 1;
+        $('#service_list').append('<div class="row" id="serv'+num_ser+'"><div class="col-6"><input type="text" class="serv_input"  required placeholder="Service Name"></div><div class="col-4"><input type="number" required class="serv_price" placeholder="Service Price"></div><div class="col-2"><span id="del_serv'+num_ser+'" onclick="servDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+
+    function addchoiceofferlist()
+    {
+        var num_off = $("#choice_offer_list .row").length + 1;
+        $('#choice_offer_list').append(' <div class="row" id="off'+num_off+'"><div class="col-7"><input type="text" class="offer_input"  placeholder="Offer Name" required></div><div class="col-3"><input type="number" class="offer_percentage" required placeholder="Offer %"></div><div class="col-2"><span id="del_off'+num_off+'" onclick="choiceofferDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+
+    function addlocalAddress()
+    {
+        var num_local = $("#local_addr_list .row").length + 1;
+        $('#local_addr_list').append('<div class="row" id="localaddr'+num_local+'"><div class="col-10"><input type="text" required class="localaddr_input" placeholder="Where are you moving from?"></div><div class="col-2"><span id="del_localaddr'+num_local+'" onclick="localaddrDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+    function addinternAddress()
+    {
+        var num_intern = $("#intern_addr_list .row").length + 1;
+        $('#intern_addr_list').append('<div class="row" id="interaddr'+num_intern+'"><div class="col-10"><input type="text" required class="internaddr_input" placeholder="Where are you moving from?"></div><div class="col-2"><span id="del_interaddr'+num_intern+'" onclick="internaddrDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+    function addchoicelist()
+    {
+        var num_choice = $("#choice_list .row").length + 1;
+        $('#choice_list').append('<div class="row" id="choice'+num_choice+'"><div class="col-6"><input type="text" required class="choice_input" placeholder="Choice Name"></div><div class="col-4"><input type="number" required class="choice_price" placeholder="Choice Price"></div><div class="col-2"><span id="del_choice'+num_choice+'" onclick="choiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+    function addhourlist()
+    {
+        var num_hour = $("#hour_list .row").length + 1;
+        $('#hour_list').append('<div class="row" id="hourchoice'+num_hour+'"><div class="col-6"><input type="text" required class="hour_input" placeholder="Choice Name"></div><div class="col-4"><input type="number" required class="hour_price" placeholder="Choice Price"></div><div class="col-2"><span id="del_hourchoice'+num_hour+'" onclick="hourchoiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+    function addranchoicelist()
+    {
+        var num_choice = $("#rchoice_list .row").length + 1;
+        $('#rchoice_list').append('<div class="row" id="ranchoice'+num_choice+'"><div class="col-8"><input type="text" required="" class="rchoice_name" placeholder="Choice Name"></div><div class="col-2"><span id="del_ranchoice'+num_choice+'" onclick="ranchoiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+    }
+    function tabEditOnclick(ev)
+    {
+        $("#s_type").val('Edit');
+        id = ev.replace("edit_","");
+        $("#s_id").val(id);
+        $("#s_name").val($("#"+id).find('h5').text());
+        $("#ModelSection .modal-title").text('Edit Section');
+        $("#sec_sub").text('Update Section')
+        $("#ModelSection").modal('show');
+        $("#salert-msg").hide();
+    }
+    function tabDelOnclick(ev)
+    {
+        id = ev.replace("del_","");
+        $("#s_did").val(id);
+        $("#s_dtype").val('Section');
+        $("#deletetitle").text('Delete Section Wizard');
+        $("#delitem").text('Section');
+        $("#sec_del").text('Delete Section');
+        $("#ModelDelSection").modal('show');
+    }
+    function mdate(){
+        var startDate = new Date(), 
+        returnVal = 0,
+        dateToday = new Date(), 
+        getDate = dateToday.getDate(),
+        getHour = dateToday.getHours();      
+        if(getHour >= 12 && getDate == 1) {
+            startDate.setDate(dateToday.getDate() + 14)
+        } else if (getHour >= 12 && getDate == 15) {
+            startDate.setMonth(dateToday.getMonth() + 1, 1);
+        } else if (getHour < 12 && getDate == 13) {
+          	startDate.setMonth(dateToday.getMonth() + 1, 1);
+        } else {
+					
+				} 
+        return startDate;
+    }
+    function selectonchnage(ev)
+    {
+        val = ev.value;
+        if(val == 'About')
+        {
+            $('#about_form')[0].reset(); 
+            $("#Ablist_Sec li").remove(); 
+            $("#AboutModel").modal('show');
+        }
+        else if(val == 'Description')
+        {
+            $('#description_form')[0].reset(); 
+            $("#DescriptModel").modal('show');
+        }
+        else if(val == 'Add On-Service')
+        {
+            $('#add_service_form')[0].reset(); 
+            $('#service_list').empty();
+            $('.choice_diff_lists').empty();
+            $('#service_list').append('<div class="row" id="serv1"><div class="col-6"><input type="text" required class="serv_input" placeholder="Service Name"></div><div class="col-4"><input type="number" required class="serv_price" placeholder="Service Price"></div><div class="col-2"><span id="del_serv1" onclick="servDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#AddonserviceModel").modal('show');
+        }
+        else if(val == 'Choice with offers')
+        {
+            $('#add_choice_offer_form')[0].reset(); 
+            $('#choice_offer_list').empty();
+            $('#choice_offer_list').append(' <div class="row" id="off1"><div class="col-7"><input type="text" class="offer_input"  required placeholder="Offer Name"></div><div class="col-3"><input type="number" class="offer_percentage" required  placeholder="Offer %"></div><div class="col-2"><span id="del_off1" onclick="choiceofferDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#choiceofferModel").modal('show');
+        }
+        else if(val == 'Choice with rates')
+        {
+            $('#add_choice_form')[0].reset(); 
+            $('#choice_list').empty();
+            $('#poptxtdiv').hide();
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $('#choice_list').append('<div class="row" id="choice1"><div class="col-6"><input type="text" required class="choice_input" placeholder="Choice Name"></div><div class="col-4"><input type="number" required class="choice_price" placeholder="Choice Price"></div><div class="col-2"><span id="del_choice1" onclick="choiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#choiceratesModel").modal('show');
+        }
+        else if(val == 'Simple Choice')
+        {
+            $('#add_ran_choice_form')[0].reset(); 
+            $('#rchoice_list').empty();
+            $('#rchoice_list').append('<div class="row" id="ranchoice1"><div class="col-8"><input type="text" required="" class="rchoice_name" placeholder="Choice Name"></div><div class="col-2"><span id="del_ranchoice1" onclick="ranchoiceDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#randomchoiceModel").modal('show');
+        }
+        else if(val == 'Per Hour rate')
+        {
+            $('#add_hourrate_form')[0].reset(); 
+            var choiceranid = [];
+            $("#hourselectMapping").empty();
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            crandivs = $("#"+ref_this).find('.choice_div').find('.multichoicediv');
+            $(crandivs).each(function(i,val){
+                choiceranid.push($(val).attr('id').trim());
+            });
+            $("#hourselectMapping").append('<option value="deafult">Deafult Value</option>');
+            $(choiceranid).each(function(i,val){
+                $("#hourselectMapping").append('<option value="'+val+'">'+$('#'+val).find('.fullwidth').text()+'</option>');
+            });
+            $('#hour_list').empty();
+            $("#HourlRateModel").modal('show');
+        }
+        else if(val == 'Local Address')
+        {
+            $('#add_localAddr_form')[0].reset(); 
+            $('#local_addr_list').empty();
+            $('#local_addr_list').append('<div class="row" id="localaddr1"><div class="col-10"><input type="text" required class="localaddr_input" placeholder="Where are you moving from?"></div><div class="col-2"><span id="del_localaddr1" onclick="localaddrDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#localAddressModel").modal('show');
+        }
+        else if(val == 'Internation Address')
+        {
+            $('#add_interAddr_form')[0].reset(); 
+            $('#intern_addr_list').empty();
+            $('#intern_addr_list').append('<div class="row" id="interaddr1"><div class="col-10"><input type="text" required class="internaddr_input" placeholder="Where are you moving from?"></div><div class="col-2"><span id="del_interaddr1" onclick="internaddrDelOnclick(this.id);"><i class="fas fa-trash"></i></span></div></div>');
+            $("#internAddressModel").modal('show');
+        }
+        else if(val == 'Apartment Units')
+        {
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $("#"+ref_this).find(".apartment_div").empty();
+            $("#"+ref_this).find(".Addsections").append('<div class="apartment_div secdivs">Apartment</div>');
+        }
+        else if(val == 'Services')
+        {
+        $.ajax({
+                type:"GET",
+                url: "/servicelist/",
+                data: {},
+                success: function( data ) 
+                {   
+                    data1 = JSON.parse(data);
+                    $('#add_serviceList_form')[0].reset();
+                    $("#servicesModel").modal('show');
+                    $('#servicelist').empty(); 
+                    $.each(data1, function (key, value) {
+                        $('#servicelist').append('<option value='+value['fields'].name+'>'+value['fields'].name+'</option>')
+                    });
+                    $('#servicelist').val('').trigger("chosen:updated");
+                    $('#servicelist').chosen();
+                }
+            });
+        }
+        else if(val == 'Image')
+        {
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            $("#"+ref_this).find(".image_div").empty();
+            $("#"+ref_this).find(".Addsections").append("<div class='image_div secdivs' ><div class='form-group'> <label class='fullwidth'>Are there any photos you'd like to share?</label><span class='addtext'>(optional)</span></div> <div class='form-group imagelist'></div></div>  ");
+        }
+        else if(val == 'Date')
+        {
+            $('#date_form')[0].reset(); 
+            $("#DateModel").modal('show');
+        }
+    }
+    function servDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#service_list').find("#"+id).remove();
+    }
+    function choiceofferDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#choice_offer_list').find("#"+id).remove();
+    }
+    function choiceDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#choice_list').find("#"+id).remove();
+    }
+    function hourchoiceDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#hour_list').find("#"+id).remove();
+    }
+    function ranchoiceDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#rchoice_list').find("#"+id).remove();
+    }
+    function localaddrDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#local_addr_list').find("#"+id).remove();
+    } 
+    function internaddrDelOnclick(ev)
+    {
+        id=ev.replace("del_","");
+        $('#intern_addr_list').find("#"+id).remove();
+    }   
+    function addaboutlist()
+    {
+        $('#aboutlist_form')[0].reset(); 
+        $("#al_type").val("Add");
+        $("#mod_name").val('About');
+        $("#ListModel").modal('show');
+    }
+    function addDifferencelist()
+    {
+        $('#aboutlist_form')[0].reset(); 
+        $("#al_type").val("Add");
+        $("#mod_name").val('AddOn');
+        $("#ListModel").modal('show');
+    }
+    function popupclick(ev)
+    {
+        if(ev.checked)
+        {
+            $("#poptxtdiv").show();
+            $("#choicepopText").prop("required", true);
+        }
+        else{
+            $("#poptxtdiv").hide();
+            $("#choicepopText").removeAttr("required");
+        }
+    }
+    
+    function aboutEditOnclick(ev)
+    {
+        $('#aboutlist_form')[0].reset();  
+        id = ev.replace("edit_","li_");
+        $("#al_id").val(id);
+        $("#al_type").val("Edit");
+        $("#mod_name").val('About');
+        $("#a_list").val($("#"+id).text());
+        $("#ListModel").modal('show');
+    }
+    function addonEditOnclick(ev)
+    {
+        $('#aboutlist_form')[0].reset();  
+        id = ev.replace("edit_","li_");
+        $("#al_id").val(id);
+        $("#al_type").val("Edit");
+        $("#mod_name").val('AddOn');
+        $("#a_list").val($("#"+id).text());
+        $("#ListModel").modal('show');
+    }
+    function aboutDelOnclick(ev)
+    {
+        id = ev.replace("del_","li_");
+        $('.about_lists').find("."+id).remove();
+    }
+    function addonDelOnclick(ev)
+    {
+        id = ev.replace("del_","li_");
+        $('.choice_diff_lists').find("."+id).remove();
+    }
+    function bindAbout(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_aboutsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    $.each(data1, function (key, value) {
+                    var aboutDesc =  value['fields'].description;
+                    var aboutPoints =  value['fields'].points;
+                    $("#"+tpanel).find(".abt_div").empty();
+                    $("#"+tpanel).find(".Addsections").append('<div class="abt_div secdivs"><div class="form-group"><h6>About our {{page}} service</h6><label>'+aboutDesc+' </label> </div>     <div class="form-group"><h6>About Includes</h6>'+aboutPoints+'</div></div>');
+                });
+                }
+        });
+    }
+
+    function bindDescription(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_descsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    $.each(data1, function (key, value) {
+                    var desques =  value['fields'].question;
+                    var desplace =  value['fields'].placeholder;
+                    var desrequired =  value['fields'].required;
+                    $("#"+tpanel).find(".desc_div").empty();
+                    $("#"+tpanel).find(".Addsections").append(' <div class="desc_div secdivs"><div class="form-group"><h6>'+desques+'</h6></div> <div class="form-group"><textarea rows="5" '+desrequired+' placeholder="'+desplace+'"></textarea></div></div>');
+                });
+                }
+        });
+    }
+
+    function bindOffer(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_offersection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    var offques = '';
+                    var radiboxs = '';
+                    $.each(data1, function (key, value) {
+                    offques =  value['fields'].offquestion;
+                    offName = value['fields'].offserName;
+                    offPerce= value['fields'].offserperc;
+                    if(offPerce.trim() == 0)
+                    {
+                        radiboxs +='<label class="containerrad">'+offName+'<input type="radio"><span class="checkmark"></span></label>';
+                    }
+                    else{
+                        radiboxs +='<label class="containerrad">'+offName+'<input type="radio"><span class="checkmark"></span><span class="spanoffer"> '+offPerce.trim()+' %</span></label>';   
+                    }
+                    });
+                    $("#"+tpanel).find(".offer_div").empty();
+                    $("#"+tpanel).find(".Addsections").append('<div class="offer_div secdivs"><div class="form-group"> <label class="fullwidth">'+offques+'</label></div><div class="form-group offerservlist">'+radiboxs+'</div></div>');
+                }
+        });
+    }
+
+    function bindAddOn(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_addonsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    console.log(data1);
+                    var checkboxs = '';
+                    var servPoints = '';
+                    $.each(data1, function (key, value) {
+                        servName = value['fields'].serName;
+                        servPrice= value['fields'].serPrice;
+                        servPoints = value['fields'].adonpoints;
+                        checkboxs +='<label class="containerchk">'+servName+'<input type="checkbox" name="adonservice[]" value="'+servPrice+'"><span class="checkmark"></span></label>';
+                    });
+                    $("#"+tpanel).find(".addon_div").empty();
+                    $("#"+tpanel).find(".Addsections").append('<div class="addon_div secdivs" ><div class="form-group"> <label class="fullwidth">Do you need any of the additional services?</label><span class="addtext">Additional charges apply</span></div> <div class="form-group servlist">'+checkboxs+'</div>  <div class="form-group"><h6>Differences Includes</h6>'+servPoints+'</div></div>  ');
+                }
+        });
+    }
+
+    function bindChoiceOn(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_choicesection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+					var c_ques = '';
+					var c_subtxt = '';
+					var c_popreq = '';
+					var c_div = '';
+					var c_minqty = '';
+                    var c_invoiceName = '';
+					var c_poptxt = '';
+					var c_sName = '';
+					var c_sPrice = '';
+					var req = '';
+                    var basepriceVal = '';
+                    var basepriceText = '';
+                    var counter = 1;
+					for(var i = data1.length-1;i>=0;i--){
+                        c_ques = data1[i]['cques'];
+                        c_subtxt = data1[i]['csubtxt'];
+                        c_div = data1[i]['cserNum'];
+						c_popreq = data1[i]['cPopup'];
+						if(c_popreq == 1)
+						{
+							req = 'Yes';
+						}
+						else
+						{
+						req = 'No';
+						}
+						c_poptxt = data1[i]['cpoptxt'];
+                        basepriceVal = data1[i]['cbaseprice'];
+                        if(basepriceVal.trim()=='multiply')
+                        {
+                            basepriceText= 'Multiplication';
+                        }
+                        else if(basepriceVal.trim()=='add'){
+                            basepriceText= 'Addition';
+                        }
+                        else if(basepriceVal.trim()=='custom'){
+                            basepriceText= 'Custom Rate';
+                        }
+                        c_modetype = data1[i]['cmodetype'];
+                        c_modetext = '';
+                        if(c_modetype == 'radio')
+                        {
+                            c_modetext = 'Radio Choice';
+                        }
+                        else{
+                            c_modetext = 'Flat Button';
+                        }
+						c_minqty = data1[i]['cMinQty'];
+                        c_sName = data1[i]['sNames'];
+						c_sPrice = data1[i]['sPrices'];
+                        c_invoiceName = data1[i]['cinvName'];
+                        c_sName = c_sName.split(',');
+						c_sPrice = c_sPrice.split(',');
+                        var choicelist = '';
+                        if(c_modetype.trim() == 'radio' && basepriceVal.trim() == 'custom')
+                        {
+                            $.each(c_sName, function (key, value) {
+                                choicelist +='<label class="containerrad">'+c_sName[key]+'<input type="radio" value = "'+c_sPrice[key]+'"><span class="checkmark"></span></label>';
+                            });
+					    }
+					    else
+					    {
+                            choicelist += '<ul>';
+                            $.each(c_sName, function (key, value) {
+                                choicelist +='<li><label><input type="radio" value="'+c_sPrice[key]+'"><span  class="containerchoice">'+c_sName[key]+'</span></label></li>';
+                            });
+                            choicelist +='</ul>';
+					    }
+                         $("#"+tpanel).find(".Addsections .choice_div").append('<div class="multichoicediv" id="'+tpanel+'_choice_div'+counter+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"><span>Choice Invoice Name</span> <span class="spanright spanchoiceiName">'+c_invoiceName+'</span></div><div class="form-group"><span>Choice Base Price Mode</span> <span class="spanright spanchoiceiBasepriceTxt">'+basepriceText+'</span> <input type="hidden" class="spanchoiceiBasepriceVal" value="'+basepriceVal+'"></div><div class="form-group"><span>Choice Display Type</span> <span class="spanright spanchoiceiDisplayTxt">'+c_modetext+'</span> <input type="hidden" class="spanchoiceiDisplayVal" value="'+c_modetype+'"></div><div class="form-group"> <label class="fullwidth">'+c_ques+'</label><span class="addtext">'+c_subtxt+'</span></div><div class="form-group choicelist"><div class="form-group"><span>Minimum Price Quantity</span> <span class="spanright spanminPriceQty">'+c_minqty+'</span></div><div class="form-group"><span>Popup Required</span> <span class="spanright popuprequired">'+req+'</span></div> <div class="form-group"><span>'+c_poptxt+'</span> <span class="spanright popuptxt">Hour</span></div><div class="form-group choicelist">'+choicelist+'</div></div>');
+                        counter = counter+1;
+                    };
+                }
+        });
+    }
+
+    function bindRandomChoiceOn(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_randomsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    var choicelist = '<ul>';
+                    var counter = 1;
+                    for(var i = data1.length-1;i>=0;i--){
+                        c_ques = data1[i]['name'];
+                        c_invoice = data1[i]['invoice'];
+                        c_div = data1[i]['div'];
+                        c_multiple = ''
+                        multiple = data1[i]['multiple'];
+                        if(multiple == 1)
+						{
+							c_multiple = 'Yes';
+						}
+						else
+						{
+                            c_multiple = 'No';
+						}
+                        c_ans = data1[i]['values'];
+                        c_ans = c_ans.split(',');
+                        var choicelist = '<ul>';
+                        $.each(c_ans, function (key, value) {
+                            choicelist +='<li><label><input type="radio" value="'+value+'"><span  class="containerchoice">'+value+'</span></label></li>';
+                        });
+                        choicelist +='</ul>';
+                        $("#"+tpanel).find(".Addsections .ranchoice_div").append('<div class="multirandiv" id="'+tpanel+'_ran_div'+(counter)+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"> <label class="fullwidth">'+c_ques+'</label><span class="addtext">'+c_invoice+'</span></div><div class="form-group"><span>Multiple Selection</span> <span class="spanright spanMultiple">'+c_multiple+'</span><div class="form-group choicelist">'+choicelist+'</div></div>');
+                        counter = counter+1;
+                    };
+                }
+        });
+    }
+
+
+    function bindHourlyRateOn(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_hoursection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    var choicelist = '<ul>';
+                    var counter = 1;
+                    for(var i = data1.length-1;i>=0;i--){
+                        h_rate = data1[i]['HourRate'];
+                        h_iName = data1[i]['HourInvoice'];
+                        h_div = data1[i]['referdiv'];
+                        h_divtxt = data1[i]['referText'];
+                        h_divnum = data1[i]['serNumber'];
+                        h_ques = data1[i]['hourques'];
+                        h_desc = data1[i]['hourDesc'];
+                        h_sName = data1[i]['hNames'];
+						h_sPrice = data1[i]['hPrices'];
+                        h_sName = h_sName.split(',');
+						h_sPrice = h_sPrice.split(',');
+                        var choicelist = '<ul>';
+                        $.each(h_sName, function (key, value) {
+                            choicelist +='<li><label><input type="radio" value="'+h_sPrice[key]+'"><span  class="containerchoice">'+h_sName[key]+'</span></label></li>';
+                        });
+                        choicelist +='</ul>';
+                        $("#"+tpanel).find(".Addsections .hourly_div").append('<div class="multihourdiv" id="'+tpanel+'_hour_div'+counter+'"><span class="divClose" onclick="divcloseClick(this);">x</span><div class="form-group"> <label class="fullwidth">'+h_ques+'</label><span class="addtext">'+h_desc+'</span></div><div class="form-group"><span>Hourly Invoice Name</span> <span class="spanright spanhouriName">'+h_iName+'</span></div><div class="form-group" style="display:none;"><span>Hourly Rate</span> <span class="spanright spanhourrate">'+h_rate+'</span></div><div class="form-group"><span>Selected List</span> <span class="spanright spanHourChoiceTxt">'+h_divtxt+'</span><input type="hidden" class="seldival" value="'+h_div+'"></div><div class="form-group choicelist">'+choicelist+'</div></div>');
+                        counter = counter+1;
+                    }
+                }
+        });
+    }
+
+    function bindLocalAddr(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_localaddrsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    var addrelist = '';
+                    $.each(data1, function (key, value) {
+                        var addrquesName = value['fields'].locquesName;
+                        addrelist +='<div class="form-group"> <label class="fullwidth">'+addrquesName+'</label></div>';
+                    });
+                    $("#"+tpanel).find(".localaddr_div").empty();
+                    $("#"+tpanel).find(".Addsections").append('<div class="localaddr_div secdivs">'+addrelist+'</div>');
+                }
+        });
+    }
+    function divcloseClick(ev)
+    {
+        pardivId = $(ev).parent().attr('id');
+        pardivClass = $(ev).parent().attr('class');
+        if(pardivClass == 'multichoicediv')
+        {
+            choicetext = $("#"+pardivId).find('.fullwidth').text();
+            var ref_this = $("#v-pills-tabContent div.active").attr('id');
+            ranid = [];
+            choicelength = $("#"+ref_this).find(".Addsections .hourly_div").find('.multihourdiv').length;
+            if(choicelength !=0)
+            {
+                randivs = $("#"+ref_this).find(".Addsections .hourly_div").find('.multihourdiv');
+                $(randivs).each(function(i,val){
+                    ranid.push($(val).attr('id').trim());
+                });
+                if(ranid.length !=0)
+                {
+                    $(ranid).each(function(i,val){
+                        hourchoice = $('#'+val).find('.spanHourChoiceTxt').text();
+                        if(choicetext.trim() == hourchoice.trim())
+                        {
+                            $('#'+val).remove();
+                        }
+                    });
+                }
+            }
+            $("#"+pardivId).remove();
+        }
+        else{
+            $("#"+pardivId).remove();
+        } 
+    }
+    function bindInterAddr(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_interaddrsection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    var addrelist = '';
+                    $.each(data1, function (key, value) {
+                        var addrquesName = value['fields'].interquesName;
+                        addrelist +='<div class="form-group"> <label class="fullwidth">'+addrquesName+'</label></div>';
+                    });
+                    $("#"+tpanel).find(".internaddr_div").empty();
+                    $("#"+tpanel).find(".Addsections").append('<div class="internaddr_div secdivs">'+addrelist+'</div>');
+                }
+        });
+    }
+
+    function bindAdvanceServ(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_servicesection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    servicelist1 = '';
+                    servicelist = '';
+                    $.each(data1, function (key, value) {
+                        servicelist1 = value['fields'].servlist;
+                    });
+                    list = servicelist1.split(',');
+                    $(list).each(function(index,val){
+                        servicelist +='<label class="containerchk">'+list[index]+'<input type="checkbox" name="services[]" value="'+list[index]+'"><span class="checkmark"></span></label>';
+                    });
+                    $("#"+tpanel).find(".service_div").empty();
+                    $("#"+tpanel).find(".Addsections").append(' <div class="service_div secdivs"><div class="form-group"> <label class="fullwidth">Do you need any of these services?</label></div><div class="form-group servchoicelist">'+servicelist+'</div></div>');
+                }
+        });
+    }
+
+    function bindDateServ(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $.ajax({
+                type:"GET",
+                url: "/get_Datesection/",
+                data: {'serName': sName.trim(),'secId': secId.trim()},
+                success: function( data ) 
+                { 
+                    data1 = JSON.parse(data);
+                    dateval = '';
+                    datereq = '';
+                    $.each(data1, function (key, value) {
+                        dateval = value['fields'].dquestion;
+                        datereq = value['fields'].drequired;   
+                        $("#"+tpanel).find(".date_div").empty();
+                        $("#"+tpanel).find(".Addsections").append(' <div class="date_div secdivs"><div class="form-group"><h6>'+dateval+'</h6></div> <div class="form-group"> <div class="input-container"> <input class="input-calender form-control" type="text" '+datereq+' ><i class="fas fa-calendar-alt icon"></i></div></div></div>');                     
+                        $(".input-calender").datepicker({
+                'minDate':mdate(),
+                beforeShow: function (dateText, inst) {
+                    setTimeout(function() {
+                        if(setDate == 1){
+                        highlight = $('.ui-datepicker-today').find('a.ui-state-highlight');
+                        highlight.removeClass('ui-state-highlight');
+                        }}, 100);
+                        },
+                    onSelect: function (dateText, inst) {
+                    setTimeout(function() {
+                        highlight = $('.ui-datepicker-today').find('a.ui-state-highlight');
+                        highlight.removeClass('ui-state-highlight');
+                        setDate = 1;
+                        }, 100);
+                        }     
+                    });
+                    });  
+                }
+        });
+    }
+
+    function bindImageServ(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();     
+        $("#"+tpanel).find(".image_div").empty();
+        $("#"+tpanel).find(".Addsections").append("<div class='image_div secdivs' ><div class='form-group'> <label class='fullwidth'>Are there any photos you'd like to share?</label><span class='addtext'>(optional)</span></div> <div class='form-group imagelist'></div></div>  ");
+    }
+    function bindAppartServ(tpanel)
+    {
+        var sName = $("#servName").val();
+        var secId = $("#"+tpanel).find(".secId").val();
+        $("#"+tpanel).find(".apartment_div").empty();
+        $("#"+tpanel).find(".Addsections").append('<div class="apartment_div secdivs">Apartment</div>');      
+    }
+    function FormSubmitfunction(lists)
+    {
+        secDetails  = [];
+        aboutDetails  = [];
+        descDetails  = [];
+        adonDetails  = [];
+        offDetails  = [];
+        choiceDetails  = [];
+        randomDetails  = [];
+        hourDetails  = [];
+        localAddrDetails  = [];
+        interAddrDetails  = [];
+        servicesDetails  = [];
+        dateDetails  = [];
+        $.each(lists, function (key, value) {
+            tabid = value.tabid.trim();
+            secName = value.secName.trim();
+            bprice = value.bprice.trim();
+            secLabel = '';
+            secLabel = $("#s_question").val(); 
+            servName = $("#servName").val();   
+            inv_Price = '';
+            if ($("#v-pills-tabContent").find(tabid).find('input.invo_chk').is(':checked')) {
+                inv_Price = 'true';
+            }
+            else{
+                inv_Price = 'false';
+            }
+            divs = '';
+            $(tabid).find('.secdivs').each(function(){
+                if($.trim($(this).html())!='')
+                {
+                    divName = $(this).attr('class').replace(' secdivs','');
+                    divs += $(this).attr('class').replace(' secdivs','') + ',';
+                    if(divName == 'abt_div')
+                    {
+                        AbDesc =  $(tabid).find('.'+divName.trim()).find('label').text();
+                        Abpoints =  $(tabid).find('.'+divName.trim()).find('ol')[0].outerHTML;
+                        aboutDetails.push({'aDesc': AbDesc,'aPoint': Abpoints,'aService':servName,'secNmbr':key})
+                    }
+                    else if(divName == 'desc_div')
+                    {
+                        Deslabel =  $(tabid).find('.'+divName.trim()).find('h6').text();
+                        Destext =  $(tabid).find('.'+divName.trim()).find('textarea')[0];
+                        Desplace =  $(tabid).find('.'+divName.trim()).find('textarea').attr('placeholder');
+                        Desrequired = ''
+                        if(Destext.hasAttribute('required')){
+                            Desrequired = 'required'
+                        }
+                        descDetails.push({'dQues': Deslabel,'dPlace': Desplace.trim(),'dRequd': Desrequired,'dService':servName,'secNmbr':key})
+                    }
+                    else if(divName == 'addon_div')
+                    {
+                        serNames =  $(tabid).find('.'+divName.trim()).find('input[name="adonservice[]"]').get().map(e => e.value).join(', ');
+                        serPrices =  $(tabid).find('.'+divName.trim()).find('.containerchk').get().map(e => e.textContent).join(', ');
+                        serpoints =  $(tabid).find('.'+divName.trim()).find('ol')[0].outerHTML;
+                        adonDetails.push( {'addonserName': serNames.trim(),'addonserPoints': serpoints.trim(),'addonserprice': serPrices.trim(),'addService':servName,'secNmbr':key})
+                    }
+                    else if(divName == 'offer_div')
+                    {
+                        offserQues = $(tabid).find('.'+divName.trim()).find('.fullwidth').text();
+                        offserPerc=  $(tabid).find('.'+divName.trim()).find('.spanoffer').get().map(e => e.textContent.replace(" %",'')).join(', ');
+                        offserNames =  $(tabid).find('.'+divName.trim()).find('.containerrad').get().map(e => $(e).contents().get(0).nodeValue.trim()).join(', ');
+                        offDetails.push({'offerques':offserQues,'offerserName': offserNames.trim(),'offerserper': offserPerc.trim(),'offService':servName,'secNmbr':key})
+                    }
+                    else if(divName == 'choice_div')
+                    {
+                        choiceserQues = '';
+                        choiceserSubtext = '';
+                        choiceminqty = '';
+                        choicepoptxt = '';
+                        choicepopreq = '';
+                        choiceranid = [];
+                        choiceserNames = '';
+                        choiceserPrice = '';
+                        choiceinvoiceName = '';
+                        choicebasepriceMode = '';
+                        choicemodtype = '';
+                        crandivs = $(tabid).find('.'+divName.trim()).find('.multichoicediv');
+                        $(crandivs).each(function(i,val){
+                            choiceranid.push($(val).attr('id').trim());
+                        });
+                        if(choiceranid.length !=0)
+                        {
+                            crandomids= '';
+                            counter = 0;
+                            $(choiceranid).each(function(i,val){
+                                crandomids += val +  ' ,';
+                                choiceserPrice += $('#'+val).find('input[type="radio"]').get().map(e => e.value).join('~ ') + ' ,';
+                                choiceserQues += $('#'+val).find('.fullwidth').text() + ' ,';
+                                choiceserSubtext += $('#'+val).find('.addtext').text() + ' ,';
+                                choiceminqty += $('#'+val).find('.spanminPriceQty').text() + ' ,';
+                                choicepoptxt += $('#'+val).find('.popuptxt').text() + ' ,';
+                                choicepopreq += $('#'+val).find('.popuprequired').text() + ' ,';
+                                choiceinvoiceName += $('#'+val).find('.spanchoiceiName').text() + ' ,';
+                                choicebasepriceMode += $('#'+val).find('.spanchoiceiBasepriceVal').val() + ' ,';
+                                choicemodtype += $('#'+val).find('.spanchoiceiDisplayVal').val() + ' ,';
+                                console.log($('#'+val).find('.spanchoiceiDisplayVal').val());
+                                console.log($('#'+val).find('.spanchoiceiBasepriceVal').val());
+                                if($('#'+val).find('.spanchoiceiDisplayVal').val().trim() == 'radio' &&  $('#'+val).find('.spanchoiceiBasepriceVal').val().trim() == 'custom')
+                                {
+                                    choiceserNames += $('#'+val).find('.containerrad').get().map(e => $(e).contents().get(0).nodeValue.trim()).join('~ ') + ' ,';
+                                }
+                                else{
+                                    choiceserNames += $('#'+val).find('.containerchoice').get().map(e => $(e).contents().get(0).nodeValue.trim()).join('~ ') + ' ,';
+                                }
+                                counter = counter+1;
+                            });
+                            choiceDetails.push({'choiceques':choiceserQues,'choicebaseprice':choicebasepriceMode,'choiceinvoiveName':choiceinvoiceName,'choicesubtxt':choiceserSubtext,'choicepoptxt':choicepoptxt,'choicepopreq':choicepopreq,'choiceminqty':choiceminqty,'choicedistype':choicemodtype,'choiceserName': choiceserNames.trim(),'choiceserper': choiceserPrice.trim(),'servNumb': crandomids.trim(),'choiceService':servName,'secNmbr':key});
+                        }
+                        console.log(choiceDetails);
+                    }
+                    else if(divName == 'ranchoice_div')
+                    {
+                        choiceserQues = '';
+                        choicemultiple = '';
+                        ranid = [];
+                        choiceserNames = '';
+                        choiceserInvoice = '';
+                        randivs = $(tabid).find('.'+divName.trim()).find('.multirandiv');
+                        $(randivs).each(function(i,val){
+                            ranid.push($(val).attr('id').trim());
+                        });
+                        if(ranid.length !=0)
+                        {
+                            randomids= '';
+                            $(ranid).each(function(i,val){
+                                randomids += val +  ' ,';
+                                choicemultiple += $('#'+val).find('.spanMultiple').text()+ ' ,';
+                                choiceserInvoice += $('#'+val).find('.addtext').text() + ' ,';
+                                choiceserQues += $('#'+val).find('.fullwidth').text() + ' ,';
+                                choiceserNames += $('#'+val).find('.containerchoice').get().map(e => $(e).text().trim()).join('~ ') + ' ,';  
+                            });
+                            randomDetails.push({'rchoiceinvoice':choiceserInvoice,'rchoiceques':choiceserQues,'rchoicemult':choicemultiple,'rchoicNumber':randomids,'rchoiceserName': choiceserNames.trim(),'choiceService':servName,'secNmbr':key});
+                        }
+                    } 
+                    else if(divName == 'hourly_div')
+                    {
+                        hourrate = '';
+                        hourques = '';
+                        hourdesc = '';
+                        hourcprice = '';
+                        hourcName = '';
+                        hourchoice = '';
+                        houriName = '';
+                        ranid = [];
+                        hourchoicediv = '';
+                        randivs = $(tabid).find('.'+divName.trim()).find('.multihourdiv');
+                        $(randivs).each(function(i,val){
+                            ranid.push($(val).attr('id').trim());
+                        });
+                        if(ranid.length !=0)
+                        {
+                            randomids= '';
+                            $(ranid).each(function(i,val){
+                                randomids += val +  ' ,';
+                                hourrate += $('#'+val).find('.spanhourrate').text() + ' ,';
+                                hourcprice += $('#'+val).find('input[type="radio"]').get().map(e => e.value).join('~ ') + ' ,';
+                                hourcName += $('#'+val).find('.containerchoice').get().map(e => $(e).contents().get(0).nodeValue.trim()).join('~ ') + ' ,';
+                                hourques += $('#'+val).find('.fullwidth').text() + ' ,';
+                                hourdesc += $('#'+val).find('.addtext').text() + ' ,';
+                                houriName += $('#'+val).find('.spanhouriName').text() + ' ,';
+                                hourchoice += $('#'+val).find('.spanHourChoiceTxt').text() + ' ,';
+                                hourchoicediv += $('#'+val).find('.seldival').val() + ' ,';
+                            });
+                            hourDetails.push({'hourrateval':hourrate,'hourrateques':hourques,'hourratedesc':hourdesc,'hourratecprice':hourcprice,'hourratecname':hourcName,'hourinvName':houriName,'hourrateChoice':hourchoice,'hourratechoicediv':hourchoicediv,'hourchoicNumber':randomids,'choiceService':servName,'secNmbr':key});
+                        }
+                    }
+                    else if(divName == 'localaddr_div')
+                    {
+                        localserQues = $(tabid).find('.'+divName.trim()).find('.fullwidth').get().map(e => e.textContent).join(', ');
+                        localAddrDetails.push({'localaddques':localserQues,'localService':servName,'secNmbr':key});
+                    }
+                    else if(divName == 'internaddr_div')
+                    {
+                        internserQues = $(tabid).find('.'+divName.trim()).find('.fullwidth').get().map(e => e.textContent).join(', ');
+                        interAddrDetails.push({'internaddques':internserQues,'internService':servName,'secNmbr':key});
+                    }
+                    else if(divName == 'service_div')
+                    {
+                        serviceList = $(tabid).find('.'+divName.trim()).find('.containerchk').get().map(e => e.textContent).join(', ');
+                        servicesDetails.push({'advanceaddques':serviceList,'advanceService':servName,'secNmbr':key},);
+                    }
+                    else if(divName == 'date_div')
+                    {
+                        Datelabel =  $(tabid).find('.'+divName.trim()).find('h6').text();
+                        Datetext =  $(tabid).find('.'+divName.trim()).find('input')[0];
+                        Daterequired = '';
+                        if(Datetext.hasAttribute('required')){
+                            Daterequired = 'required';
+                        }
+                        dateDetails.push({'dateddques':Datelabel,'dateddrequd':Daterequired,'dateService':servName,'secNmbr':key});
+                    }
+                }
+            });
+            secDetails.push({'sName': secName.trim(),'sLabel': secLabel,'sbinvoice': inv_Price.trim(),'sbprice': bprice,'sdivs': divs.trim(),'sservice':servName.trim()});
+        });
+        $.ajax({
+           type:"POST",
+           url: "/add_section/",
+           data: {"udata":JSON.stringify(secDetails)},
+           success: function( data ) 
+           {  
+               $.ajax({
+                   type:"POST",
+                   url: "/add_aboutservice/",
+                   data: {"udata":JSON.stringify(aboutDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_Descservice/",
+                   data: {"udata":JSON.stringify(descDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_adonservservice/",
+                   data: {"udata":JSON.stringify(adonDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_offerservice/",
+                   data: {"udata":JSON.stringify(offDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_choiceservice/",
+                   data: {"udata":JSON.stringify(choiceDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_randchoice/",
+                   data: {"udata":JSON.stringify(randomDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_hourrate/",
+                   data: {"udata":JSON.stringify(hourDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_localservice/",
+                   data: {"udata":JSON.stringify(localAddrDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_internalservice/",
+                   data: {"udata":JSON.stringify(interAddrDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_advanceservice/",
+                   data: {"udata":JSON.stringify(servicesDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+               $.ajax({
+                   type:"POST",
+                   url: "/add_dateservice/",
+                   data: {"udata":JSON.stringify(dateDetails),"secIds":data},
+                   success: function(data) 
+                   {    
+                       console.log(data);
+                   }
+               });
+           }
+        });
+        return "sucess";
+    }
+</script>
+</body></html>
+{% endblock %}

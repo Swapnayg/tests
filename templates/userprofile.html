@@ -1,0 +1,206 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - Profile</title>
+<!--header-slider-area -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+<link rel="stylesheet" href="{% static 'assets/frontend/css/intlTelInput.min.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js"></script>
+<style>
+    #phoneform label,#phoneform .iti
+    {
+        width: 100%;
+    }
+    #ealert-msg
+    {
+        font-weight: 700;
+    }
+    .update_message
+    {
+        color: green;
+    }
+</style>
+<script> 
+    $(document).ready(function () {
+        $(".alert-msg").hide();
+        $('.update_message').text('');
+        $.ajax({
+            type:"GET",
+            url: "/get_profile/",
+            data: {'username':$(".userprofileemail").val().trim()},
+            success: function( data ) 
+            {  
+                data1 = JSON.parse(data);
+                $("#uname").val(data1.username);
+                $("#fname").val(data1.firstName);
+                $("#lname").val(data1.lastName);
+                $("#user_email").val(data1.email);
+                $("#curre_email").val(data1.email);
+                phonenumber = data1.phone.toString().trim().split(' ')
+                country = data1.country;
+                var input = document.querySelector("#phone");
+                intlTelInput(input, {
+                });
+                var iti = window.intlTelInputGlobals.getInstance(input);
+                iti.setNumber(phonenumber[0]);
+                $("#phone").val(phonenumber[1]);
+            }
+        });
+        $('#user_profile_update').submit(function(e) {
+            e.preventDefault();
+            var uName = $("#uname").val();
+            var uFirstName = $("#fname").val();
+            var uLastName = $("#lname").val();
+            var uEmail = $("#user_email").val();
+            var uphone = $("#phone").val();
+            var ucurrentEmail = $("#curre_email").val();
+            var udialcode1 =  $(".iti__selected-flag").attr("title");
+            var udialcode =  $(".iti__selected-flag").attr("aria-activedescendant");
+            var code = udialcode.split("-");
+            var CountryName = code[2];
+            var code1 = udialcode1.split(":");
+            $.ajax({
+            type:"POST",
+            url: "/update_profile/",
+            data: {'uusername': uName,"uf_name": uFirstName,"ul_name": uLastName,"ucurre_email": ucurrentEmail,"uemail": uEmail,'uphone': uphone,"udialcode": code1[1].trim().toString(),"ucountry":CountryName.trim().toString()},
+            success: function( data ) 
+            {   
+                if(data == "Success")
+                {
+                    $('.update_message').text("Details Updated Sucessfully");
+                }
+            }
+        });
+        });
+        $('#user_email').on("change", function(e){
+        uemail = $("#user_email").val();
+        if(validateEmail(uemail)) {
+            $("#ealert-msg").hide();
+            $("#ealert-msg").text("valid");
+            $.ajax({
+                type:"GET",
+                url: "/chk_email/",
+                data: {'uEmail': uemail},
+                success: function( data ) 
+                {      
+                    if(data == "Exits")
+                    {
+                        curreemail = $("#curre_email").val();
+                        if(uemail.trim() != curreemail.trim() )
+                        {
+                            $(".alert-msg").show();
+                            $(".alert-msg").text("This email is already exits");
+                        }
+                        else{
+                            $(".alert-msg").hide();
+                            $(".alert-msg").text("valid");
+                        }
+                    }
+                    else{
+                        $(".alert-msg").hide();
+                        $(".alert-msg").text("valid");
+                    }
+                }
+            });
+        }
+        else{
+            $(".alert-msg").show();
+            $(".alert-msg").text("Please enter a valid email address.");
+        }
+        });
+    });
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+    }
+</script>
+<div class="breadcrumb-area" style="background-image: url('static/assets/uploads/services/breadcrumb1619334343.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner">
+                    <p>    User Profile
+</p>
+                    <h2 class="page-title">    User Profile
+</h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home </a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="login-page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="user-dashboard-wrapper">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="mobile_nav">
+                            <i class="fas fa-cogs"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/profile">Profile</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mybookings">My Bookings</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/locations">My Locations</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mypayments">Payment History</a>
+                        </li>               
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel">
+                            <div class="message-show margin-top-10">
+                                                                                                    </div>
+                                <div class="dashboard-form-wrapper">
+    <h2 class="title">Edit Profile</h2>
+    <form action="" method="post" id="user_profile_update"> 
+        <div class="form-group">
+            <label for="name">UserName</label>
+            <input type="text" class="form-control" id="uname" name="uname" value="" required readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" value="" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" value="" required>
+        </div>
+        <div class="form-group">
+            <label for="user_email">Email</label>
+            <input type="hidden" id="curre_email" name="curre_email" value="">
+            <input type="email" class="form-control" id="user_email" name="user_email" value="" required readonly>
+            <label id="ealert-msg" class="alert-msg text-center">Email is not valid.</label>
+        </div>
+        <div class="form-group" id="phoneform">
+            <label for="phone">Phone</label>
+            <input type="number" class="form-control" id="phone" name="phone" value="" required>
+        </div>
+        <button type="submit" class="submit-btn dash-btn width-200 btn-small">Save changes</button>
+        <div class="form-group">
+            <label class="update_message"></label>
+        </div>
+    </form>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+{% include  'footer.html' %}
+
+{% endblock %}

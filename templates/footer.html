@@ -1,0 +1,155 @@
+{% load static %}
+{% block content %}
+<!-- footer area start -->
+<div class="footer-area bg-blue-02">
+    <div class="container padding-top-30">
+        <div class="row" id="footer1">
+            {% for s in services %}
+            
+            <div class="col-lg-3">
+                <h5>{{s.name}}</h5>
+                {% if s.service_set %}
+                <ul class="list-unstyled">
+                    {% for subsub_cat in s.service_set.all %}
+                    {% if subsub_cat.isActive %}
+                            <li class="mt-1"><a class="text-white" title="{{ subsub_cat.name }}" href="/service/{{subsub_cat.page}}">{{ subsub_cat.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>   
+    </div>
+</div>
+<footer class="footer-area bg-blue-02 bg-image padding-top-150" style="background-image: url('static/assets/uploads/media-uploader/footer-bg-min1619971609.png');">
+    <div class="footer-top padding-bottom-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6"><div class=" footer-widget widget"><div class="footer-widget widget"><div class="about_us_widget style-01"><img src="{% static 'assets/uploads/media-uploader/site-white-logo1618651031.png' %}" class="footer-logo" alt="site_white_logo"><p>Sed do eiusmod tempor incididunt ut labore et dolore eiusmod tempor incididunt</p></div></div></div></div><div class="col-lg-3 col-md-6"><div class=" footer-widget widget additionalfooter"><h4 class="widget-title style-01">Additional Information</h4><ul class="recent_post_item"><li class="single-recent-post-item">
+                <div class="thumb"><img src="{% static 'assets/uploads/media-uploader/thumb-pexels-karolina-grabowska-4239146-min1620223752.jpg' %}" alt=""></div>
+                <div class="content">
+                    <h4 class="title"><a href="#">A healthy life is a clean life for everyone</a></h4>
+                    <span class="time"> <i class="far fa-calendar-alt "></i>23 Apr 2021</span>
+                </div>
+            </li><li class="single-recent-post-item">
+                <div class="thumb"><img src="{% static 'assets/uploads/media-uploader/thumb-pexels-karolina-grabowska-4239032-min1620225734.jpg' %}" alt=""></div>
+                <div class="content">
+                    <h4 class="title"><a href="#">Cleaning are best business for future</a></h4>
+                    <span class="time"> <i class="far fa-calendar-alt "></i>23 Apr 2021</span>
+                </div>
+            </li></ul></div></div><div class="col-lg-3 col-md-6"><div class=" footer-widget widget"><div class="footer-widget widget widget_nav_menu"><h4 class="widget-title">Useful Links</h4><ul>	
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about' %}">About us</a>
+                        </li>
+
+<li>
+<a href="{% url 'services' %}">Services</a>
+</li>
+<li>
+    <a href="{% url 'contact' %}">Contact us</a>
+    </li>
+<!-- <li>
+<a href="{% url 'privacy' %}">Privacy policy</a>
+</li>
+<li>
+    <a href="{% url 'payment' %}">Payment and refund policy</a>
+    </li> -->
+</ul></div></div></div><div class="col-lg-3 col-md-6"><div class=" footer-widget widget"><h4 class="widget-title">Contact us</h4><ul class="contact_info_list"> <li class="single-info-item">
+                <div class="icon">
+                    <i class="fa fa-home"></i>
+                </div>
+                <div class="details">
+                    Uae, dubai,deira muteena ,
+                    <br>
+                    lulu building 1102
+                </div>
+            </li><li class="single-info-item">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="details">
+                    +971 55 548 7771
+                </div>
+            </li><li class="single-info-item">
+                <div class="icon">
+                    <i class="fas fa-envelope-open"></i>
+                </div>
+                <div class="details">
+                    sdz@skillyservices.com
+                </div>
+            </li></ul></div></div>
+        </div>
+    </div>
+</div>
+<div class="copyright-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copyright-area-inner">
+                © Copyright 2021 . All Right Reserved By SkillY
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+</footer>
+<!-- footer area end -->
+<!-- back to top area start -->
+<div class="back-to-top" style="display: none;">
+    <span class="back-top"><i class="fa fa-angle-up"></i></span>
+</div>
+<!-- back to top area end -->
+
+
+<!-- jquery -->
+<script src="{% static 'assets/common/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/common/js/jquery-migrate-3.3.2.min.js' %}"></script>
+<!-- popup -->
+<script src="{% static 'assets/common/js/countdown.jquery.js' %}"></script>
+<div class="nx-popup-backdrop"></div>
+<div class="nx-popup-wrapper only-image-modal">
+<div class="nx-modal-content-wrapper">
+                <div class="nx-modal-inner-content-wrapper" style="background-image: url('static/assets/uploads/media-uploader/2-min1620215665.png');">
+            <div class="nx-popup-close">×</div>
+            <div class="nx-modal-content"></div>
+        </div>
+        </div>
+</div>
+
+<!-- bootstrap -->
+<script src="{% static 'assets/frontend/js/bootstrap.min.js' %}"></script>
+<!-- magnific popup -->
+<script src="{% static 'assets/frontend/js/jquery.magnific-popup.js' %}"></script>
+<!-- wow -->
+<script src="{% static 'assets/frontend/js/wow.min.js' %}"></script>
+<!-- owl carousel -->
+<script src="{% static 'assets/frontend/js/owl.carousel.js' %}"></script>
+<script src="{% static 'assets/frontend/js/owl.carousel.min.js' %}"></script>
+<!-- waypoint -->
+<script src="{% static 'assets/frontend/js/waypoints.min.js' %}"></script>
+<!-- counterup -->
+<script src="{% static 'assets/frontend/js/jquery.counterup.min.js' %}"></script>
+<!-- main js -->
+<script src="{% static 'assets/frontend/js/main.js' %}"></script>
+<!-- Progress-Bar -->
+<script src="{% static 'assets/frontend/js/jQuery.rProgressbar.min.js' %}"></script>
+<!-- Progress-Bar -->
+<script src="{% static 'assets/frontend/js/active.rProgressbar.js' %}"></script>
+<!-- dynamic js -->
+<script src="{% static 'assets/frontend/js/dynamic-script.js' %}"></script>
+<!-- toastr js -->
+<script src="{% static 'assets/common/js/toastr.min.js' %}"></script>
+<script src="{% static 'assets/frontend/js/select2.min.js' %}"></script>
+<script src="{% static 'assets/frontend/datatable/jquery.dataTables.min.js' %}"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script>
+$( document ).ready(function() {
+    //$('#autoservice').autocomplete(words.sort(), render($('.matches')));
+});
+</script> 
+</body></html>
+{% endblock %}

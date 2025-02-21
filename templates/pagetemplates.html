@@ -1,0 +1,117 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - {{ServiceN}}</title>
+<!--header-slider-area -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+<div class="breadcrumb-area" style="background-image: url(http://127.0.0.1:8000/media/{{serimage}});">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner">
+                    
+                    <p><a  class="booknow_btnmain" > Book Now   <i class="fas fa-long-arrow-alt-right"></i></a>  </p>
+                    <h2 class="page-title">    We Are Experience {{ServiceN}} </h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home</a></li><li>    We Are Experience {{ServiceN}} </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="service-area padding-top-50 padding-bottom-50">
+    <div class="container">
+        <div class="row">
+        <div class="section-title">
+            <h3 class="title">Need an expert for:</h3>
+        </div>
+        </div>
+        <div class="row padding-bottom-30" id="ser_img">
+            {% for service in serlist %}
+                <!-- {% if service.isActive %} -->
+                    <div class="col-xl-3">
+                        <div><a href="/service/{{service.page}}"><img  src="/media/{{service.image}}" class="mat-card-image  ng-lazyloaded" alt="{{ service.name }}">            <p>{{ service.name }}</p>
+                            <a  class="booknow_btn" data-label="{{service.page}}" > Book now </a><!----><!----></a>
+                    </div>
+                    </div>
+                <!-- {% endif %} -->
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+            <div class="service_menu upper-bound-reached" style="width: auto; left: auto; top: auto;"><ul><li  class="active"><button  class="mat-focus-indicator title_service mat-button mat-button-base"><span class="mat-button-wrapper"> How it Works </span><span matripple="" class="mat-ripple mat-button-ripple"></span><span class="mat-button-focus-overlay"></span></button></li><li ><button _ngcontent-serverapp-c180="" routerlinkactive="mat-accent" mat-button="" class="mat-focus-indicator title_service mat-button mat-button-base"><span class="mat-button-wrapper"> About</span><span matripple="" class="mat-ripple mat-button-ripple"></span><span class="mat-button-focus-overlay"></span></button></li><!----><li><button class="mat-focus-indicator title_service mat-button mat-button-base"><span class="mat-button-wrapper">Customer Reviews</span><span matripple="" class="mat-ripple mat-button-ripple"></span><span class="mat-button-focus-overlay"></span></button></li></ul></div>
+        </div>
+        </div>
+        <div class="row serv-desc" >
+            <div class="col-xl-12">
+                <div class="section-title">
+                    <h3 class="title">How it Works </h3>
+                </div>
+        </div>
+        <div class="col-xl-12">
+        
+        </div>
+        </div>
+        <div class="row serv-desc" >
+            <div class="col-xl-12">
+                <div class="section-title">
+                    <h3 class="title">About</h3>
+                </div>
+        </div>
+        <div class="col-xl-12">
+            <!-- <p>In Dubai, a part time house maid can be part of a good Dubai lifestyle. You can avail more than one maid to clean your house and commercial space clean. The high demand for maintaining a beautiful house has led to an increased demand for hiring maids.</p>
+                <h5><strong>Home Cleaning Maid Services in Dubai</strong></h5>
+                
+                <p>With the prompt assistance of maid service Dubai, you can avail several types of home cleaning services. This includes Sofa cleaning services, kitchen cleaning services, carpet cleaning services, full home cleaning services, and mattress cleaning services as well. The maids have expertise in cleaning all the home appliances and that too with proficiency. To maintain a healthy lifestyle, it is necessary to avail the maid service.&nbsp;</p>
+                
+                <h5><strong>Office Cleaning maid Services in Dubai</strong></h5>
+                
+                <p>It is important to maintain clean and healthy office space. A clean office not only attracts employees but also increases work productivity. If you want to maintain an excellent cleaning standard, then with atdoorstep&nbsp;you get to achieve that. From cleaning lounges, restrooms, elevators, stairways, to dealing with managerial roles in a daycare centre, our team can serve you the best.</p>
+                
+                <h5><strong>Kitchen Cleaning maid Services in Dubai</strong></h5>
+                
+                <p>Kitchen is one of the most important spaces in every household. And, it is quite impossible to take out time for doing extra household cleaning in our leisure. Understanding all these circumstances, we help you to connect with the best part-time maids in Dubai to help in washing dishes and strains from the kitchen floors.&nbsp;</p>
+                
+                <h5><strong>Disinfection Services by Maids in Dubai</strong></h5>
+                
+                <p>We offer disinfection services be it for small or large enterprises. In any workplace, hygiene matters the most. To safeguard your office from deadly viruses and bacterias it is necessary to sanitize and disinfect with the help of the best professional maids in Dubai&nbsp;Maid service Dubai has enough experience in using the right amount of chemicals to render a clean environment.&nbsp;</p>
+                
+                <h5><strong>Get Highly Experienced Maid Service in Dubai Near You</strong></h5>
+                
+                <p>Your health and safety get our prime attention and cleanliness our top priority. By providing on-time and highly-experienced maid service, we have gained a place in thousands of people's hearts. When it comes to accuracy and quality, we are the best to provide that.&nbsp;</p> -->
+        </div>
+        </div>
+        <div class="row serv-desc customerreviews" >
+            <div class="col-xl-12">
+                <div class="section-title">
+                    <h3 class="title">Customer Reviews </h3>
+                    <div class="ratting_strip"><div class="icon">
+                        <i class="fa fa-star"></i>
+                    </div><span class="rate_rev">4.3/5</span>based on 2 ratings </div>
+                </div>
+        </div>
+        <div class="col-xl-12">
+            <!-- <ul ><li class="ng-star-inserted"><div  class="user_revlist"><div  class="user_revpic" style="background: rgb(255, 171, 145);"><span class="ng-star-inserted">m</span></div><div  class="usertitle"><h5 >mohamed sadiq</h5><div  class="ratting_strip"><span class="material-icons green">grade</span><span  class="rate_rev"> 4/5</span></div></div></div><div class="userrev_text"><p > good </p></div></li><li  class="ng-star-inserted"><div  class="user_revlist"><div  class="user_revpic" style="background: rgb(255, 224, 130);"><span  class="ng-star-inserted">D</span></div><div class="usertitle"><h5 >Danuta Radziszewska</h5><div  class="ratting_strip"><span class="material-icons green">grade</span><span  class="rate_rev"> 5/5</span></div></div></div><div class="userrev_text"><p > last minute booking very well organised 
+                Great service </p></div></li></ul> -->
+        </div>
+        </div>
+    </div>
+</div>
+</section>
+<section class="why-choose-use-area padding-top-50 padding-bottom-20">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+{% include  'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,518 @@
+{% include  'base.html' %}
+{% load static %}
+{% block contentarea%}
+<title>SkillY - Profile</title>
+<!--header-slider-area -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/service.css' %}">
+
+<style>
+    #phoneform label,#phoneform .iti
+    {
+        width: 100%;
+    }
+    #ealert-msg
+    {
+        font-weight: 700;
+    }
+    .update_message
+    {
+        color: green;
+    }
+    .table
+    {
+        width: 100% !important;
+        border: 1px solid #dddddd;
+    }
+    .table thead th,.table tbody td
+    {
+        border: 1px solid #dddddd;
+    }
+    .table tbody td a{
+        color: #e424b7 !important;
+    } 
+    .btn-primary {
+    width: 160px;
+    background-color: #e424b7;
+    padding: 8px 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 13px;
+}
+.form-control:disabled, .form-control[readonly]
+{
+    background-color: #f6fafd;
+}
+#createAddress,#viewAddress
+{
+    opacity: 1;
+    overflow: hidden;
+    top: 0px;
+}
+.modal-title
+{
+    padding: 10px;
+}
+select.form-control
+{
+    height: 42px !important;
+    border-radius: 0.25rem;
+}
+.choicelist
+{
+    height: 55px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    position: inherit !important;
+}
+.choicelist ul
+{
+    position: relative;
+    overflow: auto;
+}
+body.modal-open {
+    overflow: hidden;
+}
+.choicelist ul li input {
+position: fixed;
+opacity: 0;
+cursor: pointer;
+}
+.choicelist ul
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+.choicelist ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 3px;
+}
+button:hover,button:focus{
+    outline: none !important;
+    border: none;
+}
+.containerchoice {
+          display: block;
+          position: relative;
+          padding: 0.9rem 0.75rem;
+          cursor: pointer;
+          font-size: 16px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        border: 1px solid #e424b7;
+        border-radius: 50rem;
+        font-size: 1.8rem;
+        min-width: 72px;
+        text-align: center;
+        height: 50px;
+        line-height: 20px;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 15px;
+        }
+ 
+.choicelist ul li input:checked + .containerchoice
+{
+    background-color: #e424b7;
+    color: #fff;
+}
+#address_delform
+{
+    width: 80%;
+    margin: auto;
+}
+</style>
+<script> 
+    $(document).ready(function () {
+        $('#address_delform').submit(function(e) {
+            e.preventDefault();
+            del_id = $("#ad_did").val();
+            userName = $(".userprofileemail").val().trim();
+            $.ajax({
+                type:"POST",
+                url: "/del_address/",
+                data: {'username':userName,"u_id": del_id},
+                success: function( data ) 
+                {  
+                    if(data == "Success")
+                    {
+                        $('#address_delform')[0].reset();  
+                        $("#ModelDelAddress").modal('hide');
+                        refreshdata();    
+                    }
+                }
+            });
+        });
+        $('#user_address_add_form').submit(function(e) {
+            e.preventDefault();
+            u_type = $('input[name="addtype"]:checked').val();
+            u_country = $('#seleaddrcountry').val();
+            u_city = $('#addcity').val();
+            u_building = $('#addbuilding').val();
+            u_appartno = $('#apptNo').val();
+            btntext = $("#modelheader").text();
+            if(btntext != "Edit Address")
+            {
+                $.ajax({
+                    type:"POST",
+                    url: "/add_address/",
+                    data: {'username':$(".userprofileemail").val().trim(),"u_type": u_type,"u_country": u_country,"u_city": u_city,"u_building": u_building,'u_appartno': u_appartno},
+                    success: function( data ) 
+                    {  
+                        if(data == "Success")
+                        {
+                            $('#user_address_add_form')[0].reset();  
+                            $("#createAddress").modal('hide');
+                            refreshdata();
+                        }
+                    }
+                });
+            }
+            else{
+                $.ajax({
+                    type:"POST",
+                    url: "/update_address/",
+                    data: {'username':$(".userprofileemail").val().trim(),"u_id": $("#ad_editid").val().trim(),"u_type": u_type,"u_country": u_country,"u_city": u_city,"u_building": u_building,'u_appartno': u_appartno},
+                    success: function( data ) 
+                    {  
+                        if(data == "Success")
+                        {
+                            $('#user_address_add_form')[0].reset();  
+                            $("#createAddress").modal('hide');
+                            refreshdata();
+                        }
+                    }
+                });
+            }
+        });
+        $.ajax({
+            type:"GET",
+            url: "/get_locations/",
+            data: {'username':$(".userprofileemail").val().trim()},
+            success: function( data ) 
+            {  
+                data1 = JSON.parse(data);
+                $("#tbl_locations tbody").empty();
+                $.each(data1, function (key, value) {
+                    $("#tbl_locations tbody").append("<tr><td class='upper'>" + data1[key].u_type+ "</td><td class='upper'>" + data1[key].u_country+ "</td><td class='cpital'>" + data1[key].u_city + "</td><td class='cpital'>" + data1[key].u_created+ "</td><td><input type='hidden' id='hcountryid' name='hcountryid' value='"+ data1[key].u_country_id  +"'><input type='hidden' id='happartment' name='happartment' value='"+ data1[key].u_appartno  +"'><input type='hidden' id='hbuilding' name='hbuilding' value='"+ data1[key].u_building  +"'><a onclick='showlinkviewModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='View' data-toggle='tooltip' data-original-title='View'><span class='fas fa-eye'></span></a><a onclick='showlinkeditModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='Edit' data-toggle='tooltip' data-original-title='Edit'><span class='fas fa-edit'></span></a><a onclick='showlinkdeleteModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='Delete' data-toggle='tooltip' data-original-title='Delete'><span class='fas fa-trash'></span></a></td></tr>");
+                });
+                $('#tbl_locations').DataTable({
+                  dom: 'Bfrtip',
+                  rowReorder: {
+                      selector: 'td:nth-child(2)'
+                  },
+                  responsive: true,
+                  language: {
+                     oPaginate: {
+                     sNext: '<i class="fa fa-forward"></i>',
+                     sPrevious: '<i class="fa fa-backward"></i>'
+                  }
+                  },
+                  "bDestroy": true,
+               });
+            }
+        });
+    });
+ 
+   function refreshdata()
+   {
+      $('#tbl_locations').dataTable().fnDestroy();
+        $.ajax({
+            type:"GET",
+            url: "/get_locations/",
+            data: {'username':$(".userprofileemail").val().trim()},
+            success: function( data ) 
+            {  
+                data1 = JSON.parse(data);
+                $("#tbl_locations tbody").empty();
+                $.each(data1, function (key, value) {
+                    $("#tbl_locations tbody").append("<tr><td class='upper'>" + data1[key].u_type+ "</td><td class='upper'>" + data1[key].u_country+ "</td><td class='cpital'>" + data1[key].u_city + "</td><td class='cpital'>" + data1[key].u_created+ "</td><td><input type='hidden' id='hcountryid' name='hcountryid' value='"+data1[key].u_country_id +"'><input type='hidden' id='hcountryid' name='hcountryid' value='"+ data1[key].u_country_id  +"'><input type='hidden' id='happartment' name='happartment' value='"+ data1[key].u_appartno  +"'><input type='hidden' id='hbuilding' name='hbuilding' value='"+ data1[key].u_building  +"'><a onclick='showlinkviewModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='View' data-toggle='tooltip' data-original-title='View'><span class='fas fa-eye'></span></a><a onclick='showlinkeditModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='Edit' data-toggle='tooltip' data-original-title='Edit'><span class='fas fa-edit'></span></a><a onclick='showlinkdeleteModal(this.id)' id="+ data1[key].u_id +" class='text-primary ml-2' title='Delete' data-toggle='tooltip' data-original-title='Delete'><span class='fas fa-trash'></span></a></td></tr>");
+                });
+                $('#tbl_locations').DataTable({
+                  dom: 'Bfrtip',
+                  rowReorder: {
+                      selector: 'td:nth-child(2)'
+                  },
+                  responsive: true,
+                  language: {
+                     oPaginate: {
+                     sNext: '<i class="fa fa-forward"></i>',
+                     sPrevious: '<i class="fa fa-backward"></i>'
+                  }
+                  },
+                  "bDestroy": true,
+               });
+            }
+        });
+   }
+   function showlinkdeleteModal(ev)
+   {
+        $("#ad_did").val(ev);
+        $("#ModelDelAddress").modal('show');
+   }
+   function showlinkviewModal(ev)
+   {
+    var row=$("#"+ev).closest("tr");
+    var type=$("td:eq(0)",row).text();
+    var country=$("td:eq(1)",row).text();
+    var city=$("td:eq(2)",row).text();
+    var build=$("#hbuilding",row).val();
+    var apart=$("#happartment",row).val();
+    $("#vaddtype").val(type);
+    $("#vseleaddrcountry").val(country);
+    $("#vaddcity").val(city);
+    $("#vaddbuilding").val(build);
+    $("#vapptNo").val(apart);
+    $("#viewAddress").modal('show');
+   }
+   function showlinkeditModal(ev)
+   {
+        var row=$("#"+ev).closest("tr");
+        var type=$("td:eq(0)",row).text();
+        var country=$("td:eq(1)",row).text();
+        var city=$("td:eq(2)",row).text();
+        var build=$("#hbuilding",row).val();
+        var apart=$("#happartment",row).val();
+        $.ajax({
+            type:"GET",
+            url: "/get_countrylist/",
+            data: {},
+            success: function( data ) 
+            { 
+                data1 = JSON.parse(data);
+                $.each(data1, function (key, value) {
+                    $("#seleaddrcountry").append('<option value="'+value['fields'].slug+'">'+value['fields'].name+'</option>');
+                }); 
+                $("input[name=addtype][value=" + type.trim() + "]").prop('checked', true);
+                $("#seleaddrcountry option:contains(" + country.trim() + ")").attr('selected', 'selected');
+                $("#addcity").val(city);
+                $("#addbuilding").val(build);
+                $("#apptNo").val(apart);
+                $("#ad_editid").val(ev);
+                $("#modelheader").text("Edit Address");
+                $("#btnaddrAddnow_btn").text("Update Address Now");
+                $("#createAddress").modal('show');
+            }
+        });  
+   }
+   function showcreateModal(){
+        $.ajax({
+            type:"GET",
+            url: "/get_countrylist/",
+            data: {},
+            success: function( data ) 
+            { 
+                data1 = JSON.parse(data);
+                $.each(data1, function (key, value) {
+                    $("#seleaddrcountry").append('<option value="'+value['fields'].slug+'">'+value['fields'].name+'</option>');
+                }); 
+                $('#user_address_add_form')[0].reset(); 
+                $("#modelheader").text("Add Address");
+                $("#btnaddrAddnow_btn").text("Add Address Now");
+                $("#createAddress").modal('show');
+            }
+        });  
+      }
+</script>
+<div class="breadcrumb-area" style="background-image: url('static/assets/uploads/services/breadcrumb1619334343.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner">
+                    <p>    My Locations
+</p>
+                    <h2 class="page-title">    My Locations
+</h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home </a></li>
+                    <li><a href="{% url 'locations' %}">Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="login-page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="user-dashboard-wrapper">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="mobile_nav">
+                            <i class="fas fa-cogs"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/profile">Profile</a>
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mybookings">My Bookings</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/locations">My Locations</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link " href="/mypayments">Payment History</a>
+                        </li>                 
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel">
+                            <div class="message-show margin-top-10">
+                                                                                                    </div>
+                                <div class="dashboard-form-wrapper">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h2 class="title">My Address</h2>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="add_list" class="btn btn-primary btn-info-full next-step" value="Add Address" onclick="showcreateModal()">
+                                        </div>
+                                    </div>
+    <table class="table table-custom ng-scope ng-table" id='tbl_locations'>
+        <thead class="ng-scope">
+         <tr>
+          <th class="header ">Type</th>
+          <th class="header ">Country</th>
+          <th class="header ">City</th>
+          <th class="header ">Added On</th>
+          <th class="header cus-width">Action</th>
+         </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+ <div class="modal" id="createAddress" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><a data-dismiss="modal" id="modelheader"> Add Address</a></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" id="user_address_add_form">
+            <div class="form-group">
+                <label for="name">Address Type</label>
+                <div class="form-group choicelist">
+                <ul>
+                    <li><label><input type="radio" value="Home" name="addtype" checked required><span  class="containerchoice">Home</span></label></li>
+                    <li><label><input type="radio" value="Office" name="addtype" required ><span  class="containerchoice">Office</span></label></li>
+                    <li><label><input type="radio" value="Other" name="addtype" required><span  class="containerchoice">Others</span></label></li>
+                </ul>
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Select Country</label>
+                <select id="seleaddrcountry" required class="form-control clear-focus input-placeholder rounded-0 d-flex">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="ad_editid" name="ad_editid" value="">
+                <label for="name">City/Area</label>
+                <input type="text" class="form-control" id="addcity" name="addcity" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Building or Street No</label>
+                <input type="text" class="form-control" id="addbuilding" name="addbuilding" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Apartment/Villa No</label>
+                <input type="text" class="form-control" id="apptNo" name="apptNo" value="" required>
+            </div>
+            <div class="form-group btn-wrapper">
+                <button type="submit" class="boxed-btn btn-block" id="btnaddrAddnow_btn">Add Now</button>
+            </div>                                         
+        </form> 
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal" id="viewAddress" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><a data-dismiss="modal">My Address</a></h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" id="user_address_add_form">
+            <div class="form-group">
+                <label for="name">Address Type</label>
+                <input type="text" class="form-control" id="vaddtype" name="vaddtype" value="" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Country</label>
+                <input type="text" class="form-control" id="vseleaddrcountry" name="vseleaddrcountry" value="" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">City/Area</label>
+                <input type="text" class="form-control" id="vaddcity" name="addcity" value="" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Building or Street No</label>
+                <input type="text" class="form-control" id="vaddbuilding" name="addbuilding" value="" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Apartment/Villa No</label>
+                <input type="text" class="form-control" id="vapptNo" name="apptNo" value="" readonly>
+            </div>
+                                                   
+        </form> 
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal" id="ModelDelAddress" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="deletetitle">Delete My Address</h4>
+          <button type="button" class="close" data-dismiss="modal"><span id="spanclose">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <form id="address_delform" class="contact-page-form style-01">
+                <div class="form-group">
+                    <input type="hidden" id="ad_did" name="s_did" value="">
+                    <span>Are you sure you want to Delete this Address?</span> 
+                </div>
+                <div class="form-group btn-wrapper" style="padding-top: 2%;">
+                    <button type="submit" class="boxed-btn btn-block" id="addr_del">Delete Address</button>
+                </div>
+            </form>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{% include  'footer.html' %}
+
+{% endblock %}
